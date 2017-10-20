@@ -1,3 +1,9 @@
+/*
+ * @Author: MUHM
+ * @Date: 2017-10-20 09:51:35
+ * @Last Modified by: MUHM
+ * @Last Modified time: 2017-10-20 09:52:31
+ */
 'use strict';
 
 module.exports = appInfo => {
@@ -30,5 +36,13 @@ module.exports = appInfo => {
       enable: false,
     },
   };
+  config.middleware = ['authClinet'];
+  config.authClinet = {
+    match: /^\/api\/v1\/.*$/,
+  };
+  config.i18n = {
+    defaultLocale: 'zh-CN',
+  };
+
   return config;
 };

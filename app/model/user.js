@@ -2,12 +2,12 @@
  * @Author: MUHM
  * @Date: 2017-07-06 13:48:11
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-12 13:58:36
+ * @Last Modified time: 2017-10-20 14:25:00
  */
 'use strict';
 
 module.exports = app => {
-  const { STRING, INTEGER, DATE, UUID, UUIDV1 } = app.Sequelize;
+  const { STRING, INTEGER, DATE } = app.Sequelize;
 
   const User = app.model.define('user', {
     id: {
@@ -50,10 +50,10 @@ module.exports = app => {
       defaultValue: 0,
       allowNull: false,
     },
-    session_token: {
-      type: UUID,
-      defaultValue: UUIDV1,
-    },
+    // session_token: {
+    //   type: UUID,
+    //   defaultValue: UUIDV1,
+    // },
     created_by: INTEGER,
     updated_by: INTEGER,
   });
