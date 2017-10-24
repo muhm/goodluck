@@ -6,7 +6,7 @@
   - code说明
     - 200 成功
 
-## 1 token
+## 1. token
 ### 1.1 post /token 生成token
   - 接受post参数
     - account 用户账号
@@ -26,3 +26,6 @@
   - access_token access_token
   - 返回信息
     - code 状态码
+
+## 2. blog文章
+## 3. tag标签

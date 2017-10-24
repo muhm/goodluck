@@ -1,32 +1,30 @@
 # goodluck
 
+[goodluck api 文档][goodluck_api]。
 
+采用egg.js作为程序主框架，参见 [egg 文档][egg]。  
 
-## 快速入门
+采用mysql作为数据存储，使用sequelizejs作为orm框架，参见[Sequelize 文档][Sequelize]。  
 
-<!-- 在此次添加使用文档 -->
-
-如需进一步了解，参见 [egg 文档][egg]。
+页面渲染采用nunjucks，参见[nunjucks][nunjucks]。 
 
 ### 本地开发
 
 ```bash
 $ npm i
 $ npm run dev
-$ open http://localhost:7001/
+$ open http://127.0.0.1:7001/
 ```
 
 ### 部署
 
-```bash
-$ npm start
-$ npm stop
-```
+线上正式环境用 `EGG_SERVER_ENV=prod` 来启动。
 
-### 单元测试
-- [egg-bin] 内置了 [mocha], [thunk-mocha], [power-assert], [istanbul] 等框架，让你可以专注于写单元测试，无需理会配套工具。
-- 断言库非常推荐使用 [power-assert]。
-- 具体参见 [egg 文档 - 单元测试](https://eggjs.org/zh-cn/core/unittest)。
+可以在config文件夹下新增config.prod.js来覆盖config.default.js中的数据库、加密等配置
+
+```bash
+$ EGG_SERVER_ENV=prod npm start
+```
 
 ### 内置指令
 
@@ -36,3 +34,6 @@ $ npm stop
 
 
 [egg]: https://eggjs.org
+[Sequelize]:http://docs.sequelizejs.com
+[nunjucks]:http://mozilla.github.io/nunjucks/api.html
+[goodluck_api]: /api.md
