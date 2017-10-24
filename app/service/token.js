@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-12 16:23:18
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-20 15:55:43
+ * @Last Modified time: 2017-10-24 10:45:39
  */
 'use strict';
 
@@ -49,7 +49,10 @@ module.exports = app => {
         },
       });
       if (!token) {
-        throw new Error('access_token与refresh_token不符');
+        throw new Error(ctx.__(200000));
+      }
+      if (token.refresh_token_expires_at < ctx.locals.moment()) {
+        throw new Error(ctx.__(200001));
       }
       await token.update({
         access_token: (uuid.v1()).replace(/-/g, ''),
@@ -62,7 +65,7 @@ module.exports = app => {
     /**
      * 根据access_token删除token
      * @param {access_token} [access_token] - access_token
-     * @return {Promise} token
+     * @return {Integer} 1或0
      */
     async destroy(access_token) {
       return await this.ctx.model.Token.destroy({
