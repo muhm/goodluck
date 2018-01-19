@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 15:14:06
+ * @Last Modified time: 2018-01-19 17:14:12
  */
 'use strict';
 
@@ -11,7 +11,7 @@ module.exports = app => {
     app.locals.moment = require('moment');
 
     // setup begin 发布后请自行删除
-    const setup = false;
+    const setup = true;
     const password_secret = 'goodluck'; // 请勿二次修改
     if (setup) {
       await app.model.sync({ force: true });
@@ -89,8 +89,8 @@ module.exports = app => {
         is_menu: 1,
         created_by: admin.id,
         updated_by: admin.id,
-      }).then(result => {
-        role.createPermission({
+      }).then(async result => {
+        await role.createPermission({
           parent_id: result.id,
           name: '用户菜单',
           description: '用户菜单数据',
@@ -114,8 +114,8 @@ module.exports = app => {
         is_menu: 1,
         created_by: admin.id,
         updated_by: admin.id,
-      }).then(result => {
-        role.createPermission({
+      }).then(async result => {
+        await role.createPermission({
           parent_id: result.id,
           name: '用户管理',
           url: '/manage/user',
@@ -128,8 +128,8 @@ module.exports = app => {
           is_menu: 1,
           created_by: admin.id,
           updated_by: admin.id,
-        }).then(result => {
-          role.createPermission({
+        }).then(async result => {
+          await role.createPermission({
             parent_id: result.id,
             name: '用户列表',
             description: '用户列表数据',
@@ -143,16 +143,115 @@ module.exports = app => {
             created_by: admin.id,
             updated_by: admin.id,
           });
-          role.createPermission({
+          await role.createPermission({
             parent_id: result.id,
             name: '用户具体信息',
-            description: '用户列表数据',
+            description: '用户具体信息数据',
             url: '/manage/api/user/:id',
             http_type: 'get',
             area: 'manage.api',
             controller: 'user',
             action: 'show',
             sort: 8012,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+        });
+        await role.createPermission({
+          parent_id: result.id,
+          name: '角色管理',
+          url: '/manage/role',
+          http_type: 'get',
+          area: 'manage',
+          controller: 'role',
+          action: 'index',
+          icon: 'fa-legal',
+          sort: 8020,
+          is_menu: 1,
+          created_by: admin.id,
+          updated_by: admin.id,
+        }).then(async result => {
+          await role.createPermission({
+            parent_id: result.id,
+            name: '角色列表',
+            description: '角色列表数据',
+            url: '/manage/api/role',
+            http_type: 'get',
+            area: 'manage.api',
+            controller: 'role',
+            action: 'index',
+            sort: 8021,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '角色具体信息',
+            description: '角色具体信息数据',
+            url: '/manage/api/role/:id',
+            http_type: 'get',
+            area: 'manage.api',
+            controller: 'role',
+            action: 'show',
+            sort: 8023,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '角色新增',
+            description: '角色列表数据',
+            url: '/manage/api/role',
+            http_type: 'post',
+            area: 'manage.api',
+            controller: 'role',
+            action: 'create',
+            sort: 8023,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '角色修改',
+            description: '角色列表数据',
+            url: '/manage/api/role',
+            http_type: 'put',
+            area: 'manage.api',
+            controller: 'role',
+            action: 'update',
+            sort: 8024,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '角色删除',
+            description: '角色列表数据',
+            url: '/manage/api/role',
+            http_type: 'del',
+            area: 'manage.api',
+            controller: 'role',
+            action: 'destroy',
+            sort: 8025,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '权限列表',
+            description: '权限列表数据',
+            url: '/manage/api/permission',
+            http_type: 'get',
+            area: 'manage.api',
+            controller: 'permission',
+            action: 'index',
+            sort: 8026,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-18 14:41:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 15:25:45
+ * @Last Modified time: 2018-01-19 16:50:06
  */
 'use strict';
 
@@ -14,7 +14,7 @@ module.exports = () => {
       api ? ctx.body = {
         code: 401,
         msg: '401 Unauthorized',
-      } : await ctx.redirect(`/account/login?redirectURL=${ctx.originalUrl}`);
+      } : ctx.redirect(`/account/login?redirectURL=${ctx.originalUrl}`);
       return;
     }
     // 重复登录验证
@@ -22,7 +22,7 @@ module.exports = () => {
     if (user.session_token !== ctx.session.token) {
       ctx.session.userId = null;
       ctx.session.token = null;
-      return await ctx.redirect(`/login?redirectURL=${ctx.originalUrl}&message=账号在别处登录,请确保您的账号安全`);
+      return ctx.redirect(`/login?redirectURL=${ctx.originalUrl}&message=账号在别处登录,请确保您的账号安全`);
     }
     ctx.locals.username = user.truename ? user.truename : user.name;
     ctx.locals.user = user;

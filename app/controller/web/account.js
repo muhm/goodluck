@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 11:07:18
+ * @Last Modified time: 2018-01-19 16:47:54
  */
 'use strict';
 
@@ -11,7 +11,7 @@ module.exports = app => {
     async login() {
       const { ctx } = this;
       if (ctx.session.userId) {
-        return await ctx.redirect('/');
+        return ctx.redirect('/');
       }
       await ctx.render('web/account/login', {
         redirectURL: ctx.query.redirectURL ? ctx.query.redirectURL : '/',

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:34:36
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 15:38:00
+ * @Last Modified time: 2018-01-19 17:09:35
  */
 'use strict';
 
@@ -24,7 +24,7 @@ module.exports = app => {
     }
     async show() {
       const { ctx } = this;
-      const role = await ctx.service.role.findById(ctx.query.id);
+      const role = await ctx.service.role.findById(ctx.params.id);
       if (!role) {
         throw new Error('角色不存在');
       }

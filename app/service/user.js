@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 15:15:48
+ * @Last Modified time: 2018-01-19 16:54:42
  */
 'use strict';
 
@@ -59,15 +59,16 @@ module.exports = app => {
       return user;
     }
     /**
-   * 登录
+   * 查询用户列表
    * @param {Object} [where] - 查询条件
-   * @param {INTEGER} [limit] - 密码
-   * @param {INTEGER} [offset] - 密码
-   * @return {Promise} 用户List
+   * @param {Integer} [limit] - limit
+   * @param {Integer} [offset] - offset
+   * @param {Array} [order] - order 默认[['created_at', 'DESC']]
+   * @return {Promise} 用户列表
    */
-    async findAllByPage(where, limit, offset) {
+    findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
       const { ctx } = this;
-      return await ctx.model.User.findAndCountAll({
+      return ctx.model.User.findAndCountAll({
         where,
         include: [{
           attributes: [
@@ -75,25 +76,25 @@ module.exports = app => {
           ],
           model: app.model.Role,
         }],
-        order: [['created_at', 'DESC']],
+        order,
         limit,
         offset,
       });
     }
     // 根据账号查找
-    async findByAccount(account) {
+    findByAccount(account) {
       const { ctx } = this;
       const where = ctx.helper.accountWhere(account);
       if (!where) {
         // 账号格式有误
         throw new Error(ctx.__(100000));
       }
-      return await ctx.model.User.findOne(where);
+      return ctx.model.User.findOne(where);
     }
     // 根据id查找
-    async findById(id) {
+    findById(id) {
       const { ctx } = this;
-      return await ctx.model.User.findById(id);
+      return ctx.model.User.findById(id);
     }
   };
 };

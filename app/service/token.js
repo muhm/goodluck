@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-12 16:23:18
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-18 13:57:08
+ * @Last Modified time: 2018-01-19 16:55:17
  */
 'use strict';
 
@@ -25,7 +25,7 @@ module.exports = app => {
           user_id: user.id,
         },
       });
-      return await user.createToken({
+      return user.createToken({
         access_token: (uuid.v1()).replace(/-/g, ''),
         access_token_expires_at: ctx.locals.moment().add(client.access_token_lifetime, 'ms'),
         refresh_token: (uuid.v4()).replace(/-/g, ''),
@@ -67,8 +67,8 @@ module.exports = app => {
      * @param {access_token} [access_token] - access_token
      * @return {Integer} 1或0
      */
-    async destroy(access_token) {
-      return await this.ctx.model.Token.destroy({
+    destroy(access_token) {
+      return this.ctx.model.Token.destroy({
         where: {
           access_token,
         },

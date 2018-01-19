@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 13:22:22
+ * @Last Modified time: 2018-01-19 16:06:33
  */
 'use strict';
 
@@ -26,7 +26,7 @@ module.exports = app => {
         ctx.body = {
           code: 200,
           data,
-          msg: '登录成功',
+          msg: ctx.__(100200),
         };
       } catch (e) {
         ctx.body = {
@@ -42,7 +42,7 @@ module.exports = app => {
         await ctx.service.user.create(user);
         ctx.body = {
           code: 200,
-          msg: '注册成功',
+          msg: ctx.__(100201),
         };
       } catch (e) {
         ctx.body = {
