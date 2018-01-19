@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:27:38
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 16:54:35
+ * @Last Modified time: 2018-01-19 17:24:10
  */
 'use strict';
 
@@ -35,15 +35,28 @@ module.exports = app => {
         attributes: ['id', 'name'],
       });
     }
-    // find by id
+    /**
+    * 根据id查询角色
+    * @param {Integer} [id] - 角色id
+    * @return {Promise} 角色
+    */
     findById(id) {
       return this.ctx.model.Role.findById(id);
     }
-    // create role
+    /**
+    * 新增角色
+    * @param {Object} [m] - 角色信息
+    * @return {Promise} 角色
+    */
     create(m) {
       return this.ctx.model.Role.create(m);
     }
-    // 修改role
+    /**
+    * 修改角色
+    * @param {Object} [m] - 角色信息
+    * @param {Array} [p] - 权限信息
+    * @return {Promise} 角色
+    */
     async update(m, p) {
       const t = await app.model.transaction();
       try {
