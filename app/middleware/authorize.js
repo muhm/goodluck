@@ -2,13 +2,13 @@
  * @Author: MUHM
  * @Date: 2018-01-18 14:41:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 16:50:06
+ * @Last Modified time: 2018-01-19 17:14:49
  */
 'use strict';
 
 module.exports = () => {
   return async (ctx, next) => {
-    console.log(ctx._matchedRoute);
+    // console.log(ctx._matchedRoute);
     const api = /^\/manage\/api.*$/.test(ctx._matchedRoute);
     if (!ctx.session.userId) {
       api ? ctx.body = {
