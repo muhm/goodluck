@@ -1,8 +1,8 @@
 /*
  * @Author: MUHM
- * @Date: 2017-10-12 13:24:50
+ * @Date: 2018-01-11 09:27:25
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-12 16:25:25
+ * @Last Modified time: 2018-01-18 14:12:56
  */
 'use strict';
 
@@ -10,7 +10,7 @@ module.exports = app => {
   class HomeController extends app.Controller {
     async index() {
       const { ctx } = this;
-      ctx.body = 'hehe 404';
+      await ctx.render('manage/home/index');
     }
   }
   return HomeController;

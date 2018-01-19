@@ -1,6 +1,6 @@
 # goodluck api v1
   以下 api 路径均以 http://127.0.0.1:7001/api/v1 为前缀
-  - 以下 api 都需要带上clinet参数
+  - 以下 api 都需要带上client参数
     - uuid 客户端编号
     - secret 客户端密钥
   - code说明

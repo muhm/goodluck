@@ -2,11 +2,17 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-20 09:51:41
+ * @Last Modified time: 2018-01-17 15:16:44
  */
 'use strict';
 
-// add you build-in plugin here, example:
+// 启用静态资源
+exports.static = true;
+
+exports.nunjucks = {
+  enable: true,
+  package: 'egg-view-nunjucks',
+};
 
 exports.sequelize = {
   enable: true,

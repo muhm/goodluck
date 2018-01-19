@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-06 13:48:11
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-12 13:48:45
+ * @Last Modified time: 2018-01-18 14:07:58
  */
 'use strict';
 
@@ -20,17 +20,46 @@ module.exports = app => {
       defaultValue: 0,
       allowNull: false,
     },
-    name: STRING(150),
-    link_url: STRING(150),
-    // HTTP协议 get post put delete
-    http_type: STRING(150),
-    area: STRING(150),
-    controller: STRING(150),
-    action: STRING(150),
-    icon: STRING(150),
-    description: STRING(150),
-    sort: INTEGER,
-    is_menu: INTEGER,
+    name: {
+      type: STRING(150),
+      comment: '名称',
+    },
+    description: {
+      type: STRING(150),
+      comment: '描述',
+    },
+    url: {
+      type: STRING(150),
+      comment: 'url',
+    },
+    http_type: {
+      type: STRING(150),
+      comment: 'HTTP协议 get post put delete',
+    },
+    area: {
+      type: STRING(150),
+      comment: 'area',
+    },
+    controller: {
+      type: STRING(150),
+      comment: 'controller',
+    },
+    action: {
+      type: STRING(150),
+      comment: 'action',
+    },
+    icon: {
+      type: STRING(150),
+      comment: 'icon',
+    },
+    sort: {
+      type: INTEGER,
+      comment: '排序-正序',
+    },
+    is_menu: {
+      type: INTEGER,
+      comment: '是否菜单',
+    },
     created_by: INTEGER,
     updated_by: INTEGER,
   });

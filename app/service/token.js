@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-12 16:23:18
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-24 10:45:39
+ * @Last Modified time: 2018-01-18 13:57:08
  */
 'use strict';
 
@@ -15,10 +15,10 @@ module.exports = app => {
     /**
      * 根据用户及客户端生成token
      * @param {User} [user] - 用户
-     * @param {Clinet} [clinet] - 客户端
+     * @param {Client} [client] - 客户端
      * @return {Promise} token
      */
-    async create(user, clinet) {
+    async create(user, client) {
       const { ctx, uuid } = this;
       await ctx.model.Token.destroy({
         where: {
@@ -27,20 +27,20 @@ module.exports = app => {
       });
       return await user.createToken({
         access_token: (uuid.v1()).replace(/-/g, ''),
-        access_token_expires_at: ctx.locals.moment().add(clinet.access_token_lifetime, 'ms'),
+        access_token_expires_at: ctx.locals.moment().add(client.access_token_lifetime, 'ms'),
         refresh_token: (uuid.v4()).replace(/-/g, ''),
-        refresh_token_expires_at: ctx.locals.moment().add(clinet.access_token_lifetime, 'ms'),
-        clinet_id: clinet.id,
+        refresh_token_expires_at: ctx.locals.moment().add(client.access_token_lifetime, 'ms'),
+        client_id: client.id,
       });
     }
     /**
      * 根据access_token及refresh_token刷新token
      * @param {String} [access_token] - access_token
      * @param {String} [refresh_token] - refresh_token
-     * @param {Clinet} [clinet] - 客户端
+     * @param {Client} [client] - 客户端
      * @return {Promise} token
      */
-    async update(access_token, refresh_token, clinet) {
+    async update(access_token, refresh_token, client) {
       const { ctx, uuid } = this;
       const token = await ctx.model.Token.findOne({
         where: {
@@ -56,9 +56,9 @@ module.exports = app => {
       }
       await token.update({
         access_token: (uuid.v1()).replace(/-/g, ''),
-        access_token_expires_at: ctx.locals.moment().add(clinet.access_token_lifetime, 'ms'),
+        access_token_expires_at: ctx.locals.moment().add(client.access_token_lifetime, 'ms'),
         refresh_token: (uuid.v4()).replace(/-/g, ''),
-        refresh_token_expires_at: ctx.locals.moment().add(clinet.access_token_lifetime, 'ms'),
+        refresh_token_expires_at: ctx.locals.moment().add(client.access_token_lifetime, 'ms'),
       });
       return token;
     }
@@ -71,7 +71,7 @@ module.exports = app => {
       return await this.ctx.model.Token.destroy({
         where: {
           access_token,
-        }
+        },
       });
     }
   };

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-20 14:12:47
+ * @Last Modified time: 2018-01-19 15:15:48
  */
 'use strict';
 
@@ -11,6 +11,7 @@ module.exports = app => {
     constructor(ctx) {
       super(ctx);
       this.crypto = require('crypto');
+      this.uuid = require('node-uuid');
     }
     /**
      * 登录
@@ -19,7 +20,7 @@ module.exports = app => {
      * @return {Promise} 用户
      */
     async login(username, password) {
-      const { ctx, crypto } = this;
+      const { ctx, crypto, uuid } = this;
       const where = ctx.helper.accountWhere(username);
       if (!where) {
         // 账号格式有误
@@ -32,7 +33,7 @@ module.exports = app => {
         throw new Error(ctx.__(100000));
       }
       // 检查用户状态
-      if (user.status !== 'active') {
+      if (user.status !== 1) {
         throw new Error(ctx.__(100001));
       }
       // 检查登录错误次数
@@ -47,13 +48,52 @@ module.exports = app => {
         });
         throw new Error(ctx.__(100000));
       }
+      const session_token = uuid.v1();
       // 登录成功，重置密码输入错误次数，记录登录时间，增加登录次数
       await user.update({
         login_fail_count: 0,
         login_count: user.login_count + 1,
+        session_token,
         last_login: ctx.locals.moment(),
       });
       return user;
+    }
+    /**
+   * 登录
+   * @param {Object} [where] - 查询条件
+   * @param {INTEGER} [limit] - 密码
+   * @param {INTEGER} [offset] - 密码
+   * @return {Promise} 用户List
+   */
+    async findAllByPage(where, limit, offset) {
+      const { ctx } = this;
+      return await ctx.model.User.findAndCountAll({
+        where,
+        include: [{
+          attributes: [
+            'name',
+          ],
+          model: app.model.Role,
+        }],
+        order: [['created_at', 'DESC']],
+        limit,
+        offset,
+      });
+    }
+    // 根据账号查找
+    async findByAccount(account) {
+      const { ctx } = this;
+      const where = ctx.helper.accountWhere(account);
+      if (!where) {
+        // 账号格式有误
+        throw new Error(ctx.__(100000));
+      }
+      return await ctx.model.User.findOne(where);
+    }
+    // 根据id查找
+    async findById(id) {
+      const { ctx } = this;
+      return await ctx.model.User.findById(id);
     }
   };
 };

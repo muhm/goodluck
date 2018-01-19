@@ -12,13 +12,13 @@ module.exports = app => {
     async create() {
       const { ctx } = this;
       const user = await ctx.service.user.login(ctx.query.account || ctx.request.body.account, ctx.query.password || ctx.request.body.password);
-      const token = await ctx.service.token.create(user, ctx.locals.clinet);
+      const token = await ctx.service.token.create(user, ctx.locals.client);
       ctx.body = { code: 200, data: { user, token } };
     }
     // 更新token
     async update() {
       const { ctx } = this;
-      const token = await ctx.service.token.update(ctx.params.access_token, ctx.params.refresh_token, ctx.locals.clinet);
+      const token = await ctx.service.token.update(ctx.params.access_token, ctx.params.refresh_token, ctx.locals.client);
       ctx.body = { code: 200, data: { token } };
     }
     // 删除token

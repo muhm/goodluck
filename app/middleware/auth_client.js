@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-12 17:03:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-20 14:56:52
+ * @Last Modified time: 2018-01-18 13:56:01
  */
 'use strict';
 
@@ -12,9 +12,9 @@ module.exports = () => {
     try {
       const uuid = ctx.query.uuid || ctx.request.body.uuid;
       const secret = ctx.query.secret || ctx.request.body.secret;
-      const clinet = await ctx.service.clinet.findByUuidAndSecret(uuid, secret);
-      if (clinet) {
-        ctx.locals.clinet = clinet;
+      const client = await ctx.service.client.findByUuidAndSecret(uuid, secret);
+      if (client) {
+        ctx.locals.client = client;
         await next();
       } else {
         ctx.status = 401;

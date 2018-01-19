@@ -1,0 +1,170 @@
+
+	div, form{
+		box-sizing: border-box;
+	    -webkit-box-sizing: border-box;
+	}
+	input{
+		border: none;
+	}
+	.login-bg{
+		background: url('../img/login/login_bg.png') no-repeat center;
+	}
+	.login-img{
+		background: url('../img/login/login_img.png') no-repeat center;
+		width: 1190px;
+		height: 1080px;
+		margin: 0 auto;
+	}
+
+	/*.login-wrap{
+		background-image: url('../img/login_img.png');
+		width: 1190px;
+		height: 1080px;
+	    position: absolute;
+	    left: 50%;
+	    margin-left: -595px;
+	    z-index: 10;
+	}*/
+	.login-content{
+		width: 478px;
+		height: 552px;
+		position: absolute;
+		left: 50%;
+		margin-left: -239px;
+		top: 238px;
+	}
+	.content-title{
+		width: 478px;
+		height: 170px;
+		background-image: url('../img/login/login_title.png');
+		background-repeat: no-repeat;
+		text-align: center;
+		line-height: 170px;
+		font-size: 32px;
+		color: #fff;
+	}
+	.content-detail{
+		width: 478px;
+		height: 352px;
+		position: relative;
+		background-color: #fff;
+		border-bottom-left-radius: 8px;
+		border-bottom-right-radius: 8px;
+		padding: 52px 68px 0 68px;
+	}
+/*	.clearfix::after{
+		content: '';
+		display: table;
+		clear: both;
+	}*/
+	.un-img, .pw-img{
+		display: inline-block;
+		width: 20px;
+		height: 22px;
+		margin-right: 12px;
+		vertical-align: middle;
+	}
+	.un-img{
+		background-image: url('../img/login/login_un.png');
+	}
+	.pw-img{
+		background-image: url('../img/login/login_pw.png');
+	}
+	.un-wrap, .pw-wrap{
+		font-size: 0;
+		height: 32px;
+		position: relative;
+		padding-bottom: 10px;
+		display: block;
+	}
+	.un-wrap{
+		margin-bottom: 24px;
+	}
+	.pw-wrap{
+		margin-bottom: 94px;
+	}
+	.un-prim::after, .pw-prim::after{
+		position: absolute;
+	    left: 0;
+	    bottom: 0;
+	    width: 100%;
+	    border-top: 1px solid #e5e5e5;
+	    content: ' ';
+	}
+	.un-success::after, .pw-success::after{
+		position: absolute;
+	    left: 0;
+	    bottom: 0;
+	    width: 100%;
+	    border-top: 1px solid #455e75;
+	    content: ' ';
+	}
+	.content-detail .form-group .form-control{
+		display: inline-block;
+		width: 270px;
+		height: 22px;
+		border: none;
+		padding-top: 0;
+		padding-bottom: 0;
+		vertical-align: middle;
+		font-size: 18px;
+		color: #455e75;
+	}
+	.forget-ps{
+	    position: absolute;
+	    display: inline-block;
+	    right: 68px;
+	    top: 162px;
+	    text-align: right;
+		font-size: 16px!important;
+	}
+	.forget-ps small{
+		color: #455e75;
+		font-size: 16px;
+	}
+	.content-detail .submit{
+		position: absolute;
+	    left: 50%;
+	    margin-left: -107px;
+	    top: 230px;
+		width: 214px;
+		height: 46px;
+		background-color: #b5bfc8;
+		border: none;
+		color: #dce0e5;
+		font-size: 18px;
+		border-radius: 22px;
+	}
+	.content-detail .submit:hover{
+		background-color: #455e75;
+		color: #fff;
+	}
+	.tip{
+		text-align: center;
+		left: 50%;
+	    position: absolute;
+	    margin-left: -177px;
+	    bottom: 12px;
+	}
+	.tip small{
+		font-size: 14px;
+		color: #000;
+	}
+	.content-detail .alert{
+		padding: 4px;
+    	margin-top: -45px;
+     	margin-bottom: 0px;
+     	text-align: center;
+	}
+	.form-control::-webkit-input-placeholder { /* WebKit browsers */
+		color: #ccc;
+	};
+	.form-control:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+		color: #ccc;
+	};
+	.form-control::-moz-placeholder { /* Mozilla Firefox 19+ */
+		color: #ccc;
+	};
+	.form-control:-ms-input-placeholder { /* Internet Explorer 10+ */
+		color: #ccc;
+	};

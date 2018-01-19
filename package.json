@@ -4,25 +4,25 @@
 	"description": "",
 	"private": true,
 	"dependencies": {
-		"egg": "^1.9.0",
+		"egg": "^2.0.0",
 		"egg-scripts": "^1.2.0",
 		"egg-sequelize": "^3.1.0",
-		"moment": "^2.19.1",
-		"mysql2": "^1.4.2",
+		"egg-view-nunjucks": "^2.1.4",
+		"moment": "^2.20.0",
+		"mysql2": "^1.5.1",
 		"node-uuid": "^1.4.8"
 	},
 	"devDependencies": {
 		"autod": "^2.10.1",
-		"autod-egg": "^1.0.0",
-		"egg-bin": "^4.3.5",
+		"autod-egg": "^1.1.0",
+		"egg-bin": "^4.3.7",
 		"egg-ci": "^1.8.0",
-		"egg-mock": "^3.13.0",
-		"eslint": "^4.8.0",
-		"eslint-config-egg": "^5.1.0",
-		"webstorm-disable-index": "^1.2.0"
+		"egg-mock": "^3.14.0",
+		"eslint": "^4.13.1",
+		"eslint-config-egg": "^5.1.0"
 	},
 	"engines": {
-		"node": ">=6.0.0"
+		"node": ">=8.0.0"
 	},
 	"scripts": {
 		"start": "egg-scripts start --daemon",

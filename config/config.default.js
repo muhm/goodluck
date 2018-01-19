@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-20 09:52:31
+ * @Last Modified time: 2018-01-18 15:40:45
  */
 'use strict';
 
@@ -10,6 +10,20 @@ module.exports = appInfo => {
   const config = {};
   // should change to your own
   config.keys = appInfo.name + '_1499319408248_7916';
+  // session
+  config.session = {
+    key: 'glhf',
+    maxAge: 10 * 60 * 1000,
+    httpOnly: true,
+    encrypt: true,
+  };
+  // 页面模版
+  config.view = {
+    defaultViewEngine: 'nunjucks',
+  };
+  config.nunjucks = {
+    cache: true,
+  };
   // sequelize
   config.sequelize = {
     define: {
@@ -33,11 +47,14 @@ module.exports = appInfo => {
   };
   config.security = {
     csrf: {
-      enable: false,
+      ignore: /^\/api\/v1\/.*$/,
     },
   };
-  config.middleware = ['authClinet'];
-  config.authClinet = {
+  config.middleware = ['authClient']; // 'authorize',
+  // config.authorize = {
+  //   match: /^\/manage((?!\/api).)*$/,
+  // };
+  config.authClient = {
     match: /^\/api\/v1\/.*$/,
   };
   config.i18n = {
