@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 17:14:12
+ * @Last Modified time: 2018-01-19 17:19:47
  */
 'use strict';
 
@@ -11,7 +11,7 @@ module.exports = app => {
     app.locals.moment = require('moment');
 
     // setup begin 发布后请自行删除
-    const setup = true;
+    const setup = false;
     const password_secret = 'goodluck'; // 请勿二次修改
     if (setup) {
       await app.model.sync({ force: true });
