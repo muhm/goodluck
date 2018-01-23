@@ -2,24 +2,40 @@
  * @Author: MUHM
  * @Date: 2018-01-11 13:01:13
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 16:56:00
+ * @Last Modified time: 2018-01-23 11:46:57
  */
 'use strict';
 
 module.exports = app => {
   return class Permission extends app.Service {
-    // list
-    findAllByPage(where, limit, offset) {
+    /**
+    * 查询权限列表
+    * @param {Object} [where] - 查询条件
+    * @param {Integer} [limit] - limit
+    * @param {Integer} [offset] - offset
+    * @param {Array} [order] - order 默认[['created_at', 'DESC']]
+    * @return {Promise} 权限列表
+    */
+    findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
       return this.ctx.model.Permission.findAndCountAll({
         where,
+        order,
         limit,
         offset,
       });
     }
-    // findAll
-    findAll(where) {
-      return this.ctx.model.Permission.findAll({
-        where,
+    /**
+    * 根据url查询权限
+    * @param {String} [url] - url
+    * @param {String} [method] - method
+    * @return {Promise} 权限列表
+    */
+    findByRoute(url, method) {
+      return this.ctx.model.Permission.findOne({
+        where: {
+          url,
+          method,
+        },
       });
     }
     /**

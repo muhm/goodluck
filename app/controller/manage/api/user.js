@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 13:37:22
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 15:38:18
+ * @Last Modified time: 2018-01-23 09:59:14
  */
 'use strict';
 
@@ -29,6 +29,15 @@ module.exports = app => {
     }
     async create() {
       const { ctx } = this;
+      const item = {
+        name: ctx.request.body.name,
+        truename: ctx.request.body.truename,
+        status: 1,
+        register_ip: ctx.ip,
+        created_by: ctx.locals.user.id,
+        password: ctx.locals.password_default,
+      };
+      await ctx.service.user.create(item);
       ctx.body = {
         code: 200,
         msg: ctx.__(300001),

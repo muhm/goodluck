@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 16:54:42
+ * @Last Modified time: 2018-01-23 10:35:48
  */
 'use strict';
 
@@ -12,6 +12,16 @@ module.exports = app => {
       super(ctx);
       this.crypto = require('crypto');
       this.uuid = require('node-uuid');
+    }
+    /**
+    * 新增用户
+    * @param {Object} [m] - 用户信息(用户信息中的password请勿加密)
+    * @return {Promise} 用户
+    */
+    create(m) {
+      const { ctx, crypto } = this;
+      m.password = crypto.createHash('md5').update(m.password + app.locals.password_secret).digest('hex');
+      return ctx.model.User.create(m);
     }
     /**
      * 登录
@@ -27,7 +37,7 @@ module.exports = app => {
         throw new Error(ctx.__(100000));
       }
       // 根据账号查用户
-      const user = await ctx.model.User.findOne(where);
+      const user = await ctx.model.User.findOne({ where });
       // 用户不存在
       if (!user) {
         throw new Error(ctx.__(100000));
@@ -59,13 +69,13 @@ module.exports = app => {
       return user;
     }
     /**
-   * 查询用户列表
-   * @param {Object} [where] - 查询条件
-   * @param {Integer} [limit] - limit
-   * @param {Integer} [offset] - offset
-   * @param {Array} [order] - order 默认[['created_at', 'DESC']]
-   * @return {Promise} 用户列表
-   */
+     * 查询用户列表
+     * @param {Object} [where] - 查询条件
+     * @param {Integer} [limit] - limit
+     * @param {Integer} [offset] - offset
+     * @param {Array} [order] - order 默认[['created_at', 'DESC']]
+     * @return {Promise} 用户列表
+     */
     findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
       const { ctx } = this;
       return ctx.model.User.findAndCountAll({
@@ -81,7 +91,11 @@ module.exports = app => {
         offset,
       });
     }
-    // 根据账号查找
+    /**
+     * 根据账号查找
+     * @param {String} [account] - 账号
+     * @return {Promise} 用户
+     */
     findByAccount(account) {
       const { ctx } = this;
       const where = ctx.helper.accountWhere(account);
@@ -89,9 +103,13 @@ module.exports = app => {
         // 账号格式有误
         throw new Error(ctx.__(100000));
       }
-      return ctx.model.User.findOne(where);
+      return ctx.model.User.findOne({ where });
     }
-    // 根据id查找
+    /**
+     * 根据id查找
+     * @param {Integer} [id] - 账号
+     * @return {Promise} 用户
+     */
     findById(id) {
       const { ctx } = this;
       return ctx.model.User.findById(id);

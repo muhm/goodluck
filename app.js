@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 17:19:47
+ * @Last Modified time: 2018-01-23 13:52:41
  */
 'use strict';
 
@@ -13,6 +13,7 @@ module.exports = app => {
     // setup begin 发布后请自行删除
     const setup = false;
     const password_secret = 'goodluck'; // 请勿二次修改
+    const password_default = 'zaqzxc'; // 请勿二次修改
     if (setup) {
       await app.model.sync({ force: true });
       // 设置初始参数
@@ -35,6 +36,10 @@ module.exports = app => {
       }, {
         key: 'password_secret',
         value: password_secret,
+        type: 'core',
+      }, {
+        key: 'password_default',
+        value: password_default,
         type: 'core',
       }, {
         key: 'login_fail_max',
@@ -80,7 +85,7 @@ module.exports = app => {
         name: '后台首页',
         description: '后台首页',
         url: '/manage/home',
-        http_type: 'get',
+        method: 'get',
         area: 'manage',
         controller: 'home',
         action: 'index',
@@ -95,7 +100,7 @@ module.exports = app => {
           name: '用户菜单',
           description: '用户菜单数据',
           url: '/manage/api/menu',
-          http_type: 'get',
+          method: 'get',
           area: 'manage.api',
           controller: 'menu',
           action: 'index',
@@ -119,7 +124,7 @@ module.exports = app => {
           parent_id: result.id,
           name: '用户管理',
           url: '/manage/user',
-          http_type: 'get',
+          method: 'get',
           area: 'manage',
           controller: 'user',
           action: 'index',
@@ -134,7 +139,7 @@ module.exports = app => {
             name: '用户列表',
             description: '用户列表数据',
             url: '/manage/api/user',
-            http_type: 'get',
+            method: 'get',
             area: 'manage.api',
             controller: 'user',
             action: 'index',
@@ -148,11 +153,25 @@ module.exports = app => {
             name: '用户具体信息',
             description: '用户具体信息数据',
             url: '/manage/api/user/:id',
-            http_type: 'get',
+            method: 'get',
             area: 'manage.api',
             controller: 'user',
             action: 'show',
             sort: 8012,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '用户新增',
+            description: '用户列表数据',
+            url: '/manage/api/user',
+            method: 'post',
+            area: 'manage.api',
+            controller: 'user',
+            action: 'create',
+            sort: 8013,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,
@@ -162,7 +181,7 @@ module.exports = app => {
           parent_id: result.id,
           name: '角色管理',
           url: '/manage/role',
-          http_type: 'get',
+          method: 'get',
           area: 'manage',
           controller: 'role',
           action: 'index',
@@ -177,7 +196,7 @@ module.exports = app => {
             name: '角色列表',
             description: '角色列表数据',
             url: '/manage/api/role',
-            http_type: 'get',
+            method: 'get',
             area: 'manage.api',
             controller: 'role',
             action: 'index',
@@ -191,7 +210,7 @@ module.exports = app => {
             name: '角色具体信息',
             description: '角色具体信息数据',
             url: '/manage/api/role/:id',
-            http_type: 'get',
+            method: 'get',
             area: 'manage.api',
             controller: 'role',
             action: 'show',
@@ -205,7 +224,7 @@ module.exports = app => {
             name: '角色新增',
             description: '角色列表数据',
             url: '/manage/api/role',
-            http_type: 'post',
+            method: 'post',
             area: 'manage.api',
             controller: 'role',
             action: 'create',
@@ -219,7 +238,7 @@ module.exports = app => {
             name: '角色修改',
             description: '角色列表数据',
             url: '/manage/api/role',
-            http_type: 'put',
+            method: 'put',
             area: 'manage.api',
             controller: 'role',
             action: 'update',
@@ -232,8 +251,8 @@ module.exports = app => {
             parent_id: result.id,
             name: '角色删除',
             description: '角色列表数据',
-            url: '/manage/api/role',
-            http_type: 'del',
+            url: '/manage/api/role/:id',
+            method: 'del',
             area: 'manage.api',
             controller: 'role',
             action: 'destroy',
@@ -247,7 +266,7 @@ module.exports = app => {
             name: '权限列表',
             description: '权限列表数据',
             url: '/manage/api/permission',
-            http_type: 'get',
+            method: 'get',
             area: 'manage.api',
             controller: 'permission',
             action: 'index',

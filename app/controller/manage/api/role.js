@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:34:36
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 17:09:35
+ * @Last Modified time: 2018-01-23 13:32:42
  */
 'use strict';
 
@@ -64,8 +64,9 @@ module.exports = app => {
     }
     async destroy() {
       const { ctx } = this;
+      const result = await ctx.service.role.destroy(ctx.params.id);
       ctx.body = {
-        code: 200,
+        code: result ? 200 : 400,
         msg: ctx.__(300003),
       };
     }

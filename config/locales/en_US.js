@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 16:04:05
+ * @Last Modified time: 2018-01-23 11:51:25
  */
 'use strict';
 
@@ -10,6 +10,8 @@ module.exports = {
   900001: 'Home',
   900002: 'Login',
   900003: 'Logout',
+  900401: '401 Unauthorized',
+  900403: '403 Forbidden',
   // account
   100000: 'Incorrect username or password! Please try again.',
   100001: '账号不可用！',

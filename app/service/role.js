@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:27:38
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 17:24:10
+ * @Last Modified time: 2018-01-23 13:27:12
  */
 'use strict';
 
@@ -74,6 +74,13 @@ module.exports = app => {
         await t.rollback();
         throw new Error(e.message);
       }
+    }
+    destroy(id) {
+      return this.ctx.model.Role.destroy({
+        where: {
+          id,
+        },
+      });
     }
   };
 };

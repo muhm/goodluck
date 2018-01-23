@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-06 13:48:11
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-18 14:07:58
+ * @Last Modified time: 2018-01-23 13:51:28
  */
 'use strict';
 
@@ -32,7 +32,7 @@ module.exports = app => {
       type: STRING(150),
       comment: 'url',
     },
-    http_type: {
+    method: {
       type: STRING(150),
       comment: 'HTTP协议 get post put delete',
     },

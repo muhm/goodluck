@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 10:17:08
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 17:14:01
+ * @Last Modified time: 2018-01-23 13:42:41
  */
 'use strict';
 
@@ -44,6 +44,7 @@ var oTable = $('#table-role').DataTable({
     "mDataProp": "id",
     "mRender": function (data, type, full) {
       return '<a href="#modal-update" data-toggle="modal" onclick="update(\'' + data + '\')" ><i class="fa fa-pencil" title="修改"></i></a>'
+      +' | <a href="javascript:destroy(\'' + data + '\')" ><i class="fa fa-trash-o text-danger" title="删除"></i></a>'
     }
   },],
   buttons: [
@@ -68,6 +69,21 @@ function update(id) {
         setTimeout(function () {
           toastr.error(data.msg);
         }, 500);
+      }
+    },
+  });
+}
+function destroy(id) {
+  $.ajax({
+    url: '/manage/api/role/' + id,
+    method: "delete",
+    dataType: "json",
+    success: function (res) {
+      if (res.code == 200) {
+        toastr.success(res.msg);
+        search();
+      } else {
+        toastr.error(res.msg);
       }
     },
   });
@@ -138,7 +154,7 @@ jQuery(function ($) {
                 search();
               });
           } else {
-            swal("error", data.msg, "error");
+            toastr.error(data.msg);
           }
         }
       })
@@ -171,7 +187,7 @@ jQuery(function ($) {
                 search();
               });
           } else {
-            swal("error", data.msg, "error");
+            toastr.error(data.msg);
           }
         }
       })

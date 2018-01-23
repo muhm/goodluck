@@ -1,0 +1,30 @@
+<div id="modal-create" class="modal inmodal" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content animated ">
+      <form id="form-user-create" action="/manage/api/user" method="post" novalidate="novalidate">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="blue bigger">新增用户</h4>
+        </div>
+        <div class="modal-body overflow-visible">
+          <div class="ibox-content">
+            <div class="form-group">
+              <label>账号</label>
+              <input name="name" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>姓名</label>
+              <input name="truename" type="text" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-sm" data-dismiss="modal">
+            <i class="icon-remove"></i>取消</button>
+          <button type="submit" class="btn btn-sm btn-primary">
+            <i class="icon-ok"></i>确认</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
