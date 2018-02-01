@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 13:37:22
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-23 09:59:14
+ * @Last Modified time: 2018-02-01 14:57:52
  */
 'use strict';
 
@@ -25,7 +25,15 @@ module.exports = app => {
     }
     async show() {
       const { ctx } = this;
-      ctx.body = 'show';
+      const user = await ctx.service.user.findById(ctx.params.id);
+      if (!user) {
+        throw new Error('用户不存在');
+      }
+      const roles = await user.getRoles();
+      ctx.body = {
+        code: 200,
+        data: { user, roles },
+      };
     }
     async create() {
       const { ctx } = this;
@@ -45,6 +53,14 @@ module.exports = app => {
     }
     async update() {
       const { ctx } = this;
+      const item = {
+        id: ctx.request.body.id,
+        truename: ctx.request.body.truename,
+        email: ctx.request.body.email || null,
+        status: ctx.request.body.status,
+        updated_by: ctx.locals.user.id,
+      };
+      await ctx.service.user.updateUserAndRole(item, ctx.request.body.roles);
       ctx.body = {
         code: 200,
         msg: ctx.__(300002),

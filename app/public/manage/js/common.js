@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-08-01 11:29:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-16 11:38:43
+ * @Last Modified time: 2018-02-01 14:02:54
  */
 /// <reference path="./moment.min.js" />
 
@@ -64,6 +64,13 @@ function getCookie(name) {
     return null;
 }
 
+//getQueryString
+function getQueryString(name) {
+  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+  var r = window.location.search.substr(1).match(reg);
+  if (r != null) return unescape(r[2]); return null;
+}
+
 //清空form
 function clearForm(obj) {
   obj.find(':input').not(':button,:submit,:reset').val('').removeAttr('checked').removeAttr('selected');
@@ -77,6 +84,13 @@ function csrfSafeMethod(method) {
   // these HTTP methods do not require CSRF protection
   return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
+toastr.options = {
+  closeButton: true,
+  progressBar: true,
+  showMethod: 'slideDown',
+  positionClass: "toast-top-center",
+  timeOut: 4000
+};
 $.ajaxSetup({
   beforeSend: function (xhr, settings) {
     if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -93,13 +107,6 @@ $.ajaxSetup({
         location.reload();
       }, 4000);
     }
-    toastr.options = {
-      closeButton: true,
-      progressBar: true,
-      showMethod: 'slideDown',
-      positionClass: "toast-top-center",
-      timeOut: 4000
-    };
     toastr.error(message);
   }
 });

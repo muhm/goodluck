@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-23 13:52:41
+ * @Last Modified time: 2018-02-01 14:39:19
  */
 'use strict';
 
@@ -165,13 +165,27 @@ module.exports = app => {
           await role.createPermission({
             parent_id: result.id,
             name: '用户新增',
-            description: '用户列表数据',
+            description: '用户新增',
             url: '/manage/api/user',
             method: 'post',
             area: 'manage.api',
             controller: 'user',
             action: 'create',
             sort: 8013,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '用户修改',
+            description: '用户修改',
+            url: '/manage/api/user',
+            method: 'put',
+            area: 'manage.api',
+            controller: 'user',
+            action: 'update',
+            sort: 8014,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,
@@ -222,7 +236,7 @@ module.exports = app => {
           await role.createPermission({
             parent_id: result.id,
             name: '角色新增',
-            description: '角色列表数据',
+            description: '角色新增',
             url: '/manage/api/role',
             method: 'post',
             area: 'manage.api',
@@ -236,7 +250,7 @@ module.exports = app => {
           await role.createPermission({
             parent_id: result.id,
             name: '角色修改',
-            description: '角色列表数据',
+            description: '角色修改',
             url: '/manage/api/role',
             method: 'put',
             area: 'manage.api',
@@ -250,7 +264,7 @@ module.exports = app => {
           await role.createPermission({
             parent_id: result.id,
             name: '角色删除',
-            description: '角色列表数据',
+            description: '角色删除',
             url: '/manage/api/role/:id',
             method: 'del',
             area: 'manage.api',

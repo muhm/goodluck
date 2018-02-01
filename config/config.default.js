@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-18 15:40:45
+ * @Last Modified time: 2018-02-01 14:10:15
  */
 'use strict';
 
@@ -58,7 +58,7 @@ module.exports = appInfo => {
     match: /^\/api\/v1\/.*$/,
   };
   config.i18n = {
-    defaultLocale: 'zh-CN',
+    defaultLocale: 'en-US',
   };
 
   return config;

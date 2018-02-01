@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-23 11:51:44
+ * @Last Modified time: 2018-02-01 14:55:13
  */
 'use strict';
 
@@ -31,4 +31,7 @@ module.exports = {
   // role
   400000: '角色管理',
   400001: '角色不存在',
+  // user
+  500000: '用户管理',
+  500001: '用户不存在',
 };

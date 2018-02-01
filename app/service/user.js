@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-23 10:35:48
+ * @Last Modified time: 2018-02-01 16:06:52
  */
 'use strict';
 
@@ -22,6 +22,31 @@ module.exports = app => {
       const { ctx, crypto } = this;
       m.password = crypto.createHash('md5').update(m.password + app.locals.password_secret).digest('hex');
       return ctx.model.User.create(m);
+    }
+    /**
+    * 修改用户及角色
+    * @param {Object} [m] - 角色信息
+    * @param {Array} [r] - 角色信息
+    * @return {Promise} 用户
+    */
+    async updateUserAndRole(m, r) {
+      const { ctx } = this;
+      const t = await app.model.transaction();
+      try {
+        const user = await ctx.service.user.findById(m.id);
+        if (!user) {
+          throw new Error(ctx.__(500001));
+        }
+        await user.update(m, { transaction: t });
+        const roles = await user.getRoles();
+        await user.removeRoles(roles, { transaction: t });
+        await user.setRoles(r, { transaction: t });
+
+        return await t.commit();
+      } catch (e) {
+        await t.rollback();
+        throw new Error(e.message);
+      }
     }
     /**
      * 登录
@@ -76,20 +101,26 @@ module.exports = app => {
      * @param {Array} [order] - order 默认[['created_at', 'DESC']]
      * @return {Promise} 用户列表
      */
-    findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
+    async findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
+      console.log(order);
       const { ctx } = this;
-      return ctx.model.User.findAndCountAll({
-        where,
-        include: [{
-          attributes: [
-            'name',
-          ],
-          model: app.model.Role,
-        }],
-        order,
-        limit,
-        offset,
-      });
+      // 未选择findAndCountAll是因为使用include role是count的数据会包含role的数据
+      const result = {
+        rows: await ctx.model.User.findAll({
+          where,
+          include: [{
+            attributes: [
+              'name',
+            ],
+            model: app.model.Role,
+          }],
+          order,
+          limit,
+          offset,
+        }),
+        count: await ctx.model.User.count({ where }),
+      };
+      return result;
     }
     /**
      * 根据账号查找

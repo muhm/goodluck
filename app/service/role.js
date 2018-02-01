@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:27:38
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-23 13:27:12
+ * @Last Modified time: 2018-02-01 14:56:23
  */
 'use strict';
 
@@ -58,18 +58,19 @@ module.exports = app => {
     * @return {Promise} 角色
     */
     async update(m, p) {
+      const { ctx } = this;
       const t = await app.model.transaction();
       try {
-        const role = await this.ctx.service.role.findById(m.id);
+        const role = await ctx.service.role.findById(m.id);
         if (!role) {
-          throw new Error('角色不存在');
+          throw new Error(ctx.__(400001));
         }
         await role.update(m, { transaction: t });
         const permissions = await role.getPermissions();
         await role.removePermissions(permissions, { transaction: t });
         await role.setPermissions(p, { transaction: t });
 
-        return t.commit();
+        return await t.commit();
       } catch (e) {
         await t.rollback();
         throw new Error(e.message);

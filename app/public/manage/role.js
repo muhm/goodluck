@@ -2,13 +2,10 @@
  * @Author: MUHM
  * @Date: 2018-01-12 10:17:08
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-23 13:42:41
+ * @Last Modified time: 2018-02-01 15:44:23
  */
 'use strict';
 
-var RoleUpdateModel = ko.observableArray(null);
-RoleUpdateModel({ id: '', name: '', description: '' });
-ko.applyBindings(RoleUpdateModel, document.getElementById('form-role-update'));
 // table
 var oTable = $('#table-role').DataTable({
   ordering: false,
@@ -43,13 +40,18 @@ var oTable = $('#table-role').DataTable({
   }, {
     "mDataProp": "id",
     "mRender": function (data, type, full) {
-      return '<a href="#modal-update" data-toggle="modal" onclick="update(\'' + data + '\')" ><i class="fa fa-pencil" title="修改"></i></a>'
-      +' | <a href="javascript:destroy(\'' + data + '\')" ><i class="fa fa-trash-o text-danger" title="删除"></i></a>'
+      return '<a href="javascript:update(\'' + data + '\')" ><i class="fa fa-pencil" title="修改"></i></a>'
+        + ' | <a href="javascript:destroy(\'' + data + '\')" ><i class="fa fa-trash-o text-danger" title="删除"></i></a>'
     }
   },],
   buttons: [
   ]
 });
+// model
+var RoleUpdateModel = ko.observableArray(null);
+RoleUpdateModel({ id: '', name: '', description: '' });
+ko.applyBindings(RoleUpdateModel, document.getElementById('form-role-update'));
+// function
 function search() {
   oTable.ajax.url("/manage/api/role").load();
 }
@@ -61,14 +63,14 @@ function update(id) {
     dataType: "json",
     success: function (res) {
       if (res.code == 200) {
+        $('#modal-update').modal('show');
         RoleUpdateModel(res.data.role);
         for (var i = 0; i < res.data.permissions.length; i++) {
           $("#cb" + res.data.permissions[i].id).prop("checked", "checked");
         }
       } else {
-        setTimeout(function () {
-          toastr.error(data.msg);
-        }, 500);
+        toastr.error(res.msg);
+        $('#modal-update').modal('hide');
       }
     },
   });
@@ -181,7 +183,6 @@ jQuery(function ($) {
               type: "success"
             },
               function (isConfirm) {
-                $('#form-role-update').find(':input').not(':button,:submit,:reset,:checkbox').val('');
                 $("#form-role-update input[name='permissions']").removeAttr("checked");
                 $('#modal-update').modal('hide');
                 search();

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-12 16:23:18
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 16:55:17
+ * @Last Modified time: 2018-01-31 15:27:19
  */
 'use strict';
 
@@ -25,7 +25,7 @@ module.exports = app => {
           user_id: user.id,
         },
       });
-      return user.createToken({
+      return await user.createToken({
         access_token: (uuid.v1()).replace(/-/g, ''),
         access_token_expires_at: ctx.locals.moment().add(client.access_token_lifetime, 'ms'),
         refresh_token: (uuid.v4()).replace(/-/g, ''),
