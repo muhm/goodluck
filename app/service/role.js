@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:27:38
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 14:56:23
+ * @Last Modified time: 2018-02-01 16:20:00
  */
 'use strict';
 
@@ -63,7 +63,7 @@ module.exports = app => {
       try {
         const role = await ctx.service.role.findById(m.id);
         if (!role) {
-          throw new Error(ctx.__(400001));
+          throw new Error(ctx.__('Role not found'));
         }
         await role.update(m, { transaction: t });
         const permissions = await role.getPermissions();

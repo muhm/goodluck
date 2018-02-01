@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 13:37:22
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 14:57:52
+ * @Last Modified time: 2018-02-01 16:45:25
  */
 'use strict';
 
@@ -48,7 +48,7 @@ module.exports = app => {
       await ctx.service.user.create(item);
       ctx.body = {
         code: 200,
-        msg: ctx.__(300001),
+        msg: ctx.__('Create success'),
       };
     }
     async update() {
@@ -63,14 +63,14 @@ module.exports = app => {
       await ctx.service.user.updateUserAndRole(item, ctx.request.body.roles);
       ctx.body = {
         code: 200,
-        msg: ctx.__(300002),
+        msg: ctx.__('Update success'),
       };
     }
     async destroy() {
       const { ctx } = this;
       ctx.body = {
         code: 200,
-        msg: ctx.__(300003),
+        msg: ctx.__('Destroy success'),
       };
     }
   }

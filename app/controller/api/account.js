@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-23 10:49:36
+ * @Last Modified time: 2018-02-01 16:41:59
  */
 'use strict';
 
@@ -26,7 +26,7 @@ module.exports = app => {
         ctx.body = {
           code: 200,
           data,
-          msg: ctx.__(100200),
+          msg: ctx.__('Login success'),
         };
       } catch (e) {
         ctx.body = {
@@ -42,7 +42,7 @@ module.exports = app => {
         await ctx.service.user.create(user);
         ctx.body = {
           code: 200,
-          msg: ctx.__(100201),
+          msg: ctx.__('Register success'),
         };
       } catch (e) {
         ctx.body = {

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-18 14:41:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 16:10:19
+ * @Last Modified time: 2018-02-01 16:29:19
  */
 'use strict';
 
@@ -13,7 +13,7 @@ module.exports = () => {
       ctx.status = 401;
       api ? ctx.body = {
         code: 401,
-        msg: ctx.__(900401),
+        msg: ctx.__('401 Unauthorized'),
       } : ctx.redirect(`/account/login?redirectURL=${ctx.originalUrl}`);
       return;
     }
@@ -43,7 +43,7 @@ module.exports = () => {
       ctx.status = 403;
       api ? ctx.body = {
         code: 403,
-        msg: ctx.__(900403),
+        msg: ctx.__('403 Forbidden'),
       } : ctx.redirect('/manage/403');
       return;
     }

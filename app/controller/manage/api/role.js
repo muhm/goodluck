@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:34:36
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 14:50:44
+ * @Last Modified time: 2018-02-01 16:47:12
  */
 'use strict';
 
@@ -45,7 +45,7 @@ module.exports = app => {
       await role.setPermissions(ctx.request.body.permissions);
       ctx.body = {
         code: 200,
-        msg: ctx.__(300001),
+        msg: ctx.__('Create success'),
       };
     }
     async update() {
@@ -59,7 +59,7 @@ module.exports = app => {
       await ctx.service.role.update(item, ctx.request.body.permissions);
       ctx.body = {
         code: 200,
-        msg: ctx.__(300002),
+        msg: ctx.__('Update success'),
       };
     }
     async destroy() {
@@ -67,7 +67,7 @@ module.exports = app => {
       const result = await ctx.service.role.destroy(ctx.params.id);
       ctx.body = {
         code: result ? 200 : 400,
-        msg: ctx.__(300003),
+        msg: ctx.__('Destroy success'),
       };
     }
   }
