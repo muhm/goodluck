@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 16:06:52
+ * @Last Modified time: 2018-02-01 16:10:30
  */
 'use strict';
 
@@ -102,7 +102,6 @@ module.exports = app => {
      * @return {Promise} 用户列表
      */
     async findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
-      console.log(order);
       const { ctx } = this;
       // 未选择findAndCountAll是因为使用include role是count的数据会包含role的数据
       const result = {

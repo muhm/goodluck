@@ -2,13 +2,12 @@
  * @Author: MUHM
  * @Date: 2018-01-18 14:41:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 14:01:25
+ * @Last Modified time: 2018-02-01 16:10:19
  */
 'use strict';
 
 module.exports = () => {
   return async (ctx, next) => {
-    // console.log(ctx._matchedRoute);
     const api = /^\/manage\/api.*$/.test(ctx._matchedRoute);
     if (!ctx.session.userId) {
       ctx.status = 401;
