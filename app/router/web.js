@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-12 13:19:33
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 15:50:29
+ * @Last Modified time: 2018-02-08 14:48:14
  */
 'use strict';
 
@@ -23,5 +23,6 @@ module.exports = app => {
   router.get('/api/account/mobile', controller.api.account.mobile);
   router.get('/', controller.web.home.index);
   router.get('/account/login', controller.web.account.login);
+  router.get('/account/register', controller.web.account.register);
   router.get('/account/logout', controller.web.account.logout);
 };
