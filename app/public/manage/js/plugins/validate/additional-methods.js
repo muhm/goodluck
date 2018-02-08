@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-23 11:18:02
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-23 11:21:50
+ * @Last Modified time: 2018-02-08 14:33:33
  */
 (function (factory) {
   if (typeof define === "function" && define.amd) {
@@ -65,7 +65,7 @@
     return this.optional(element) || (reg.test(value));
   }, "请正确的座机号码类似0571-XXXXXXXX");
   $.validator.addMethod("isMobile", function (value, element) {
-    var reg = /^(13[0-9]|14[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8}$/;
+    var reg = /^1\d{10}$/;
     return this.optional(element) || (reg.test(value));
   }, "请输入正确的手机号码");
   $.validator.addMethod("isUserName", function (value, element) {

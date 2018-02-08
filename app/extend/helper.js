@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:36:45
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-18 16:20:42
+ * @Last Modified time: 2018-02-08 14:32:34
  */
 'use strict';
 
@@ -14,7 +14,7 @@ module.exports = {
     return /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(str);
   },
   isMobile(str) {
-    return /^(13[0-9]|14[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8}$/.test(str);
+    return /^1\d{10}$/.test(str);
   },
   isChinese(str) {
     return /^[\u4E00-\u9FA5]+$/.test(str);
