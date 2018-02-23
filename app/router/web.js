@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-12 13:19:33
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-08 14:48:14
+ * @Last Modified time: 2018-02-23 15:06:07
  */
 'use strict';
 
@@ -15,6 +15,8 @@ module.exports = app => {
   router.post('/api/account/login', controller.api.account.login);
   // 注册
   router.post('/api/account/register', controller.api.account.register);
+  // 修改密码
+  router.post('/api/account/password', controller.api.account.password);
   // 检查用户名
   router.get('/api/account/name', controller.api.account.name);
   // 检查邮箱
