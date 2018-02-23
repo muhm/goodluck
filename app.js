@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 14:39:19
+ * @Last Modified time: 2018-02-23 14:19:11
  */
 'use strict';
 
@@ -106,6 +106,45 @@ module.exports = app => {
           action: 'index',
           sort: 1001,
           is_menu: 0,
+          created_by: admin.id,
+          updated_by: admin.id,
+        });
+      });
+
+      await role.createPermission({
+        name: '博客管理',
+        url: '#',
+        icon: 'fa-wordpress',
+        sort: 70,
+        is_menu: 1,
+        created_by: admin.id,
+        updated_by: admin.id,
+      }).then(async result => {
+        await role.createPermission({
+          parent_id: result.id,
+          name: '文章管理',
+          url: '/manage/post',
+          method: 'get',
+          area: 'manage',
+          controller: 'post',
+          action: 'index',
+          icon: 'fa-newspaper-o',
+          sort: 7010,
+          is_menu: 1,
+          created_by: admin.id,
+          updated_by: admin.id,
+        });
+        await role.createPermission({
+          parent_id: result.id,
+          name: '标签管理',
+          url: '/manage/tag',
+          method: 'get',
+          area: 'manage',
+          controller: 'tag',
+          action: 'index',
+          icon: 'fa-tag',
+          sort: 7020,
+          is_menu: 1,
           created_by: admin.id,
           updated_by: admin.id,
         });

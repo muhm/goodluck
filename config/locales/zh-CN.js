@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 16:46:15
+ * @Last Modified time: 2018-02-23 14:25:15
  */
 'use strict';
 
@@ -35,4 +35,10 @@ module.exports = {
   // user
   'User Management': '用户管理',
   'User not found': '用户不存在',
+  // post
+  'Post Management': '文章管理',
+  'post not found': '文章不存在',
+  // tag
+  'Tag Management': '标签管理',
+  'tag not found': '标签不存在',
 };
