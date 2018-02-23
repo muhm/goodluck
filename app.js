@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-23 15:14:26
+ * @Last Modified time: 2018-02-23 15:26:01
  */
 'use strict';
 
@@ -13,7 +13,7 @@ module.exports = app => {
     // setup begin 发布后请自行删除
     const setup = false;
     const password_secret = 'goodluck'; // 请勿二次修改
-    const password_default = 'zaqzxc';
+    const password_default = 'zaqzxc'; // 请勿二次修改
     if (setup) {
       await app.model.sync({ force: true });
       // 设置初始参数
