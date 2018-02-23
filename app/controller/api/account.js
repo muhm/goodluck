@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-08 15:14:19
+ * @Last Modified time: 2018-02-23 14:52:59
  */
 'use strict';
 
@@ -45,6 +45,29 @@ module.exports = app => {
         ctx.body = {
           code: 200,
           msg: ctx.__('Register success'),
+        };
+      } catch (e) {
+        ctx.body = {
+          code: 400,
+          msg: e.message,
+        };
+      }
+    }
+    async password() {
+      const { ctx } = this;
+      try {
+        if (ctx.session.userId) {
+          ctx.status = 401;
+          ctx.body = { code: 401, msg: ctx.__('401 Unauthorized') };
+          return;
+        }
+        const oldPwd = ctx.request.body.oldPwd;
+        const newPwd = ctx.request.body.newPwd;
+        const confirmPwd = ctx.request.body.confirmPwd;
+        await ctx.service.user.updatePassword(ctx.session.userId, oldPwd, newPwd, confirmPwd);
+        ctx.body = {
+          code: 200,
+          msg: ctx.__('Update success'),
         };
       } catch (e) {
         ctx.body = {

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 16:40:18
+ * @Last Modified time: 2018-02-23 14:56:46
  */
 'use strict';
 
@@ -126,14 +126,14 @@ module.exports = app => {
      * @param {String} [account] - 账号
      * @return {Promise} 用户
      */
-    findByAccount(account) {
+    async findByAccount(account) {
       const { ctx } = this;
       const where = ctx.helper.accountWhere(account);
       if (!where) {
         // 账号格式有误
         throw new Error(ctx.__('Incorrect username'));
       }
-      return ctx.model.User.findOne({ where });
+      return await ctx.model.User.findOne({ where });
     }
     /**
      * 根据id查找
@@ -143,6 +143,28 @@ module.exports = app => {
     findById(id) {
       const { ctx } = this;
       return ctx.model.User.findById(id);
+    }
+    /**
+     * 根据id修改密码
+     * @param {Integer} [id] - 账号
+     * @param {String} [oldPwd] - oldPwd
+     * @param {String} [newPwd] - newPwd
+     * @param {String} [confirmPwd] - confirmPwd
+     * @return {Promise} 用户
+     */
+    async updatePassword(id, oldPwd, newPwd, confirmPwd) {
+      const { ctx, crypto } = this;
+      const user = await ctx.model.User.findById(id);
+      if (confirmPwd !== newPwd || newPwd === null || newPwd === '') {
+        throw new Error(ctx.__('The two passwords differ'));
+      }
+      if (crypto.createHash('md5').update(oldPwd + app.config.password_secret).digest('hex') !== user.password) {
+        throw new Error(ctx.__('Incorrect password'));
+      }
+      await user.update({
+        password: crypto.createHash('md5').update(newPwd + app.config.password_secret).digest('hex'),
+      });
+      return user;
     }
   };
 };

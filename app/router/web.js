@@ -25,4 +25,5 @@ module.exports = app => {
   router.get('/account/login', controller.web.account.login);
   router.get('/account/register', controller.web.account.register);
   router.get('/account/logout', controller.web.account.logout);
+  router.get('/account/password', controller.web.account.password);
 };

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-23 14:25:15
+ * @Last Modified time: 2018-02-23 14:46:10
  */
 'use strict';
 
@@ -15,6 +15,7 @@ module.exports = {
   // account
   'Incorrect username': '账号有误',
   'Incorrect password': '账号有误',
+  'The two passwords differ': '两次输入的密码不一致',
   'Account is not available': '账号被注销',
   'Too many password errors logins to this has been disabled': '密码错误次数太多，禁止登录',
   'Change password': '修改密码',
