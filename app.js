@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-24 15:48:17
+ * @Last Modified time: 2018-02-24 16:54:42
  */
 'use strict';
 
@@ -10,11 +10,9 @@ module.exports = app => {
   app.beforeStart(async () => {
     app.locals.moment = require('moment');
 
-    // setup begin 发布后请自行删除
-    const setup = false;
     const password_secret = 'goodluck'; // 请勿二次修改
     const password_default = 'zaqzxc'; // 请勿二次修改
-    if (setup) {
+    if (app.config.setup) {
       await app.model.sync({ force: true });
       // 设置初始参数
       await app.model.Setting.bulkCreate([{
@@ -55,7 +53,7 @@ module.exports = app => {
         type: 'web',
       }, {
         key: 'description',
-        value: '',
+        value: '为你的所爱而来，为你的发现停留',
         type: 'web',
       }, {
         key: 'keywords',
@@ -328,6 +326,49 @@ module.exports = app => {
             controller: 'permission',
             action: 'index',
             sort: 8026,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+        });
+        await role.createPermission({
+          parent_id: result.id,
+          name: '网站管理',
+          url: '/manage/site',
+          method: 'get',
+          area: 'manage',
+          controller: 'site',
+          action: 'index',
+          icon: 'fa-dashboard',
+          sort: 8030,
+          is_menu: 1,
+          created_by: admin.id,
+          updated_by: admin.id,
+        }).then(async result => {
+          await role.createPermission({
+            parent_id: result.id,
+            name: '网站管理',
+            description: '网站管理数据',
+            url: '/manage/api/site',
+            method: 'get',
+            area: 'manage.api',
+            controller: 'site',
+            action: 'index',
+            sort: 8031,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '网站修改',
+            description: '网站修改',
+            url: '/manage/api/site',
+            method: 'put',
+            area: 'manage.api',
+            controller: 'site',
+            action: 'update',
+            sort: 8034,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,

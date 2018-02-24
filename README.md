@@ -10,6 +10,11 @@
 
 ### 本地开发
 
+```
+// config.default.js
+config.setup = true; // 请在写入数据库后修改为false
+```
+
 ```bash
 $ npm i
 $ npm run dev

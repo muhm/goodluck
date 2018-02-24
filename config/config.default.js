@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-24 16:06:58
+ * @Last Modified time: 2018-02-24 16:58:47
  */
 'use strict';
 
@@ -54,7 +54,7 @@ module.exports = appInfo => {
   config.authClient = {
     match: /^\/api\/v1\/.*$/,
   };
-  // config.cdn = 'https://****.**';
+  config.setup = true; // 请在写入数据库后修改为false
 
   return config;
 };

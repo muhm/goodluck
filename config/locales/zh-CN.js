@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-23 14:46:10
+ * @Last Modified time: 2018-02-24 16:44:34
  */
 'use strict';
 
@@ -42,4 +42,6 @@ module.exports = {
   // tag
   'Tag Management': '标签管理',
   'tag not found': '标签不存在',
+  // site
+  'Site Management':'网站管理'
 };
