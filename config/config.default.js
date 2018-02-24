@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-24 15:46:15
+ * @Last Modified time: 2018-02-24 16:06:58
  */
 'use strict';
 
@@ -50,7 +50,7 @@ module.exports = appInfo => {
       ignore: /^\/api\/v1\/.*$/,
     },
   };
-  config.middleware = ['authClient']; 
+  config.middleware = ['authClient'];
   config.authClient = {
     match: /^\/api\/v1\/.*$/,
   };
