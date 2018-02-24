@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 14:10:15
+ * @Last Modified time: 2018-02-24 15:46:15
  */
 'use strict';
 
@@ -35,10 +35,10 @@ module.exports = appInfo => {
       timestamps: true,
       timezone: '+08:00',
     },
-    username: 'gl_dev',
-    password: 'zaq12wsx',
-    database: 'gl_dev',
-    host: 'ie.gl',
+    username: '***',
+    password: '***',
+    database: '***',
+    host: '***',
     port: 3306,
     dialect: 'mysql',
     force: false,
@@ -50,16 +50,11 @@ module.exports = appInfo => {
       ignore: /^\/api\/v1\/.*$/,
     },
   };
-  config.middleware = ['authClient']; // 'authorize',
-  // config.authorize = {
-  //   match: /^\/manage((?!\/api).)*$/,
-  // };
+  config.middleware = ['authClient']; 
   config.authClient = {
     match: /^\/api\/v1\/.*$/,
   };
-  config.i18n = {
-    defaultLocale: 'en-US',
-  };
+  // config.cdn = 'https://****.**';
 
   return config;
 };

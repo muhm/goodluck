@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-23 15:26:01
+ * @Last Modified time: 2018-02-24 15:48:17
  */
 'use strict';
 
@@ -24,6 +24,10 @@ module.exports = app => {
       }, {
         key: 'copyright',
         value: 'Copyright © 2018 by GoodLuck',
+        type: 'core',
+      }, {
+        key: 'cdn',
+        value: app.config.cdn || null,
         type: 'core',
       }, {
         key: 'web_assets',
@@ -337,6 +341,10 @@ module.exports = app => {
       config.forEach(element => {
         app.locals[element.key] = element.value;
       }, this);
+    }
+    if (app.locals.cdn) {
+      app.locals.web_assets = app.locals.cdn + app.locals.web_assets;
+      app.locals.manage_assets = app.locals.cdn + app.locals.manage_assets;
     }
   });
 };

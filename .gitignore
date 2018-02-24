@@ -7,3 +7,4 @@ run/
 *.swp
 .vscode/
 test/
+config/config.local.js

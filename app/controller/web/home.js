@@ -9,6 +9,7 @@
 module.exports = app => {
   class HomeController extends app.Controller {
     async index() {
+      console.log()
       const { ctx } = this;
       ctx.body = 'hehe 404';
     }
