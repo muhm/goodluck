@@ -4,7 +4,7 @@
 
 采用egg.js作为程序主框架，参见 [egg 文档][egg]。  
 
-采用mysql作为数据存储，使用sequelizejs作为orm框架，参见[Sequelize 文档][Sequelize]。  
+采用mysql作为数据存储，使用sequelizejs作为orm框架，参见[sequelize 文档][sequelize]。  
 
 页面渲染采用nunjucks，参见[nunjucks][nunjucks]。 
 
