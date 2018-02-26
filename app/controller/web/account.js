@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-23 14:47:08
+ * @Last Modified time: 2018-02-26 16:41:04
  */
 'use strict';
 
@@ -28,7 +28,7 @@ module.exports = app => {
     }
     async password() {
       const { ctx } = this;
-      if (ctx.session.userId) {
+      if (!ctx.session.userId) {
         return ctx.redirect('/');
       }
       await ctx.render('web/account/password');
