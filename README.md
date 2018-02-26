@@ -11,7 +11,12 @@
 ### DEMO
 
 https://ie.gl
+
 后台:https://ie.gl/account/login
+
+账号:admin
+
+密码:123456
 
 ### 本地开发
 
