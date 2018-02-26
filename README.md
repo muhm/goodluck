@@ -12,7 +12,7 @@
 
 https://ie.gl
 
-后台:https://ie.gl/account/login
+后台:https://ie.gl/manage/home
 
 账号:admin
 
