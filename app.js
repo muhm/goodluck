@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-24 16:54:42
+ * @Last Modified time: 2018-02-26 15:59:35
  */
 'use strict';
 
@@ -269,7 +269,7 @@ module.exports = app => {
             area: 'manage.api',
             controller: 'role',
             action: 'show',
-            sort: 8023,
+            sort: 8022,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,
@@ -307,7 +307,7 @@ module.exports = app => {
             name: '角色删除',
             description: '角色删除',
             url: '/manage/api/role/:id',
-            method: 'del',
+            method: 'delete',
             area: 'manage.api',
             controller: 'role',
             action: 'destroy',
@@ -355,6 +355,20 @@ module.exports = app => {
             controller: 'site',
             action: 'index',
             sort: 8031,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '网站具体信息',
+            description: '网站具体信息数据',
+            url: '/manage/api/site/:id',
+            method: 'get',
+            area: 'manage.api',
+            controller: 'site',
+            action: 'show',
+            sort: 8032,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-18 14:41:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 16:29:19
+ * @Last Modified time: 2018-02-26 15:58:52
  */
 'use strict';
 
@@ -26,6 +26,7 @@ module.exports = () => {
     }
     ctx.locals.username = user.truename ? user.truename : user.name;
     ctx.locals.user = user;
+    ctx.session.save();
     const permission = await ctx.service.permission.findByRoute(ctx._matchedRoute, ctx.method);
     if (!permission) {
       await next();

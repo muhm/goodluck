@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:34:36
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 16:47:12
+ * @Last Modified time: 2018-02-26 15:23:17
  */
 'use strict';
 
@@ -26,7 +26,7 @@ module.exports = app => {
       const { ctx } = this;
       const role = await ctx.service.role.findById(ctx.params.id);
       if (!role) {
-        throw new Error('角色不存在');
+        throw new Error(ctx.__('404 Not found'));
       }
       const permissions = await role.getPermissions();
       ctx.body = {

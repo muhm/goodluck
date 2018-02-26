@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-24 16:44:34
+ * @Last Modified time: 2018-02-26 15:22:57
  */
 'use strict';
 
@@ -12,6 +12,7 @@ module.exports = {
   Logout: '注销',
   '401 Unauthorized': '401 未授权',
   '403 Forbidden': '403 被禁止',
+  '404 Not found':'404 未找到',
   // account
   'Incorrect username': '账号有误',
   'Incorrect password': '账号有误',
@@ -31,8 +32,8 @@ module.exports = {
   'Update success': '修改成功',
   'Destroy success': '删除成功',
   // role
-  'Role Management': '用户管理',
-  'Role not found': '用户不存在',
+  'Role Management': '角色管理',
+  'Role not found': '角色不存在',
   // user
   'User Management': '用户管理',
   'User not found': '用户不存在',
@@ -43,5 +44,5 @@ module.exports = {
   'Tag Management': '标签管理',
   'tag not found': '标签不存在',
   // site
-  'Site Management':'网站管理'
+  'Site Management':'网站管理',
 };
