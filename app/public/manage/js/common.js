@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-08-01 11:29:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 14:02:54
+ * @Last Modified time: 2018-02-27 14:39:11
  */
 /// <reference path="./moment.min.js" />
 
@@ -97,16 +97,15 @@ $.ajaxSetup({
       xhr.setRequestHeader('x-csrf-token', csrftoken);
     }
   },
-  error: function (jqXHR, textStatus, errorMsg,a,b) { // 出错时默认的处理函数
-    var message = '网络错误';
-    if (jqXHR.status == 403) {
-      message = '您没有该操作权限';
-    } else if (jqXHR.status == 401) {
-      message = '登录超时，将在4秒后跳转登录页面';
+  error: function (jqXHR, textStatus, errorMsg, a, b) { // 出错时默认的处理函数
+    console.log(jqXHR, textStatus, errorMsg, a, b);
+    var message = jqXHR.responseJSON.msg || '网络错误';
+    if (jqXHR.status == 401) {
+      message += '登录超时，将在4秒后跳转登录页面';
       setTimeout(function () {
         location.reload();
       }, 4000);
     }
-    toastr.error(message);
+    toastr.error(jqXHR.responseJSON.msg || message);
   }
 });

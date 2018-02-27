@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-24 16:58:47
+ * @Last Modified time: 2018-02-27 14:35:56
  */
 'use strict';
 
@@ -54,6 +54,11 @@ module.exports = appInfo => {
   config.authClient = {
     match: /^\/api\/v1\/.*$/,
   };
+  config.onerror = {
+    json(err, ctx) {
+      ctx.body = { code: ctx.status, msg: err.message };
+    }
+  }
   config.setup = true; // 请在写入数据库后修改为false
 
   return config;

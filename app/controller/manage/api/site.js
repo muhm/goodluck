@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 13:37:22
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-26 15:45:50
+ * @Last Modified time: 2018-02-27 14:37:34
  */
 'use strict';
 
@@ -36,7 +36,7 @@ module.exports = app => {
     }
     async update() {
       const { ctx } = this;
-      await ctx.service.setting.update(ctx.request.body.id,ctx.request.body.value);
+      await ctx.service.setting.update(ctx.request.body.id, ctx.request.body.value);
       ctx.body = {
         code: 200,
         msg: ctx.__('Update success'),

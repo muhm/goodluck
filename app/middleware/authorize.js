@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-18 14:41:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-26 15:58:52
+ * @Last Modified time: 2018-02-27 14:36:12
  */
 'use strict';
 
@@ -12,7 +12,7 @@ module.exports = () => {
     if (!ctx.session.userId) {
       ctx.status = 401;
       api ? ctx.body = {
-        code: 401,
+        code: ctx.status,
         msg: ctx.__('401 Unauthorized'),
       } : ctx.redirect(`/account/login?redirectURL=${ctx.originalUrl}`);
       return;
@@ -43,7 +43,7 @@ module.exports = () => {
     if (!temp) {
       ctx.status = 403;
       api ? ctx.body = {
-        code: 403,
+        code: ctx.status,
         msg: ctx.__('403 Forbidden'),
       } : ctx.redirect('/manage/403');
       return;
