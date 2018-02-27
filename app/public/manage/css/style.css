@@ -6521,6 +6521,11 @@ dd.project-people {
   margin: 0 0 5px 0;
 }
 
+.blog .blog-content {
+  max-height: 400px;
+  min-height: 250px;
+}
+
 .article h1 {
   font-size: 48px;
   font-weight: 700;

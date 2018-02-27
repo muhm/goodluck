@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-24 16:45:56
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-26 15:47:42
+ * @Last Modified time: 2018-02-27 17:02:05
  */
 'use strict';
 
@@ -41,7 +41,7 @@ module.exports = app => {
     async update(id, value) {
       const { ctx } = this;
       const setting = await ctx.model.Setting.findById(id);
-      await setting.update({ value, });
+      await setting.update({ value });
       return setting;
     }
   };

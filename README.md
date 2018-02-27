@@ -1,4 +1,4 @@
-# goodluck
+# Good Luck
 
 [goodluck api 文档][goodluck_api]。
 

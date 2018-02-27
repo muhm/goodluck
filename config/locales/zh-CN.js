@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-26 15:22:57
+ * @Last Modified time: 2018-02-27 17:02:39
  */
 'use strict';
 
@@ -12,7 +12,7 @@ module.exports = {
   Logout: '注销',
   '401 Unauthorized': '401 未授权',
   '403 Forbidden': '403 被禁止',
-  '404 Not found':'404 未找到',
+  '404 Not found': '404 未找到',
   // account
   'Incorrect username': '账号有误',
   'Incorrect password': '账号有误',
@@ -44,5 +44,5 @@ module.exports = {
   'Tag Management': '标签管理',
   'tag not found': '标签不存在',
   // site
-  'Site Management':'网站管理',
+  'Site Management': '网站管理',
 };
