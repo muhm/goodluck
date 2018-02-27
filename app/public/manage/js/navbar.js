@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-20 15:15:44
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-19 15:19:10
+ * @Last Modified time: 2018-02-27 14:56:41
  */
 
 
@@ -76,7 +76,7 @@ function fn_permissions(url) {
         success: function (data) {
           if (data.code == 200) {
             localStorage.permissions = JSON.stringify(data.data);
-            return get_permissions(data.data, );
+            return get_permissions(data.data, url);
           }
         }
       })

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-18 14:41:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-27 14:36:12
+ * @Last Modified time: 2018-02-27 15:06:47
  */
 'use strict';
 
@@ -22,7 +22,8 @@ module.exports = () => {
     if (user.session_token !== ctx.session.token) {
       ctx.session.userId = null;
       ctx.session.token = null;
-      return ctx.redirect(`/account/login?redirectURL=${ctx.originalUrl}&message=${ctx.__(100301)}`);
+      ctx.redirect(`/account/login?redirectURL=${ctx.originalUrl}`);
+      return;
     }
     ctx.locals.username = user.truename ? user.truename : user.name;
     ctx.locals.user = user;

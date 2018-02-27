@@ -2,14 +2,14 @@
  * @Author: MUHM
  * @Date: 2018-01-22 14:26:16
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-08 15:06:36
+ * @Last Modified time: 2018-02-27 15:03:51
  */
 'use strict';
 
 // table
 var oTable = $('#table-user').DataTable({
   ordering: false,
-  bAutoWidth: true,
+  bAutoWidth: false,
   pageLength: 10,
   responsive: true,
   bStateSave: true,
