@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-13 16:02:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-13 16:29:30
+ * @Last Modified time: 2018-02-28 14:37:18
  */
 'use strict';
 
@@ -36,7 +36,7 @@ module.exports = app => {
   });
 
   Post.associate = () => {
-    Post.belongsTo(app.model.User, { as: 'author', foreignKey: 'author_id' });
+    Post.belongsTo(app.model.User, { as: 'author', foreignKey: 'author_id', targetKey: 'id' });
     Post.belongsToMany(app.model.Tag, {
       through: {
         model: app.model.PostTag,
@@ -44,6 +44,8 @@ module.exports = app => {
       },
       foreignKey: 'post_id',
     });
+
+    Post.hasMany(app.model.PostStatistics);
   };
 
   return Post;

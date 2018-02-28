@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-27 17:02:18
+ * @Last Modified time: 2018-02-28 10:09:58
  */
 'use strict';
 
@@ -43,7 +43,7 @@ module.exports = appInfo => {
     dialect: 'mysql',
     force: false,
     timezone: '+08:00',
-    logging: false,
+    // logging: false,
   };
   config.security = {
     csrf: {

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-26 15:59:35
+ * @Last Modified time: 2018-02-28 14:50:05
  */
 'use strict';
 
@@ -11,9 +11,9 @@ module.exports = app => {
     app.locals.moment = require('moment');
 
     const password_secret = 'goodluck'; // 请勿二次修改
-    const password_default = 'zaqzxc'; // 请勿二次修改
+    const password_default = 'zaqzxc';
+    await app.model.sync({ force: app.config.setup });
     if (app.config.setup) {
-      await app.model.sync({ force: true });
       // 设置初始参数
       await app.model.Setting.bulkCreate([{
         key: 'version',
@@ -135,6 +135,77 @@ module.exports = app => {
           is_menu: 1,
           created_by: admin.id,
           updated_by: admin.id,
+        }).then(async result => {
+          await role.createPermission({
+            parent_id: result.id,
+            name: '文章列表',
+            description: '文章列表数据',
+            url: '/manage/api/post',
+            method: 'get',
+            area: 'manage.api',
+            controller: 'post',
+            action: 'index',
+            sort: 7021,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '文章具体信息',
+            description: '文章具体信息数据',
+            url: '/manage/api/post/:id',
+            method: 'get',
+            area: 'manage.api',
+            controller: 'post',
+            action: 'show',
+            sort: 7022,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '文章新增',
+            description: '文章新增',
+            url: '/manage/api/post',
+            method: 'post',
+            area: 'manage.api',
+            controller: 'post',
+            action: 'create',
+            sort: 7023,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '文章修改',
+            description: '文章修改',
+            url: '/manage/api/post',
+            method: 'put',
+            area: 'manage.api',
+            controller: 'post',
+            action: 'update',
+            sort: 7024,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '文章删除',
+            description: '文章删除',
+            url: '/manage/api/post/:id',
+            method: 'delete',
+            area: 'manage.api',
+            controller: 'post',
+            action: 'destroy',
+            sort: 7025,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
         });
         await role.createPermission({
           parent_id: result.id,
