@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-27 16:57:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 11:43:58
+ * @Last Modified time: 2018-02-28 15:10:29
  */
 'use strict';
 
@@ -12,6 +12,7 @@ module.exports = app => {
       const { ctx } = this;
       const limit = ctx.helper.getLimit();
       const offset = ctx.helper.getOffset();
+      await ctx.service.post.create(null);
       const posts = await ctx.service.post.findAllByPage(null, limit, offset);
 
       ctx.body = {

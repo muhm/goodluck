@@ -2,18 +2,18 @@
  * @Author: MUHM
  * @Date: 2017-09-13 16:02:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 14:37:18
+ * @Last Modified time: 2018-02-28 16:05:42
  */
 'use strict';
 
 module.exports = app => {
-  const { STRING, INTEGER, TEXT, DATE } = app.Sequelize;
+  const { STRING, INTEGER, TEXT, DATE, UUID, UUIDV1 } = app.Sequelize;
 
   const Post = app.model.define('post', {
     id: {
       primaryKey: true,
-      type: INTEGER,
-      autoIncrement: true,
+      type: UUID,
+      defaultValue: UUIDV1,
     },
     slug: {
       unique: true,
@@ -45,7 +45,7 @@ module.exports = app => {
       foreignKey: 'post_id',
     });
 
-    Post.hasMany(app.model.PostStatistics);
+    Post.hasOne(app.model.PostStatistics);
   };
 
   return Post;

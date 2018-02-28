@@ -2,24 +2,27 @@
  * @Author: MUHM
  * @Date: 2017-09-13 16:02:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-13 16:33:37
+ * @Last Modified time: 2018-02-28 16:05:47
  */
 'use strict';
 
 module.exports = app => {
-  const { STRING, INTEGER, TEXT } = app.Sequelize;
+  const { STRING, INTEGER, TEXT, UUID, UUIDV1 } = app.Sequelize;
 
   const Tag = app.model.define('tag', {
     id: {
       primaryKey: true,
-      type: INTEGER,
-      autoIncrement: true,
+      type: UUID,
+      defaultValue: UUIDV1,
     },
     slug: {
       unique: true,
       type: STRING(150),
     },
-    name: STRING(150),
+    name: {
+      unique: true,
+      type: STRING(150),
+    },
     description: STRING(200),
     image: TEXT,
     meta_title: STRING(150),

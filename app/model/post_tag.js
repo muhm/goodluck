@@ -2,12 +2,12 @@
  * @Author: MUHM
  * @Date: 2017-10-13 16:30:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 10:37:38
+ * @Last Modified time: 2018-02-28 16:06:30
  */
 'use strict';
 
 module.exports = app => {
-  const { INTEGER } = app.Sequelize;
+  const { INTEGER, UUID } = app.Sequelize;
 
   const PostTag = app.model.define('post_tag', {
     id: {
@@ -15,8 +15,12 @@ module.exports = app => {
       type: INTEGER,
       autoIncrement: true,
     },
-    post_id: INTEGER,
-    tag_id: INTEGER,
+    post_id: {
+      type: UUID,
+    },
+    tag_id: {
+      type: UUID,
+    },
   });
 
   return PostTag;

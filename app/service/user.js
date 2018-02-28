@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 11:39:56
+ * @Last Modified time: 2018-02-28 16:14:32
  */
 'use strict';
 
@@ -108,9 +108,7 @@ module.exports = app => {
         rows: await ctx.model.User.findAll({
           where,
           include: [{
-            attributes: [
-              'name',
-            ],
+            attributes: ['name'],
             model: app.model.Role,
           }],
           order,
