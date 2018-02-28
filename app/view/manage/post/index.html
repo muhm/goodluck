@@ -1,76 +1,104 @@
 {% extends "manage/layout.html" %} {% block body %}
-<div class="wrapper wrapper-content  animated fadeInRight blog">
+<div id="postList" class="wrapper wrapper-content  animated fadeInRight blog">
   <div class="row">
-    <div class="col-lg-4">
-      <div class="ibox">
-        <div class="ibox-content blog-content">
-          <a href="article.html" class="btn-link">
-            <h2>
-              One morning, when Gregor Samsa
-            </h2>
-          </a>
-          <div class="small m-b-xs">
-            <strong>Adam Novak</strong>
-            <span class="text-muted">
-              <i class="fa fa-clock-o"></i> 28th Oct 2015</span>
-          </div>
-          <p>
-            English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search
-            for 'lorem ipsum' will uncover many web
-          </p>
-          <div class="row">
-            <div class="col-md-6">
-              <h5>Tags:</h5>
-              <button class="btn btn-primary btn-xs" type="button">Model</button>
-              <button class="btn btn-white btn-xs" type="button">Publishing</button>
-            </div>
-            <div class="col-md-6">
-              <div class="small text-right">
-                <h5>Stats:</h5>
-                <div>
-                  <i class="fa fa-comments-o"> </i> 56 comments </div>
-                <i class="fa fa-eye"> </i> 144 views
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="ibox">
-        <div class="ibox-content blog-content">
-          <a href="article.html" class="btn-link">
-            <h2>
-              One morning, when Gregor Samsa
-            </h2>
-          </a>
-          <div class="small m-b-xs">
-            <strong>Adam Novak</strong>
-            <span class="text-muted">
-              <i class="fa fa-clock-o"></i> 28th Oct 2015</span>
-          </div>
-          <p>
-            English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search
-            for 'lorem ipsum' will uncover many web
-          </p>
-          <div class="row">
-            <div class="col-md-6">
-              <h5>Tags:</h5>
-              <button class="btn btn-primary btn-xs" type="button">Model</button>
-              <button class="btn btn-white btn-xs" type="button">Publishing</button>
-            </div>
-            <div class="col-md-6">
-              <div class="small text-right">
-                <h5>Stats:</h5>
-                <div>
-                  <i class="fa fa-comments-o"> </i> 56 comments </div>
-                <i class="fa fa-eye"> </i> 144 views
-              </div>
-            </div>
-          </div>
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content text-center p-md">
+          <h2>
+            <span class="text-navy">眼见何事，情系何处，身在何方，心思何人</span>
+          </h2>
         </div>
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="btn-group pull-right">
+        <!-- ko if: prev-->
+        <button type="button" class="btn btn-white" data-bind="click:goPrev">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+        <!-- /ko -->
+        <!-- ko foreach: pagination -->
+        <!-- ko if: check-->
+        <button class="btn btn-white active" data-bind="text:text"></button>
+        <!-- /ko -->
+        <!-- ko ifnot: check -->
+        <button class="btn btn-white" data-bind="text:text,click:function(){news.click(index)}"></button>
+        <!-- /ko -->
+        <!-- /ko -->
+        <!-- ko if: next-->
+        <button type="button" class="btn btn-white" data-bind="click:goNext">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+        <!-- /ko -->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!-- ko foreach: data -->
+    <div class="col-lg-4">
+      <div class="ibox">
+        <div class="ibox-content blog-content">
+          <a data-bind="attr: { href: '/post/'+id }" class="btn-link">
+            <h2 data-bind="text:title"></h2>
+          </a>
+          <div class="small m-b-xs">
+            <strong data-bind="text:author?author.truename:' '"></strong>
+            <span class="text-muted">
+              <i class="fa fa-clock-o"></i>
+              <span data-bind="text:created_at"></span>
+            </span>
+          </div>
+          <p data-bind="text:plaintext">
+          </p>
+          <div class="row">
+            <div class="col-md-6">
+              <h5>Tags:</h5>
+              <!-- ko foreach: tags -->
+              <button class="btn btn-primary btn-xs" type="button" data-bind="text:name"></button>
+              <!-- /ko -->
+            </div>
+            <div class="col-md-6">
+              <div class="small text-right">
+                <h5>Stats:</h5>
+                <div>
+                  <i class="fa fa-comments-o"> </i>
+                  <span data-bind="text:post_statistic.comment"></span> comments </div>
+                <i class="fa fa-eye"> </i>
+                <span data-bind="text:post_statistic.view"></span> views
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /ko -->
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="btn-group pull-right">
+        <!-- ko if: prev-->
+        <button type="button" class="btn btn-white" data-bind="click:goPrev">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+        <!-- /ko -->
+        <!-- ko foreach: pagination -->
+        <!-- ko if: check-->
+        <button class="btn btn-white active" data-bind="text:text"></button>
+        <!-- /ko -->
+        <!-- ko ifnot: check -->
+        <button class="btn btn-white" data-bind="text:text,click:function(){news.click(index)}"></button>
+        <!-- /ko -->
+        <!-- /ko -->
+        <!-- ko if: next-->
+        <button type="button" class="btn btn-white" data-bind="click:goNext">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+        <!-- /ko -->
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock %}
+{% endblock %}{% block script %}
+<script src="{{manage_assets}}/post.js"></script> {% endblock %}

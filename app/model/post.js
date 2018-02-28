@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-13 16:02:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 16:05:42
+ * @Last Modified time: 2018-02-28 16:29:27
  */
 'use strict';
 
@@ -20,7 +20,7 @@ module.exports = app => {
       type: STRING(150),
     },
     title: STRING(150),
-    markdown: TEXT,
+    plaintext: TEXT,
     mobiledoc: TEXT,
     html: TEXT,
     featured: INTEGER,

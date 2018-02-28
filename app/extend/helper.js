@@ -2,9 +2,10 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:36:45
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-08 14:32:34
+ * @Last Modified time: 2018-02-28 16:54:53
  */
 'use strict';
+const downsize = require('downsize');
 
 module.exports = {
   isUserName(str) {
@@ -55,5 +56,15 @@ module.exports = {
   getOffset() {
     const { ctx, isNull } = this;
     return isNull(ctx.query.start) ? null : parseInt(ctx.query.start);
+  },
+  getExcerpt(html, truncateOptions) {
+    truncateOptions = truncateOptions || {};
+    let excerpt = html.replace(/<\/?[^>]+>/gi, '');
+    excerpt = excerpt.replace(/(\r\n|\n|\r)+/gm, ' ');
+
+    if (!truncateOptions.words && !truncateOptions.characters) {
+      truncateOptions.words = 50;
+    }
+    return downsize(excerpt, truncateOptions);
   },
 };

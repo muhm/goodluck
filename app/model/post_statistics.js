@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 10:37:29
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 16:05:24
+ * @Last Modified time: 2018-02-28 20:45:16
  */
 'use strict';
 
@@ -20,7 +20,7 @@ module.exports = app => {
       defaultValue: 0,
       comment: '评论数',
     },
-    hit: {
+    view: {
       type: INTEGER,
       defaultValue: 0,
       comment: '点击数',

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-27 16:57:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 15:10:29
+ * @Last Modified time: 2018-02-28 21:33:41
  */
 'use strict';
 
@@ -12,7 +12,6 @@ module.exports = app => {
       const { ctx } = this;
       const limit = ctx.helper.getLimit();
       const offset = ctx.helper.getOffset();
-      await ctx.service.post.create(null);
       const posts = await ctx.service.post.findAllByPage(null, limit, offset);
 
       ctx.body = {
@@ -21,6 +20,8 @@ module.exports = app => {
         recordsTotal: posts.count,
         recordsFiltered: posts.count,
         draw: ctx.query.draw,
+        totalPage: parseInt((posts.count + limit - 1) / limit),
+        pageIndex: parseInt(offset / limit) + 1 > 0 ? parseInt(offset / limit) + 1 : 1,
       };
     }
     async author() {

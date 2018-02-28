@@ -6522,8 +6522,9 @@ dd.project-people {
 }
 
 .blog .blog-content {
-  max-height: 400px;
-  min-height: 250px;
+  height: 265px;
+  /* max-height: 400px;
+  min-height: 250px; */
 }
 
 .article h1 {
