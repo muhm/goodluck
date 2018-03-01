@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 17:09:51
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 20:51:38
+ * @Last Modified time: 2018-02-28 23:56:57
  */
 function PostList() {
   var self = this;
@@ -29,9 +29,9 @@ function PostList() {
     $.ajax({
       type: "get",
       contentType: "application/json",
-      url: "/manage/api/post?start=" + (self.pageIndex-1)*self.pageSize + "&length=" + self.pageSize,
+      url: "/manage/api/post?start=" + (self.pageIndex - 1) * self.pageSize + "&length=" + self.pageSize,
       dataType: "json",
-      async: true,
+      async: false,
       success: function (data) {
         if (data.code = 200) {
           self.setPage(data);
@@ -76,10 +76,21 @@ function PostList() {
       }
     }
     if (startpage != 1) {
-      self.pagmodel.unshift({ "text": "...", "index": startpage - 1, "check": false });
+      if (startpage != 2) {
+        self.pagmodel.unshift({ "text": "...", "index": startpage - 1, "check": false });
+      }
+      if (data.pageIndex != 1) {
+        self.pagmodel.unshift({ "text": 1, "index": 1, "check": false });
+      }
     }
-    if (endpage != data.totalPage) {
+    if (endpage != data.totalPage && endpage != data.totalPage - 1) {
       self.pagmodel.push({ "text": "...", "index": endpage + 1, "check": false });
+      if (endpage != data.totalPage - 1) {
+        self.pagmodel.push({ "text": data.totalPage, "index": data.totalPage, "check": false });
+      }
+    }
+    if (endpage == data.totalPage - 1) {
+      self.pagmodel.push({ "text": data.totalPage, "index": data.totalPage, "check": false });
     }
     data.pageIndex == 1 ? self.prev(false) : self.prev(true);
     (data.pageIndex != data.totalPage && data.totalPage > 1) ? self.next(true) : self.next(false);
