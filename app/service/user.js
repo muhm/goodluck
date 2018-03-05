@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 16:14:32
+ * @Last Modified time: 2018-03-05 17:06:19
  */
 'use strict';
 
@@ -103,21 +103,17 @@ module.exports = app => {
      */
     async findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
       const { ctx } = this;
-      // 未选择findAndCountAll是因为使用include role是count的数据会包含role的数据
-      const result = {
-        rows: await ctx.model.User.findAll({
-          where,
-          include: [{
-            attributes: ['name'],
-            model: app.model.Role,
-          }],
-          order,
-          limit,
-          offset,
-        }),
-        count: await ctx.model.User.count({ where }),
-      };
-      return result;
+      return await ctx.model.User.findAndCountAll({
+        where,
+        include: [{
+          attributes: ['name'],
+          model: app.model.Role,
+        }],
+        distinct: true,
+        order,
+        limit,
+        offset,
+      });
     }
     /**
      * 根据账号查找

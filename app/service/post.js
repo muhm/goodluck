@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 11:21:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 20:57:31
+ * @Last Modified time: 2018-03-05 17:07:08
  */
 'use strict';
 
@@ -26,27 +26,25 @@ module.exports = app => {
     */
     async findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
       const { ctx, PostModel, TagModel, UserModel, PostStatisticsModel } = this;
-      const result = {
-        rows: await PostModel.findAll({
-          attributes: ['id', 'slug', 'title', 'status', 'plaintext', 'author_id', 'created_at'],
-          where,
-          include: [{
-            attributes: ['name', 'slug'],
-            model: TagModel,
-          }, {
-            attributes: ['name', 'truename'],
-            as: 'author',
-            model: UserModel,
-          }, {
-            attributes: ['comment', 'view', 'like', 'fuck'],
-            model: PostStatisticsModel,
-          }],
-          order,
-          limit,
-          offset,
-        }),
-        count: await PostModel.count({ where }),
-      };
+      const result = await PostModel.findAndCountAll({
+        attributes: ['id', 'slug', 'title', 'status', 'plaintext', 'author_id', 'created_at'],
+        where,
+        include: [{
+          attributes: ['name', 'slug'],
+          model: TagModel,
+        }, {
+          attributes: ['name', 'truename'],
+          as: 'author',
+          model: UserModel,
+        }, {
+          attributes: ['comment', 'view', 'like', 'fuck'],
+          model: PostStatisticsModel,
+        }],
+        distinct: true,
+        order,
+        limit,
+        offset,
+      });
       for (const i in result.rows) {
         result.rows[i].plaintext = ctx.helper.getExcerpt(result.rows[i].plaintext || '', { words: 30 });
       }
