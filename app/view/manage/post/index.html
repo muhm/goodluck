@@ -64,9 +64,9 @@
                 <h5>Stats:</h5>
                 <div>
                   <i class="fa fa-comments-o"> </i>
-                  <span data-bind="text:post_statistic.comment"></span> comments </div>
+                  <span data-bind="text:post_statistic?post_statistic.comment:'0'"></span> comments </div>
                 <i class="fa fa-eye"> </i>
-                <span data-bind="text:post_statistic.view"></span> views
+                <span data-bind="text:post_statistic?post_statistic.view:'0'"></span> views
               </div>
             </div>
           </div>

@@ -2,9 +2,10 @@
  * @Author: MUHM
  * @Date: 2018-02-28 17:09:51
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 23:56:57
+ * @Last Modified time: 2018-03-01 10:29:25
  */
-function PostList() {
+
+var PostList = function () {
   var self = this;
   self.data = ko.observableArray(null);
   self.empty = { "data": [] };
