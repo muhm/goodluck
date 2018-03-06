@@ -1,15 +1,73 @@
 {% extends "manage/layout.html" %} {% block body %}
-<div class="wrapper wrapper-content animated fadeInRight">
+<div id="tagList" class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
     <div class="col-lg-12">
-      <div class="ibox float-e-margins">
-        <div class="ibox-content text-center p-md">
-          <h2>
-            <span class="text-navy">Tag</span>
-          </h2>
-        </div>
+      <div class="btn-group pull-right">
+        <!-- ko if: prev-->
+        <button type="button" class="btn btn-white" data-bind="click:goPrev">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+        <!-- /ko -->
+        <!-- ko foreach: pagination -->
+        <!-- ko if: check-->
+        <button class="btn btn-white active" data-bind="text:text"></button>
+        <!-- /ko -->
+        <!-- ko ifnot: check -->
+        <button class="btn btn-white" data-bind="text:text,click:function(){tags.click(index)}"></button>
+        <!-- /ko -->
+        <!-- /ko -->
+        <!-- ko if: next-->
+        <button type="button" class="btn btn-white" data-bind="click:goNext">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+        <!-- /ko -->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="wrapper wrapper-content animated fadeInUp">
+        <ul class="notes" data-bind="foreach: data">
+          <li>
+            <div>
+              <small onclick="alert(1)"><i class="fa fa-trash-o"></i></small>
+              <h4 data-bind="text:name"></h4>
+              <!-- <p data-bind="text:created_at"></p> -->
+              <p data-bind="text:updated_at"></p>
+              <p data-bind="text:description"></p>
+              <a href="#">
+                <i class="fa fa-pencil"></i>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="btn-group pull-right">
+        <!-- ko if: prev-->
+        <button type="button" class="btn btn-white" data-bind="click:goPrev">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+        <!-- /ko -->
+        <!-- ko foreach: pagination -->
+        <!-- ko if: check-->
+        <button class="btn btn-white active" data-bind="text:text"></button>
+        <!-- /ko -->
+        <!-- ko ifnot: check -->
+        <button class="btn btn-white" data-bind="text:text,click:function(){tags.click(index)}"></button>
+        <!-- /ko -->
+        <!-- /ko -->
+        <!-- ko if: next-->
+        <button type="button" class="btn btn-white" data-bind="click:goNext">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+        <!-- /ko -->
       </div>
     </div>
   </div>
 </div>
-{% endblock %}
+{% endblock %}{% block script %}
+<script src="{{manage_assets}}/tag.js"></script> {% endblock %}

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 14:50:05
+ * @Last Modified time: 2018-03-06 10:33:35
  */
 'use strict';
 
@@ -145,7 +145,7 @@ module.exports = app => {
             area: 'manage.api',
             controller: 'post',
             action: 'index',
-            sort: 7021,
+            sort: 7011,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,
@@ -159,7 +159,7 @@ module.exports = app => {
             area: 'manage.api',
             controller: 'post',
             action: 'show',
-            sort: 7022,
+            sort: 7012,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,
@@ -173,7 +173,7 @@ module.exports = app => {
             area: 'manage.api',
             controller: 'post',
             action: 'create',
-            sort: 7023,
+            sort: 7013,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,
@@ -187,7 +187,7 @@ module.exports = app => {
             area: 'manage.api',
             controller: 'post',
             action: 'update',
-            sort: 7024,
+            sort: 7014,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,
@@ -201,7 +201,7 @@ module.exports = app => {
             area: 'manage.api',
             controller: 'post',
             action: 'destroy',
-            sort: 7025,
+            sort: 7015,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,
@@ -220,6 +220,77 @@ module.exports = app => {
           is_menu: 1,
           created_by: admin.id,
           updated_by: admin.id,
+        }).then(async result=>{
+          await role.createPermission({
+            parent_id: result.id,
+            name: '标签列表',
+            description: '标签列表数据',
+            url: '/manage/api/tag',
+            method: 'get',
+            area: 'manage.api',
+            controller: 'tag',
+            action: 'index',
+            sort: 7021,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '标签具体信息',
+            description: '标签具体信息数据',
+            url: '/manage/api/tag/:id',
+            method: 'get',
+            area: 'manage.api',
+            controller: 'tag',
+            action: 'show',
+            sort: 7022,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '标签新增',
+            description: '标签新增',
+            url: '/manage/api/tag',
+            method: 'post',
+            area: 'manage.api',
+            controller: 'tag',
+            action: 'create',
+            sort: 7023,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '标签修改',
+            description: '标签修改',
+            url: '/manage/api/tag',
+            method: 'put',
+            area: 'manage.api',
+            controller: 'tag',
+            action: 'update',
+            sort: 7024,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '标签删除',
+            description: '标签删除',
+            url: '/manage/api/tag/:id',
+            method: 'delete',
+            area: 'manage.api',
+            controller: 'tag',
+            action: 'destroy',
+            sort: 7025,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
         });
       });
 
