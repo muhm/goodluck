@@ -30,19 +30,12 @@
 		"stop": "egg-scripts stop",
 		"dev": "egg-bin dev",
 		"debug": "egg-bin debug",
-		"test": "npm run lint -- --fix && npm run test-local",
-		"test-local": "egg-bin test",
-		"cov": "egg-bin cov",
 		"lint": "eslint .",
-		"ci": "npm run lint && npm run cov",
 		"autod": "autod"
-	},
-	"ci": {
-		"version": "6, 8"
 	},
 	"repository": {
 		"type": "git",
-		"url": ""
+		"url": "https://github.com/MUHM/goodluck.git"
 	},
 	"author": "muhm",
 	"license": "MIT"
