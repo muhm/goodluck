@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-26 15:07:14
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-27 15:04:55
+ * @Last Modified time: 2018-03-07 14:51:32
  */
 'use strict';
 
@@ -54,11 +54,11 @@ function update(id) {
     dataType: "json",
     success: function (res) {
       if (res.code == 200) {
-        $('#modal-update').modal('show');
+        $('#modal-site-update').modal('show');
         SiteUpdateModel(res.data);
       } else {
         toastr.error(res.msg);
-        $('#modal-update').modal('hide');
+        $('#modal-site-update').modal('hide');
       }
     },
   });
@@ -79,7 +79,7 @@ jQuery(function ($) {
               type: "success"
             },
               function (isConfirm) { 
-                $('#modal-update').modal('hide');
+                $('#modal-site-update').modal('hide');
                 search();
               });
           } else {

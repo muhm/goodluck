@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 10:17:08
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 17:10:45
+ * @Last Modified time: 2018-03-07 14:50:41
  */
 'use strict';
 
@@ -63,14 +63,14 @@ function update(id) {
     dataType: "json",
     success: function (res) {
       if (res.code == 200) {
-        $('#modal-update').modal('show');
+        $('#modal-role-update').modal('show');
         RoleUpdateModel(res.data.role);
         for (var i = 0; i < res.data.permissions.length; i++) {
           $("#cb" + res.data.permissions[i].id).prop("checked", "checked");
         }
       } else {
         toastr.error(res.msg);
-        $('#modal-update').modal('hide');
+        $('#modal-role-update').modal('hide');
       }
     },
   });
@@ -152,7 +152,7 @@ jQuery(function ($) {
               function (isConfirm) {
                 $('#form-role-create').find(':input').not(':button,:submit,:reset,:checkbox').val('');
                 $("#form-role-create input[name='permissions']").removeAttr("checked");
-                $('#modal-create').modal('hide');
+                $('#modal-role-create').modal('hide');
                 search();
               });
           } else {
@@ -184,7 +184,7 @@ jQuery(function ($) {
             },
               function (isConfirm) {
                 $("#form-role-update input[name='permissions']").removeAttr("checked");
-                $('#modal-update').modal('hide');
+                $('#modal-role-update').modal('hide');
                 search();
               });
           } else {

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-22 14:26:16
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-27 15:03:51
+ * @Last Modified time: 2018-03-07 14:52:25
  */
 'use strict';
 
@@ -82,7 +82,7 @@ function update(id) {
     dataType: 'json',
     success: function (res) {
       if (res.code == 200) {
-        $('#modal-update').modal('show');
+        $('#modal-user-update').modal('show');
         var roles = new Array;
         for (var index in res.data.roles) {
           roles.push(res.data.roles[index].id);
@@ -92,7 +92,7 @@ function update(id) {
         $(".chosen-select").trigger("chosen:updated");
       } else {
         toastr.error(res.msg);
-        $('#modal-update').modal('hide');
+        $('#modal-user-update').modal('hide');
       }
     },
   });
@@ -135,7 +135,7 @@ jQuery(function ($) {
             },
               function (isConfirm) {
                 $('#form-user-create').find(':input').not(':button,:submit,:reset,:checkbox').val('');
-                $('#modal-create').modal('hide');
+                $('#modal-user-create').modal('hide');
                 search();
               });
           } else {
@@ -166,7 +166,7 @@ jQuery(function ($) {
               type: "success"
             },
               function (isConfirm) {
-                $('#modal-update').modal('hide');
+                $('#modal-user-update').modal('hide');
                 search();
               });
           } else {

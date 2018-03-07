@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-18 14:41:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-27 15:06:47
+ * @Last Modified time: 2018-03-07 16:19:30
  */
 'use strict';
 
@@ -28,20 +28,8 @@ module.exports = () => {
     ctx.locals.username = user.truename ? user.truename : user.name;
     ctx.locals.user = user;
     ctx.session.save();
-    const permission = await ctx.service.permission.findByRoute(ctx._matchedRoute, ctx.method);
-    if (!permission) {
-      await next();
-      return;
-    }
-    const roles = await user.getRoles();
-    let temp = false;
-    for (const role of roles) {
-      temp = await permission.hasRole(role);
-      if (temp) {
-        break;
-      }
-    }
-    if (!temp) {
+    const flag = await ctx.service.permission.checkRole(ctx._matchedRoute, ctx.method, user.id);
+    if (!flag) {
       ctx.status = 403;
       api ? ctx.body = {
         code: ctx.status,
