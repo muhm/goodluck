@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-27 17:02:39
+ * @Last Modified time: 2018-03-07 16:34:59
  */
 'use strict';
 
@@ -23,10 +23,9 @@ module.exports = {
   'Reset password': '重置密码',
   'Login success': '登录成功',
   'Register success': '注册成功',
-  100301: '账号在别处登录,请确保您的账号安全',
   // token
-  200000: 'access_token与refresh_token不符',
-  200001: 'refresh_token过期,请重新获取access_token',
+  'access_token与refresh_token不符': 'access_token与refresh_token不符',
+  'refresh_token过期,请重新获取access_token': 'refresh_token过期,请重新获取access_token',
   // CURD
   'Create success': '新增成功',
   'Update success': '修改成功',

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-12 16:23:18
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-26 15:45:17
+ * @Last Modified time: 2018-03-07 16:35:30
  */
 'use strict';
 
@@ -49,10 +49,10 @@ module.exports = app => {
         },
       });
       if (!token) {
-        throw new Error(ctx.__(200000));
+        throw new Error(ctx.__('access_token与refresh_token不符'));
       }
       if (token.refresh_token_expires_at < ctx.locals.moment()) {
-        throw new Error(ctx.__(200001));
+        throw new Error(ctx.__('refresh_token过期,请重新获取access_token'));
       }
       await token.update({
         access_token: (uuid.v1()).replace(/-/g, ''),
