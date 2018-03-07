@@ -29,9 +29,7 @@
 		"start": "egg-scripts start --daemon",
 		"stop": "egg-scripts stop",
 		"dev": "egg-bin dev",
-		"debug": "egg-bin debug",
-		"lint": "eslint .",
-		"autod": "autod"
+		"lint": "eslint ."
 	},
 	"repository": {
 		"type": "git",
