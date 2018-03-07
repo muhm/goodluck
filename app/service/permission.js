@@ -2,12 +2,18 @@
  * @Author: MUHM
  * @Date: 2018-01-11 13:01:13
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-07 16:28:30
+ * @Last Modified time: 2018-03-07 16:54:46
  */
 'use strict';
 
 module.exports = app => {
   return class Permission extends app.Service {
+    constructor(ctx) {
+      super(ctx);
+      this.PermissionModel = ctx.model.Permission;
+      this.UserModel = ctx.model.User;
+      this.RoleModel = ctx.model.Role;
+    }
     /**
     * 查询权限列表
     * @param {Object} [where] - 查询条件
@@ -17,7 +23,8 @@ module.exports = app => {
     * @return {Promise} 权限列表
     */
     findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
-      return this.ctx.model.Permission.findAndCountAll({
+      const { PermissionModel } = this;
+      return PermissionModel.findAndCountAll({
         where,
         order,
         limit,
@@ -32,21 +39,22 @@ module.exports = app => {
     * @return {Boolean} true/flase
     */
     async checkRole(url, method, user_id) {
-      const count = await this.ctx.model.Permission.count({
+      const { PermissionModel, UserModel, RoleModel } = this;
+      const count = await PermissionModel.count({
         where: {
           url,
           method,
         },
         include: [{
           required: true,
-          model: app.model.Role,
+          model: RoleModel,
           include: [{
             required: true,
             where: {
               id: user_id,
             },
-            model: app.model.User,
-          }]
+            model: UserModel,
+          }],
         }],
         distinct: true,
       });
@@ -58,7 +66,8 @@ module.exports = app => {
     * @return {Promise} 菜单列表
     */
     async findUserMenu(user_id) {
-      return await this.ctx.model.Permission.findAll({
+      const { PermissionModel, UserModel, RoleModel } = this;
+      return await PermissionModel.findAll({
         attributes: ['id', 'parent_id', 'name', 'url', 'icon', 'controller', 'sort'],
         where: {
           is_menu: 1,
@@ -66,18 +75,18 @@ module.exports = app => {
         include: [{
           required: true,
           attributes: [],
-          model: app.model.Role,
+          model: RoleModel,
           include: [{
             required: true,
             where: {
               id: user_id,
             },
             attributes: [],
-            model: app.model.User,
-          }]
+            model: UserModel,
+          }],
         }],
         distinct: true,
-        order: [['sort', 'ASC']]
+        order: [['sort', 'ASC']],
       });
     }
   };

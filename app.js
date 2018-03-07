@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-06 10:33:35
+ * @Last Modified time: 2018-03-07 16:50:59
  */
 'use strict';
 
@@ -220,7 +220,7 @@ module.exports = app => {
           is_menu: 1,
           created_by: admin.id,
           updated_by: admin.id,
-        }).then(async result=>{
+        }).then(async result => {
           await role.createPermission({
             parent_id: result.id,
             name: '标签列表',

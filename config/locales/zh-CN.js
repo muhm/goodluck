@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-07 16:34:59
+ * @Last Modified time: 2018-03-07 16:53:16
  */
 'use strict';
 
@@ -24,8 +24,8 @@ module.exports = {
   'Login success': '登录成功',
   'Register success': '注册成功',
   // token
-  'access_token与refresh_token不符': 'access_token与refresh_token不符',
-  'refresh_token过期,请重新获取access_token': 'refresh_token过期,请重新获取access_token',
+  '"access_token"与"refresh_token"不符': '"access_token"与"refresh_token"不符',
+  '"refresh_token"过期，请重新获取"access_token"': '"refresh_token"过期，请重新获取"access_token"',
   // CURD
   'Create success': '新增成功',
   'Update success': '修改成功',

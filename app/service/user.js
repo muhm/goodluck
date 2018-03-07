@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-07 15:53:54
+ * @Last Modified time: 2018-03-07 16:58:18
  */
 'use strict';
 
@@ -10,8 +10,10 @@ module.exports = app => {
   return class User extends app.Service {
     constructor(ctx) {
       super(ctx);
+      this.password_secret = app.locals.password_secret;
       this.crypto = require('crypto');
       this.uuid = require('node-uuid');
+      this.UserModel = ctx.model.User;
     }
     /**
     * 新增用户
@@ -19,9 +21,9 @@ module.exports = app => {
     * @return {Promise} 用户
     */
     create(m) {
-      const { ctx, crypto } = this;
-      m.password = crypto.createHash('md5').update(m.password + app.locals.password_secret).digest('hex');
-      return ctx.model.User.create(m);
+      const { UserModel, crypto, password_secret } = this;
+      m.password = crypto.createHash('md5').update(m.password + password_secret).digest('hex');
+      return UserModel.create(m);
     }
     /**
     * 修改用户及角色
@@ -102,8 +104,8 @@ module.exports = app => {
      * @return {Promise} 用户列表
      */
     async findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
-      const { ctx } = this;
-      return await ctx.model.User.findAndCountAll({
+      const { UserModel } = this;
+      return await UserModel.findAndCountAll({
         where,
         include: [{
           attributes: ['name'],
@@ -134,9 +136,9 @@ module.exports = app => {
      * @param {Integer} [id] - 账号
      * @return {Promise} 用户
      */
-    findById(id) {
-      const { ctx } = this;
-      return ctx.model.User.findById(id);
+    async findById(id) {
+      const { UserModel } = this;
+      return await UserModel.findById(id);
     }
     /**
      * 根据id修改密码
@@ -147,16 +149,16 @@ module.exports = app => {
      * @return {Promise} 用户
      */
     async updatePassword(id, oldPwd, newPwd, confirmPwd) {
-      const { ctx, crypto } = this;
-      const user = await ctx.model.User.findById(id);
+      const { ctx, crypto, UserModel, password_secret } = this;
+      const user = await UserModel.findById(id);
       if (confirmPwd !== newPwd || newPwd === null || newPwd === '') {
         throw new Error(ctx.__('The two passwords differ'));
       }
-      if (crypto.createHash('md5').update(oldPwd + app.config.password_secret).digest('hex') !== user.password) {
+      if (crypto.createHash('md5').update(oldPwd + password_secret).digest('hex') !== user.password) {
         throw new Error(ctx.__('Incorrect password'));
       }
       await user.update({
-        password: crypto.createHash('md5').update(newPwd + app.config.password_secret).digest('hex'),
+        password: crypto.createHash('md5').update(newPwd + password_secret).digest('hex'),
       });
       return user;
     }
