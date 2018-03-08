@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-07 16:50:59
+ * @Last Modified time: 2018-03-08 10:47:14
  */
 'use strict';
 
@@ -160,6 +160,20 @@ module.exports = app => {
             controller: 'post',
             action: 'show',
             sort: 7012,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '文章编辑页面',
+            description: '文章编辑页面',
+            url: '/manage/post/upsert',
+            method: 'get',
+            area: 'manage',
+            controller: 'post',
+            action: 'upsert',
+            sort: 7013,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-07 16:53:16
+ * @Last Modified time: 2018-03-08 10:36:03
  */
 'use strict';
 
@@ -27,6 +27,7 @@ module.exports = {
   '"access_token"与"refresh_token"不符': '"access_token"与"refresh_token"不符',
   '"refresh_token"过期，请重新获取"access_token"': '"refresh_token"过期，请重新获取"access_token"',
   // CURD
+  'Create': '新增',
   'Create success': '新增成功',
   'Update success': '修改成功',
   'Destroy success': '删除成功',

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-23 13:56:23
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-23 13:57:10
+ * @Last Modified time: 2018-03-08 10:31:27
  */
 'use strict';
 
@@ -14,6 +14,13 @@ module.exports = app => {
         title: ctx.__('Post Management'),
       }];
       await ctx.render('manage/post/index');
+    }
+    async upsert() {
+      const { ctx } = this;
+      ctx.locals.breadcrumbs = [{
+        title: ctx.__('Post Management'),
+      }];
+      await ctx.render('manage/post/upsert');
     }
   }
 

@@ -15,7 +15,11 @@
     <!-- Toastr -->
     <link href="{{manage_assets}}/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <!-- Sweet Alert -->
-    <link href="{{manage_assets}}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet"> {% block css %} {% endblock %}
+    <link href="{{manage_assets}}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <!-- DataTables style -->
+    <link href="{{manage_assets}}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <!-- Chosen style -->
+    <link href="{{manage_assets}}/css/plugins/chosen//bootstrap-chosen.css" rel="stylesheet">{% block css %} {% endblock %}
     <link href="{{manage_assets}}/css/animate.css" rel="stylesheet">
     <link href="{{manage_assets}}/css/style.css" rel="stylesheet">
 </head>
@@ -24,28 +28,34 @@
     <div id="wrapper">
         {% block navbar %}{% include "manage/partials/navbar.html" %}{% endblock %}
         <div id="page-wrapper" class="gray-bg">
-            {% block navtop %}{% include "manage/partials/navtop.html" %}{% endblock %} {% block body %}{% endblock %} {% block footer %}{%
-            include "manage/partials/footer.html" %}{% endblock %}
+            {% block navtop %}{% include "manage/partials/navtop.html" %}{% endblock %} {% block body %}{% endblock %} {% block footer
+            %}{% include "manage/partials/footer.html" %}{% endblock %}
         </div>
     </div>
     <!-- Mainly scripts -->
-    <script src="{{manage_assets}}/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="{{manage_assets}}/js/jquery-2.1.1.js"></script>
     <!-- <script>if (typeof module === 'object') {window.jQuery = window.$ = module.exports;};</script> -->
-    <script src="{{manage_assets}}/js/bootstrap.min.js"></script>
-    <script src="{{manage_assets}}/js/moment.min.js"></script>
+    <script type="text/javascript" src="{{manage_assets}}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{manage_assets}}/js/moment.min.js"></script>
     <!-- Toastr -->
-    <script src="{{manage_assets}}/js/plugins/toastr/toastr.min.js"></script>
-    <script src="{{manage_assets}}/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="{{manage_assets}}/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <!-- Custom and plugin javascript -->
-    <script src="{{manage_assets}}/js/inspinia.js"></script>
-    <script src="{{manage_assets}}/js/knockout-3.4.2.js"></script>
-    <script src="{{manage_assets}}/js/plugins/pace/pace.min.js"></script>
+    <script type="text/javascript" src="{{manage_assets}}/js/plugins/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="{{manage_assets}}/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="{{manage_assets}}/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="{{manage_assets}}/js/plugins/pace/pace.min.js"></script>
     <!-- Sweet alert -->
-    <script src="{{manage_assets}}/js/plugins/sweetalert/sweetalert.min.js"></script>
-    <script src="{{manage_assets}}/js/navbar.js"></script>
-    <script src="{{manage_assets}}/js/common.js"></script>
-    {% block script %} {% endblock %}
+    <script type="text/javascript" src="{{manage_assets}}/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <!-- DataTables-->
+    <script type="text/javascript" src="{{manage_assets}}/js/plugins/dataTables/datatables.min.js"></script>
+    <!-- Chosen -->
+    <script type="text/javascript" src="{{manage_assets}}/js/plugins/chosen/chosen.jquery.js"></script>
+    <!-- Validate-->
+    <script type="text/javascript" src="{{manage_assets}}/js/plugins/validate/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="{{manage_assets}}/js/plugins/validate/messages_zh.min.js"></script>
+    <script type="text/javascript" src="{{manage_assets}}/js/plugins/validate/additional-methods.js"></script>
+    <!-- Custom and plugin javascript -->
+    <script type="text/javascript" src="{{manage_assets}}/js/inspinia.js"></script>
+    <script type="text/javascript" src="{{manage_assets}}/js/knockout-3.4.2.js"></script>
+    <script type="text/javascript" src="{{manage_assets}}/js/gl-admin.min.js"></script> {% block script %} {% endblock %}
 </body>
 
 </html>

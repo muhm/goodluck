@@ -20,7 +20,8 @@
 		"egg-ci": "^1.8.0",
 		"egg-mock": "^3.14.0",
 		"eslint": "^4.13.1",
-		"eslint-config-egg": "^5.1.0"
+		"eslint-config-egg": "^5.1.0",
+		"uglify-js": "^3.3.13"
 	},
 	"engines": {
 		"node": ">=8.0.0"
@@ -29,7 +30,9 @@
 		"start": "egg-scripts start --daemon",
 		"stop": "egg-scripts stop",
 		"dev": "egg-bin dev",
-		"lint": "eslint ."
+		"debug": "egg-bin debug",
+		"lint": "eslint .",
+		"gl":"./node_modules/.bin/uglifyjs app/public/manage/js/gl-admin.js > app/public/manage/js/gl-admin.min.js"
 	},
 	"repository": {
 		"type": "git",

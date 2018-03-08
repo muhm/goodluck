@@ -1,0 +1,28 @@
+{% extends "manage/layout.html" %}
+<!-- css -->
+{% block css %}
+<link rel="stylesheet" href="{{manage_assets}}/markdown/css/editormd.min.css" /> {% endblock %}
+<!-- css end-->
+<!-- body-->
+{% block body %}
+<div id="post" class="wrapper wrapper-content animated fadeInRight">
+
+</div>
+{% endblock %}
+<!-- body end-->
+<!-- js -->
+{% block script %}
+<script type="text/javascript" src="{{manage_assets}}/markdown/editormd.min.js"></script>
+<script>
+  if (document.getElementById('post')) {
+    $("#post").append("<div id=\"test-editormd\"></div>");
+
+    var testEditormd = editormd("test-editormd", {
+      width: "90%",
+      height: 640,
+      markdown: "### 动态创建 Editor.md\r\n\r\nDynamic create Editor.md",
+      path: '{{manage_assets}}/markdown/lib/'
+    });
+  }
+</script> {% endblock %}
+<!-- js end-->
