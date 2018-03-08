@@ -32,7 +32,7 @@
 		"dev": "egg-bin dev",
 		"debug": "egg-bin debug",
 		"lint": "eslint .",
-		"gl":"./node_modules/.bin/uglifyjs app/public/manage/js/gl-admin.js > app/public/manage/js/gl-admin.min.js"
+		"gl": "./node_modules/.bin/uglifyjs app/public/manage/js/gl-admin.js > app/public/manage/js/gl-admin.min.js"
 	},
 	"repository": {
 		"type": "git",

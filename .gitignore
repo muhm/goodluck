@@ -8,3 +8,5 @@ run/
 test/
 config/config.local.js
 cos_sync_tools_v5/
+.travis.yml
+appveyor.yml
