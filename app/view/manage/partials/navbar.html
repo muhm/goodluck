@@ -1,29 +1,84 @@
 <nav class="navbar-default navbar-static-side" role="navigation">
-    <div class="sidebar-collapse">
-      <ul class="nav metismenu" id="side-menu">
-        <li class="nav-header">
-          <div class="dropdown profile-element"> 
-            <span>
-              <img alt="image" class="img-circle" src="{{manage_assets}}/images/profile_small.jpg" />
-            </span>
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              <span class="clear"> 
-                <span class="block m-t-xs"> 
-                  <strong class="font-bold">{{ username }}</strong>
-                </span> 
-                <span class="text-muted text-xs block">Welcome<b class="caret"></b></span> 
+  <div class="sidebar-collapse">
+    <ul class="nav metismenu" id="side-menu">
+      <li class="nav-header">
+        <div class="dropdown profile-element">
+          <span>
+            <img alt="image" class="img-circle" src="{{manage_assets}}/images/profile_small.jpg" />
+          </span>
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <span class="clear">
+              <span class="block m-t-xs">
+                <strong class="font-bold">{{ username }}</strong>
               </span>
-            </a>
-            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-              <li><a href="/account/password">{{ __('Change password') }}</a></li>
-              <li class="divider"></li>
-              <li><a href="/account/logout">{{ __('Logout') }}</a></li>
-            </ul>
-          </div>
-          <div class="logo-element">
-            GL
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
+              <span class="text-muted text-xs block">Welcome
+                <b class="caret"></b>
+              </span>
+            </span>
+          </a>
+          <ul class="dropdown-menu animated fadeInRight m-t-xs">
+            <li>
+              <a href="/account/password">{{ __('Change password') }}</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="/account/logout">{{ __('Logout') }}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="logo-element">
+          GL
+        </div>
+      </li>
+      <!-- ko template: { name: 'navTmpl', foreach: menus } -->
+      <!-- /ko -->
+    </ul>
+  </div>
+</nav>
+<script id="navTmpl" type="text/html">
+  <!--ko if:children.length>0-->
+    <!--ko if:parent_id==''-->
+    <li data-bind="attr:{ class: active }">
+        <a href="#"> 
+          <i data-bind="attr:{ class:'w-16 fa '+ icon + ' fa-lg'}"></i>
+          <span class="nav-label" data-bind="text:name"></span>
+          <span class="fa arrow"></span>
+        </a>
+        <ul class="nav nav-second-level collapse" data-bind="template: { name: 'navTmpl', foreach: children }">
+        </ul>
+      </li>
+      <!-- /ko -->
+      <!--ko ifnot:parent_id==''-->
+    <li data-bind="attr:{ class: active }">
+        <a href="#"> 
+          <i data-bind="attr:{ class:'w-14 fa '+ icon}"></i>
+          <span class="nav-label" data-bind="text:name"></span>
+          <span class="fa arrow"></span>
+        </a>
+        <ul class="nav nav-third-level collapse" data-bind="template: { name: 'navTmpl', foreach: children }">
+
+        </ul>
+      </li>
+      <!-- /ko -->
+  <!-- /ko -->
+  <!--ko ifnot:children.length>0-->
+    <!--ko if:parent_id==''-->
+    <li data-bind="attr:{ class: active }">
+      <a data-bind="attr:{ href:url }">
+        <i data-bind="attr:{ class:'w-16 fa '+ icon + ' fa-lg'}"></i>
+        <span class="nav-label" data-bind="text:name"></span>
+      </a>
+    </li>
+    <!-- /ko -->
+    <!--ko ifnot:parent_id==''-->
+    <li data-bind="attr:{ class: active }">
+        <a data-bind="attr:{ href:url }">
+          <i data-bind="attr:{ class:'w-14 fa '+ icon}"></i>
+          <!--ko text:name-->
+          <!-- /ko -->
+        </a>
+    </li>
+    <!-- /ko -->
+  <!-- /ko -->
+
+</script>

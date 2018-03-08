@@ -7,3 +7,4 @@ run/
 .vscode/
 test/
 config/config.local.js
+cos_sync_tools_v5/

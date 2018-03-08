@@ -2,12 +2,12 @@
  * @Author: MUHM
  * @Date: 2017-07-20 15:15:44
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-08 13:47:25
+ * @Last Modified time: 2018-03-08 19:22:20
  */
 /// <reference path="./moment.min.js" />
 
 //menu
-function fn_menujson(data, parent_id) {
+function fn_menujson(data, parent_id, url) {
   var result = [],
     temp;
   for (var i = 0; i < data.length; i++) {
@@ -18,10 +18,19 @@ function fn_menujson(data, parent_id) {
         url: data[i].url,
         icon: data[i].icon,
         parent_id: data[i].parent_id == 0 ? "" : data[i].parent_id,
-        controller: data[i].controller
+        controller: data[i].controller,
+        children: [],
+        active: url && url.indexOf(data[i].url) > -1 ? 'active' : '',
       };
-      temp = fn_menujson(data, data[i].id);
+      temp = fn_menujson(data, data[i].id, url);
       if (temp.length > 0) {
+        if (url) {
+          for (var j = 0; j < temp.length; j++) {
+            if (temp[j].active == 'active') {
+              obj.active = temp[j].active;
+            }
+          }
+        }
         obj.children = temp;
       }
       result.push(obj);
@@ -29,7 +38,6 @@ function fn_menujson(data, parent_id) {
   }
   return result;
 }
-
 function fn_checkmenu(parent_id) {
   if (parent_id != "side-menu") {
     $("#" + parent_id).parent().addClass("active")
@@ -274,11 +282,15 @@ function csrfSafeMethod(method) {
 (function () {
   var locationUrl = location.pathname;
   var menuUrl = '/manage/api/menu';
+  var menuModel = {
+    menus: ko.observableArray(null),
+  };
+  ko.applyBindings(menuModel, document.getElementById("side-menu"));
   if (localStorageSupport()) {
     if (localStorage.menu) {
-      fn_menu(JSON.parse(localStorage.menu), locationUrl);
-      // MetsiMenu
-      $('#side-menu').metisMenu();
+      menuModel.menus(fn_menujson(JSON.parse(localStorage.menu), 0, locationUrl));
+      // fn_menu(JSON.parse(localStorage.menu), locationUrl);
+      $("#side-menu").metisMenu();
     } else {
       $.ajax({
         type: "get",
@@ -287,10 +299,11 @@ function csrfSafeMethod(method) {
         dataType: "json",
         async: true,
         success: function (data) {
-          var menu = fn_menujson(data.data, 0);
-          localStorage.menu = JSON.stringify(menu);
-          fn_menu(menu, locationUrl);
-          $('#side-menu').metisMenu();
+          localStorage.menu = JSON.stringify(data.data);
+          var menu = fn_menujson(data.data, 0, locationUrl);
+          menuModel.menus(menu);
+          // fn_menu(menu, locationUrl);
+          $("#side-menu").metisMenu();
         }
       })
     }
@@ -302,9 +315,10 @@ function csrfSafeMethod(method) {
       dataType: "json",
       async: true,
       success: function (data) {
-        var menu = fn_menujson(data.data, 0);
-        fn_menu(menu, locationUrl);
-        $('#side-menu').metisMenu();
+        var menu = fn_menujson(data.data, 0, locationUrl);
+        menuModel.menus(menu);
+        // fn_menu(menu, locationUrl);
+        $("#side-menu").metisMenu();
       }
     })
   }
@@ -777,4 +791,8 @@ function search() {
   }
 }
 
+
+jQuery(function ($) {
+  // $('#side-menu').metisMenu();
+});
 
