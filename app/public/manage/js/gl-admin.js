@@ -98,7 +98,6 @@ function fn_permissions(url) {
       async: false,
       success: function (data) {
         if (data.code == 200) {
-          // localStorage.permissions = data.data;
           return get_permissions(data.data, url);
         }
       }
@@ -183,6 +182,7 @@ function dataPage() {
   self.pagination = ko.observableArray(null);
   self.pageIndex = 1;
   self.pageSize = 9; //页面大小
+  self.flag = true;
   self.goPrev = function () {
     self.getData(-1);
   }
@@ -195,14 +195,18 @@ function dataPage() {
   }
   self.getData = function (page) {
     self.pageIndex = self.pageIndex + (page ? page : 0);
+    if (!self.flag) {
+      return;
+    }
+    self.flag = !self.flag;
     $.ajax({
       type: self.type,
       contentType: "application/json",
       url: self.url + "?start=" + (self.pageIndex - 1) * self.pageSize + "&length=" + self.pageSize,
       dataType: "json",
-      async: false,
       success: function (data) {
         if (data.code = 200) {
+          self.flag = !self.flag;
           self.setPage(data);
           self.data(data);
           self.pageIndex = data.pageIndex;
@@ -210,6 +214,9 @@ function dataPage() {
             self.pagination(self.pagmodel);
           }
         }
+      },
+      error: function () {
+        self.flag = !self.flag;
       }
     })
   }
