@@ -9,3 +9,5 @@ test/
 config/config.local.js
 cos_sync_tools_v5/
 app/public/files/
+.travis.yml
+appveyor.yml
