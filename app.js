@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-08 10:47:14
+ * @Last Modified time: 2018-03-09 16:15:34
  */
 'use strict';
 
@@ -168,7 +168,7 @@ module.exports = app => {
             parent_id: result.id,
             name: '文章编辑页面',
             description: '文章编辑页面',
-            url: '/manage/post/upsert',
+            url: '/manage/post/upsert/:id',
             method: 'get',
             area: 'manage',
             controller: 'post',
@@ -180,32 +180,46 @@ module.exports = app => {
           });
           await role.createPermission({
             parent_id: result.id,
-            name: '文章新增',
-            description: '文章新增',
+            name: '文章编辑',
+            description: '文章编辑',
             url: '/manage/api/post',
             method: 'post',
             area: 'manage.api',
             controller: 'post',
-            action: 'create',
+            action: 'upsert',
             sort: 7013,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,
           });
-          await role.createPermission({
-            parent_id: result.id,
-            name: '文章修改',
-            description: '文章修改',
-            url: '/manage/api/post',
-            method: 'put',
-            area: 'manage.api',
-            controller: 'post',
-            action: 'update',
-            sort: 7014,
-            is_menu: 0,
-            created_by: admin.id,
-            updated_by: admin.id,
-          });
+          // await role.createPermission({
+          //   parent_id: result.id,
+          //   name: '文章新增',
+          //   description: '文章新增',
+          //   url: '/manage/api/post',
+          //   method: 'post',
+          //   area: 'manage.api',
+          //   controller: 'post',
+          //   action: 'create',
+          //   sort: 7013,
+          //   is_menu: 0,
+          //   created_by: admin.id,
+          //   updated_by: admin.id,
+          // });
+          // await role.createPermission({
+          //   parent_id: result.id,
+          //   name: '文章修改',
+          //   description: '文章修改',
+          //   url: '/manage/api/post',
+          //   method: 'put',
+          //   area: 'manage.api',
+          //   controller: 'post',
+          //   action: 'update',
+          //   sort: 7014,
+          //   is_menu: 0,
+          //   created_by: admin.id,
+          //   updated_by: admin.id,
+          // });
           await role.createPermission({
             parent_id: result.id,
             name: '文章删除',
@@ -216,6 +230,20 @@ module.exports = app => {
             controller: 'post',
             action: 'destroy',
             sort: 7015,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '图片上传',
+            description: '图片上传',
+            url: '/manage/api/image',
+            method: 'post',
+            area: 'manage.api',
+            controller: 'image',
+            action: 'create',
+            sort: 7099,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,

@@ -4,6 +4,7 @@
 	"description": "",
 	"private": true,
 	"dependencies": {
+		"cos-nodejs-sdk-v5": "^2.3.0",
 		"downsize": "0.0.8",
 		"egg": "^2.0.0",
 		"egg-scripts": "^1.2.0",
@@ -11,7 +12,8 @@
 		"egg-view-nunjucks": "^2.1.4",
 		"moment": "^2.20.0",
 		"mysql2": "^1.5.1",
-		"node-uuid": "^1.4.8"
+		"node-uuid": "^1.4.8",
+		"stream-wormhole": "^1.0.3"
 	},
 	"devDependencies": {
 		"autod": "^2.10.1",
@@ -32,7 +34,8 @@
 		"dev": "egg-bin dev",
 		"debug": "egg-bin debug",
 		"lint": "eslint .",
-		"gl":"./node_modules/.bin/uglifyjs app/public/manage/js/gl-admin.js > app/public/manage/js/gl-admin.min.js"
+		"gl": "./node_modules/.bin/uglifyjs app/public/manage/js/gl-admin.js > app/public/manage/js/gl-admin.min.js",
+		"cdn": "./cos_sync_tools_v5/start_cos_sync.sh"
 	},
 	"repository": {
 		"type": "git",

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-13 16:02:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 16:29:27
+ * @Last Modified time: 2018-03-09 22:37:53
  */
 'use strict';
 
@@ -25,7 +25,11 @@ module.exports = app => {
     html: TEXT,
     featured: INTEGER,
     image: TEXT,
-    status: INTEGER,
+    status: {
+      type: INTEGER,
+      defaultValue: 0,
+      comment: '状态 0 草稿 1发布 2待审核',
+    },
     meta_title: STRING(150),
     meta_description: STRING(150),
     author_id: INTEGER,

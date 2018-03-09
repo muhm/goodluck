@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-27 16:57:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-07 10:55:20
+ * @Last Modified time: 2018-03-09 16:08:36
  */
 'use strict';
 
@@ -31,13 +31,29 @@ module.exports = app => {
     }
     async show() {
       const { ctx } = this;
-      ctx.body = ctx.locals.moment();
+      const post = await ctx.service.post.findById(ctx.params.id);
+      if (!post) {
+        // ctx.status = 404;
+        ctx.body = {
+          code: 404,
+          msg: ctx.__('404 Not found'),
+        };
+        return;
+      }
+      ctx.body = {
+        code: 200,
+        data: post,
+      };
     }
     async create() {
       const { ctx } = this;
       ctx.body = ctx.locals.moment();
     }
     async update() {
+      const { ctx } = this;
+      ctx.body = ctx.locals.moment();
+    }
+    async upsert(){
       const { ctx } = this;
       ctx.body = ctx.locals.moment();
     }

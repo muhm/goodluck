@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 10:09:58
+ * @Last Modified time: 2018-03-09 13:57:48
  */
 'use strict';
 
@@ -59,6 +59,11 @@ module.exports = appInfo => {
       ctx.body = { code: ctx.status, msg: err.message };
     },
   };
+  config.cos = {
+    AppId: '1250000000',
+    SecretId: 'AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+    SecretKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+  }
   config.setup = true; // 请在写入数据库后修改为false
 
   return config;

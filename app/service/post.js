@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 11:21:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-07 16:45:31
+ * @Last Modified time: 2018-03-09 17:19:11
  */
 'use strict';
 
@@ -72,6 +72,28 @@ module.exports = app => {
       };
       const result = await PostModel.create(post, { include: [PostStatisticsModel, TagModel] });
       return result;
+    }
+    /**
+    * 根据id查询文章
+    * @param {String} [id] 文章
+    * @return {Promise} 文章
+    */
+    async findById(id) {
+      const { PostModel, TagModel, UserModel, PostStatisticsModel } = this;
+      return await PostModel.findById(id, {
+        include: [{
+          attributes: ['id', 'name', 'slug'],
+          model: TagModel,
+        }, {
+          attributes: ['name', 'truename'],
+          as: 'author',
+          model: UserModel,
+        }, {
+          attributes: ['comment', 'view', 'like', 'fuck'],
+          model: PostStatisticsModel,
+        }]
+      });
+      // return await PostModel.findById(id);
     }
   };
 };
