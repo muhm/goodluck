@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-08-11 10:14:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-09 22:25:14
+ * @Last Modified time: 2018-03-10 18:45:39
  */
 'use strict';
 
@@ -39,7 +39,7 @@ module.exports = app => {
         return;
       }
       try {
-        if (!app.locals.cdn) {
+        if (app.locals.cdn) {
           const data = await sliceUploadFile(`/${ownFile}/${time}/${name}`, filepath, app.config.cos)
           console.log(data);
         }

@@ -12,7 +12,7 @@
       <div class="col-lg-12">
         <div class="btn-group pull-right">
           <p>
-            <a href="/manage/post" type="submit" class="btn btn-sm btn-default">
+            <a href="/manage/post" class="btn btn-sm btn-default">
               <i class="fa fa-reply"></i>
             </a>
             <button type="submit" class="btn btn-sm btn-primary">
@@ -55,7 +55,7 @@
         <div class="form-group ">
           <label>图片:</label>
           <a data-toggle="modal" data-target="#model-image-upload">
-            <img class="form-control img-preview img-preview-post" data-bind="attr:{src:image?image:'{{manage_assets}}/images/img_404.png'}"
+            <img class="form-control img-preview img-preview-post" data-bind="attr:{src:image()?image:'{{manage_assets}}/images/img_404.png'}"
             />
           </a>
           <input name="image" type="text" class="hidden" data-bind="value: image">
@@ -246,7 +246,7 @@
         $(".chosen-select").chosen({ width: "100%" });
       } else {
         if (res.code = 404) {
-          postModel.init(res.data);
+          // postModel.init(res.data);
           // $(".chosen-select").trigger("chosen:updated");
           $(".chosen-select").chosen({ width: "100%" });
         } else {
