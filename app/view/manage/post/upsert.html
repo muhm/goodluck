@@ -220,7 +220,7 @@
     maxFilesize: 3,
     url: "/manage/api/image?_csrf={{ ctx.csrf | safe }}",
     acceptedFiles: "image/*",
-    dictDefaultMessage: "<div class='row'><img class='col-lg-12' src='{{manage_assets}}/images/img_404.png'/><div>",
+    dictDefaultMessage: "<div class='row'><img class='img-preview' src='{{manage_assets}}/images/img_404.png'/><div>",
     complete: function (file) {
       this.removeFile(file);
       $('#model-image-upload').modal("hide");
