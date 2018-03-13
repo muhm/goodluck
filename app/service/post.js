@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 11:21:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-09 17:19:11
+ * @Last Modified time: 2018-03-13 09:52:15
  */
 'use strict';
 
@@ -91,7 +91,7 @@ module.exports = app => {
         }, {
           attributes: ['comment', 'view', 'like', 'fuck'],
           model: PostStatisticsModel,
-        }]
+        }],
       });
       // return await PostModel.findById(id);
     }

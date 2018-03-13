@@ -27,7 +27,7 @@ module.exports = {
   '"access_token"与"refresh_token"不符': '"access_token"与"refresh_token"不符',
   '"refresh_token"过期，请重新获取"access_token"': '"refresh_token"过期，请重新获取"access_token"',
   // CURD
-  'Create': '新增',
+  Create: '新增',
   'Create success': '新增成功',
   'Update success': '修改成功',
   'Destroy success': '删除成功',

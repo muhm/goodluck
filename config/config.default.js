@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-09 13:57:48
+ * @Last Modified time: 2018-03-13 09:52:05
  */
 'use strict';
 
@@ -39,8 +39,8 @@ module.exports = appInfo => {
     password: '***',
     database: '***',
     host: '***',
-    port: 3306,
-    dialect: 'mysql',
+    port: 3306, // 1433
+    dialect: 'mysql', // mssql
     force: false,
     timezone: '+08:00',
     // logging: false,
@@ -63,7 +63,7 @@ module.exports = appInfo => {
     AppId: '1250000000',
     SecretId: 'AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
     SecretKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-  }
+  };
   config.setup = true; // 请在写入数据库后修改为false
 
   return config;

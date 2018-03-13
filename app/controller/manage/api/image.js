@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-08-11 10:14:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-10 18:45:39
+ * @Last Modified time: 2018-03-13 10:02:04
  */
 'use strict';
 
@@ -12,6 +12,46 @@ const uuid = require('node-uuid');
 const sendToWormhole = require('stream-wormhole');
 const COS = require('cos-nodejs-sdk-v5');
 module.exports = app => {
+  const saveStream = (stream, filepath) => {
+    return new Promise((resolve, reject) => {
+      const ws = fs.createWriteStream(filepath);
+      stream.pipe(ws);
+      ws.on('error', reject);
+      ws.on('finish', resolve);
+    });
+  };
+  const mkdirFile = path => {
+    return new Promise((resolve, reject) => {
+      fs.exists(path, exists => {
+        if (exists) {
+          resolve(true);
+        } else {
+          fs.mkdir(path, err => {
+            if (err) {
+              reject(err);
+            }
+            resolve(true);
+          });
+        }
+      });
+    });
+  }
+  const sliceUploadFile=(key, filepath, config) =>{
+    return new Promise((resolve, reject) => {
+      const cos = new COS(config);
+      cos.sliceUploadFile({
+        Bucket: config.Bucket,
+        Region: config.Region,
+        Key: key,
+        FilePath: filepath,
+      }, (err, data) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(data);
+      });
+    });
+  };
   class ImageController extends app.Controller {
     async create() {
       const { ctx } = this;
@@ -40,7 +80,7 @@ module.exports = app => {
       }
       try {
         if (app.locals.cdn) {
-          const data = await sliceUploadFile(`/${ownFile}/${time}/${name}`, filepath, app.config.cos)
+          const data = await sliceUploadFile(`/${ownFile}/${time}/${name}`, filepath, app.config.cos);
           console.log(data);
         }
         ctx.body = {
@@ -64,46 +104,3 @@ module.exports = app => {
   }
   return ImageController;
 };
-
-function saveStream(stream, filepath) {
-  return new Promise((resolve, reject) => {
-    const ws = fs.createWriteStream(filepath);
-    stream.pipe(ws);
-    ws.on('error', reject);
-    ws.on('finish', resolve);
-  });
-}
-
-function mkdirFile(path) {
-  return new Promise((resolve, reject) => {
-    fs.exists(path, exists => {
-      if (exists) {
-        resolve(true);
-      } else {
-        fs.mkdir(path, err => {
-          if (err) {
-            reject(err);
-          }
-          resolve(true);
-        });
-      }
-    });
-  });
-}
-
-function sliceUploadFile(key, filepath, config) {
-  return new Promise((resolve, reject) => {
-    const cos = new COS(config);
-    cos.sliceUploadFile({
-      Bucket: config.Bucket,
-      Region: config.Region,
-      Key: key,
-      FilePath: filepath,
-    }, function (err, data) {
-      if (err) {
-        reject(err);
-      }
-      resolve(data);
-    });
-  });
-}

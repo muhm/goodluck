@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-27 16:57:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-09 16:08:36
+ * @Last Modified time: 2018-03-13 09:52:27
  */
 'use strict';
 
@@ -53,7 +53,7 @@ module.exports = app => {
       const { ctx } = this;
       ctx.body = ctx.locals.moment();
     }
-    async upsert(){
+    async upsert() {
       const { ctx } = this;
       ctx.body = ctx.locals.moment();
     }

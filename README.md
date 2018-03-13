@@ -23,6 +23,7 @@ https://ie.gl
 ```
 // config.default.js
 config.setup = true; // 请在写入数据库后修改为false
+config.sequelize={} // 请根据实际使用的数据库进行配置，package.json已包含mssql及mysql所需要的库
 ```
 
 ```bash
