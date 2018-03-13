@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-08-11 10:14:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-13 10:02:04
+ * @Last Modified time: 2018-03-13 15:42:26
  */
 'use strict';
 
@@ -35,8 +35,8 @@ module.exports = app => {
         }
       });
     });
-  }
-  const sliceUploadFile=(key, filepath, config) =>{
+  };
+  const sliceUploadFile = (key, filepath, config) => {
     return new Promise((resolve, reject) => {
       const cos = new COS(config);
       cos.sliceUploadFile({
@@ -62,7 +62,7 @@ module.exports = app => {
       const file = path.join(app.config.baseDir, `app/${ownFile}`);
       const userFile = path.join(file, time);
       const name = `${uuid.v1()}.${fileFormat[fileFormat.length - 1]}`;
-      const filepath = path.join(userFile, `${name}`);
+      const filepath = path.join(userFile, name);
       try {
         await mkdirFile(file);
         await mkdirFile(userFile);

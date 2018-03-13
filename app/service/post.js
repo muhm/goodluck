@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 11:21:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-13 09:52:15
+ * @Last Modified time: 2018-03-13 17:27:31
  */
 'use strict';
 
@@ -51,27 +51,46 @@ module.exports = app => {
       return result;
     }
     /**
-    * 新增文章
+    * 编辑文章
     * @param {Object} [post] 文章
-    * @param {Object} [tags] 新增标签
     * @return {Promise} 文章
     */
-    async create(post, tags) {
-      const { PostModel, PostStatisticsModel, TagModel } = this;
-      post = {
-        slug: Date.now().toString(),
-        title: Date.now().toString(),
-        author: 1,
-        post_statistic: {},
-        tags: tags || [
-          {
-            slug: Date.now().toString(),
-            name: Date.now().toString(),
-          },
-        ],
-      };
-      const result = await PostModel.create(post, { include: [PostStatisticsModel, TagModel] });
-      return result;
+    async upsert(post) {
+      const { ctx, PostModel, PostStatisticsModel, TagModel, uuid } = this;
+      const t = await app.model.transaction();
+      let id;
+      try {
+        post.updated_by = ctx.locals.user.id;
+        post.plaintext = post['editormd-post-markdown-doc'];
+        post.html = post['editormd-post--html-code']
+        if (post.id) {
+          const oldPost = await PostModel.findById(post.id);
+          if (!post) {
+            throw new Error(ctx.__('Post not found'));
+          }
+          oldPost.update(post, { transaction: t });
+          const oldTags = await oldPost.getTags();
+          await oldPost.removeTags(oldTags, { transaction: t });
+          await oldPost.setTags(post.tags, { transaction: t });
+          id = oldPost.id;
+        } else {
+          post.id = uuid.v1();
+          post.author = ctx.locals.user.id;
+          post.created_by = ctx.locals.user.id;
+          post.post_statistic = {};
+          if (!post.slug) {
+            post.slug = post.id;
+          }
+          const newPost = await PostModel.create(post, { include: [PostStatisticsModel], transaction: t });
+          await newPost.setTags(post.tags, { transaction: t });
+          id = newPost.id;
+        }
+        await t.commit();
+        return id;
+      } catch (e) {
+        await t.rollback();
+        throw new Error(e.message);
+      }
     }
     /**
     * 根据id查询文章
@@ -93,7 +112,6 @@ module.exports = app => {
           model: PostStatisticsModel,
         }],
       });
-      // return await PostModel.findById(id);
     }
   };
 };

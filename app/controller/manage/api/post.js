@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-27 16:57:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-13 09:52:27
+ * @Last Modified time: 2018-03-13 17:25:44
  */
 'use strict';
 
@@ -55,7 +55,12 @@ module.exports = app => {
     }
     async upsert() {
       const { ctx } = this;
-      ctx.body = ctx.locals.moment();
+      const id = await ctx.service.post.upsert(ctx.request.body);
+      ctx.body = {
+        code: 200,
+        data: id,
+        msg: ctx.__('Success'),
+      };
     }
     async destroy() {
       const { ctx } = this;
