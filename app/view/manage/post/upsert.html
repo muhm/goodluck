@@ -8,7 +8,7 @@
 <!-- body-->
 {% block body %}
 
-<div class="wrapper wrapper-content animated">
+<div class="wrapper wrapper-content animated fadeInRight">
   <form id="form-post-upsert" action="/manage/api/post" method="post" novalidate="novalidate">
     <div class="row">
       <div class="col-lg-12">
@@ -34,11 +34,12 @@
         </div>
       </div>
     </div>
-    <input id="id" name="id" type="text" class="hidden" data-bind="value: id">
     <div class="row">
       <div class="col-lg-6">
         <div class="form-group">
           <label>标题：</label>
+
+          <input id="id" name="id" type="text" class="hidden" data-bind="value: id">
           <input name="title" type="text" class="form-control" data-bind="value: title">
         </div>
       </div>

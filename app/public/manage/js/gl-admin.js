@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-20 15:15:44
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 14:39:16
+ * @Last Modified time: 2018-03-14 15:05:19
  */
 /// <reference path="./moment.min.js" />
 
@@ -339,9 +339,9 @@ function csrfSafeMethod(method) {
 // Minimalize menu when screen is less than 768px
 $(window).bind("resize", function () {
   if ($(this).width() < 769) {
-      $('body').addClass('body-small')
+    $('body').addClass('body-small')
   } else {
-      $('body').removeClass('body-small')
+    $('body').removeClass('body-small')
   }
 });
 //初始化左侧菜单
@@ -981,7 +981,7 @@ function search() {
 }
 
 
-jQuery(function ($) {
+$(document).ready(function () {
   // Add body-small class if window less than 768px
   if ($(this).width() < 769) {
     $('body').addClass('body-small')
