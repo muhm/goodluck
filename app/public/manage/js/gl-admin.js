@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-20 15:15:44
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 15:05:19
+ * @Last Modified time: 2018-03-14 17:29:11
  */
 /// <reference path="./moment.min.js" />
 
@@ -421,6 +421,229 @@ var oTable, url, update, destroy;
 if (document.getElementById("postList")) {
   var posts = new dataPage();
   posts.init("postList", "/manage/api/post");
+}
+if (document.getElementById("form-post-upsert")) {
+
+  var postModel = {
+    publish: function () {
+      var post_id = this.id();
+      alert(post_id)
+    },
+    unpublish: function () {
+      var post_id = this.id();
+      alert(post_id)
+    },
+    destroy: function () {
+      var post_id = this.id();
+      $.ajax({
+        url: "/manage/api/post/" + post_id,
+        method: "delete",
+        dataType: "json",
+        success: function (res) {
+          if (res.code == 200) {
+            swal({
+              title: "success",
+              text: res.msg,
+              type: "success"
+            },
+              function (isConfirm) {
+                window.location.href = "/manage/post";
+              });
+          } else {
+            toastr.error(res.msg);
+          }
+        },
+      });
+    },
+    id: ko.observable(null),
+    slug: ko.observable(null),
+    title: ko.observable(null),
+    plaintext: ko.observable(null),
+    mobiledoc: ko.observable(null),
+    html: ko.observable(null),
+    featured: ko.observable(null),
+    image: ko.observable(null),
+    status: ko.observable(0),
+    meta_title: ko.observable(null),
+    meta_description: ko.observable(null),
+    author_id: ko.observable(null),
+    created_by: ko.observable(null),
+    updated_by: ko.observable(null),
+    published_at: ko.observable(null),
+    published_by: ko.observable(null),
+    created_at: ko.observable(null),
+    updated_at: ko.observable(null),
+    deleted_at: ko.observable(null),
+    tags: ko.observableArray(null),
+    tagList: ko.observableArray(null),
+    init: function (post) {
+      this.id(post.id);
+      this.slug(post.slug);
+      this.title(post.title);
+      this.plaintext(post.plaintext);
+      this.mobiledoc(post.mobiledoc);
+      this.html(post.html);
+      this.featured(post.featured);
+      this.image(post.image);
+      this.status(post.status);
+      this.meta_title(post.meta_title);
+      this.meta_description(post.meta_description);
+      this.author_id(post.author_id);
+      this.created_by(post.created_by);
+      this.updated_by(post.updated_by);
+      this.published_at(post.published_at);
+      this.published_at(post.published_at);
+      this.published_by(post.published_by);
+      this.created_at(post.created_at);
+      this.updated_at(post.updated_at);
+      this.deleted_at(post.deleted_at);
+      var tags = new Array;
+      for (var index in post.tags) {
+        tags.push(post.tags[index].id);
+      }
+      this.tags(tags);
+    }
+  };
+  ko.applyBindings(postModel, document.getElementById("form-post-upsert"));
+  var locationArray = location.pathname.split('/');
+  function init(manage_assets) {
+    $(".chosen-select").chosen({ width: "100%" });
+    var tag_load = function (tags) {
+      $.ajax({
+        url: "/manage/api/tag",
+        method: "get",
+        dataType: "json",
+        success: function (res) {
+          if (res.code == 200) {
+            postModel.tagList(res.data);
+            postModel.tags(tags);
+            $(".chosen-select").trigger("chosen:updated");
+          } else {
+            toastr.error(res.msg);
+          }
+        },
+      });
+    }
+    tag_load();
+    Dropzone.options.dropzoneForm = {
+      paramName: "image",
+      maxFilesize: 3,
+      url: "/manage/api/image?_csrf=" + csrftoken,
+      acceptedFiles: "image/*",
+      dictDefaultMessage: "<div class='row'><img class='img-preview' src='" + manage_assets + "/images/img_404.png'/><div>",
+      complete: function (file) {
+        this.removeFile(file);
+        $('#model-image-upload').modal("hide");
+        if (file.xhr) {
+          var res = JSON.parse(file.xhr.response)
+          if (file.xhr.status != 200) {
+            toastr.error(res.msg || res.message);
+          } else {
+            postModel.image(res.url);
+          }
+        }
+      }
+    };
+    $.ajax({
+      url: "/manage/api/post/" + locationArray[locationArray.length - 1],
+      method: "get",
+      dataType: "json",
+      success: function (res) {
+        if (res.code == 200) {
+          postModel.init(res.data);
+          $(".chosen-select").trigger("chosen:updated");
+        } else {
+          if (res.code = 404) {
+            $(".chosen-select").trigger("chosen:updated");
+          } else {
+            toastr.error(res.msg);
+          }
+        }
+        editormd("editormd-post", {
+          width: "100%",
+          height: 640,
+          saveHTMLToTextarea: true,
+          path: manage_assets + '/markdown/lib/',
+          imageUpload: true,
+          imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+          imageUploadURL: "/manage/api/image?_csrf=" + csrftoken,
+          onfullscreen: function () {
+            if (!$("body").hasClass("mini-navbar")) {
+              $("body").toggleClass("mini-navbar");
+              SmoothlyMenu();
+            }
+          },
+          onfullscreenExit: function () {
+            if ($("body").hasClass("mini-navbar")) {
+              $("body").toggleClass("mini-navbar");
+              SmoothlyMenu();
+            }
+          }
+        });
+      },
+    });
+  }
+  jQuery(function ($) {
+    $("#form-post-upsert").validate({
+      rules: {
+        title: {
+          required: true,
+        },
+        slug: {
+          remote: '/api/post/slug?id=' + locationArray[locationArray.length - 1],
+        },
+      },
+      submitHandler: function (form) {
+        $.ajax({
+          url: $(form)[0].action,
+          method: $(form)[0].method,
+          dataType: "json",
+          data: $(form).serialize(),
+          success: function (data) {
+            if (data.code == 200) {
+              swal({
+                title: "success",
+                text: data.msg,
+                type: "success"
+              },
+                function (isConfirm) {
+                  window.location.href = '/manage/post/upsert/' + data.data;
+                });
+            } else {
+              toastr.error(data.msg);
+            }
+          }
+        });
+      }
+    });
+    $("#form-tag-create").validate({
+      rules: {
+        name: {
+          required: true,
+        },
+      },
+      submitHandler: function (form) {
+        $.ajax({
+          url: $(form)[0].action,
+          method: $(form)[0].method,
+          dataType: "json",
+          data: $(form).serialize(),
+          success: function (data) {
+            if (data.code == 200) {
+              toastr.success(data.msg);
+              $("#form-tag-create").find(":input").not(":button,:submit,:reset,:checkbox").val("");
+              $("#modal-tag-create").modal("hide");
+              var tags = postModel.tags() || new Array;
+              tags.push(data.data.id);
+              tag_load(tags);
+            } else {
+              toastr.error(data.msg);
+            }
+          }
+        })
+      }
+    });
+  });
 }
 // tag_back
 if (document.getElementById("tagList")) {
