@@ -1,7 +1,7 @@
 {% extends "manage/layout.html" %}
 <!-- css -->
 {% block css %}
-<link rel="stylesheet" href="{{manage_assets}}/markdown/css/editormd.min.css" /> 
+<link rel="stylesheet" href="{{manage_assets}}/markdown/css/editormd.min.css" />
 <link href="{{manage_assets}}/css/plugins/dropzone/basic.css" rel="stylesheet">
 <link href="{{manage_assets}}/css/plugins/dropzone/dropzone.css" rel="stylesheet"> {% endblock %}
 <!-- css end-->
@@ -26,7 +26,7 @@
               <i class="fa fa-gavel"></i>
             </button>
             <!-- /ko -->
-            <button type="button" id="del" class="btn btn-sm btn-danger">
+            <button type="button" class="btn btn-sm btn-danger" data-bind="click:destroy">
               <i class="fa fa-trash"></i>
             </button>
             <!-- /ko -->
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <input name="id" type="text" class="hidden" data-bind="value: id">
+    <input id="id" name="id" type="text" class="hidden" data-bind="value: id">
     <div class="row">
       <div class="col-lg-6">
         <div class="form-group">
@@ -130,6 +130,28 @@
 <script src="{{manage_assets}}/js/plugins/dropzone/dropzone.js"></script>
 <script>
   var postModel = {
+    destroy: function () {
+      var post_id = this.id();
+      $.ajax({
+        url: "/manage/api/post/" + post_id,
+        method: "delete",
+        dataType: "json",
+        success: function (res) {
+          if (res.code == 200) {
+            swal({
+              title: "success",
+              text: res.msg,
+              type: "success"
+            },
+              function (isConfirm) {
+                window.location.href = "/manage/post";
+              });
+          } else {
+            toastr.error(res.msg);
+          }
+        },
+      });
+    },
     id: ko.observable(null),
     slug: ko.observable(null),
     title: ko.observable(null),
@@ -176,7 +198,6 @@
       for (var index in post.tags) {
         tags.push(post.tags[index].id);
       }
-      console.log(tags);
       this.tags(tags);
     }
   };
@@ -236,7 +257,6 @@
       }
     }
   };
-
   $.ajax({
     url: "/manage/api/post/" + locationArray[locationArray.length - 1],
     method: "get",
@@ -262,7 +282,10 @@
       rules: {
         title: {
           required: true,
-        }
+        },
+        slug: {
+          remote: '/api/post/slug?id=' + locationArray[locationArray.length - 1],
+        },
       },
       submitHandler: function (form) {
         $.ajax({
@@ -278,13 +301,13 @@
                 type: "success"
               },
                 function (isConfirm) {
-                  window.location.href='/manage/post/upsert/'+data.data;
+                  window.location.href = '/manage/post/upsert/' + data.data;
                 });
             } else {
               toastr.error(data.msg);
             }
           }
-        })
+        });
       }
     });
   });

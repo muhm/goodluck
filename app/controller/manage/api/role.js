@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:34:36
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-26 15:23:17
+ * @Last Modified time: 2018-03-14 10:53:20
  */
 'use strict';
 
@@ -65,10 +65,7 @@ module.exports = app => {
     async destroy() {
       const { ctx } = this;
       const result = await ctx.service.role.destroy(ctx.params.id);
-      ctx.body = {
-        code: result ? 200 : 400,
-        msg: ctx.__('Destroy success'),
-      };
+      ctx.body = result === 1 ? { code: 200, msg: ctx.__('Destroy success') } : { code: 400, msg: ctx.__('Destroy fail') };
     }
   }
   return ApiRoleController;

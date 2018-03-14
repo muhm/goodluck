@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-27 16:57:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-13 17:25:44
+ * @Last Modified time: 2018-03-14 10:53:08
  */
 'use strict';
 
@@ -24,10 +24,6 @@ module.exports = app => {
         totalPage: parseInt((posts.count + limit - 1) / limit),
         pageIndex: parseInt(offset / limit) + 1 > 0 ? parseInt(offset / limit) + 1 : 1,
       };
-    }
-    async author() {
-      const { ctx } = this;
-      ctx.body = ctx.locals.moment();
     }
     async show() {
       const { ctx } = this;
@@ -64,7 +60,8 @@ module.exports = app => {
     }
     async destroy() {
       const { ctx } = this;
-      ctx.body = ctx.locals.moment();
+      const result = await ctx.service.post.destroy(ctx.params.id);
+      ctx.body = result === 1 ? { code: 200, msg: ctx.__('Destroy success') } : { code: 400, msg: ctx.__('Destroy fail') };
     }
   }
   return PostController;

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-12 16:23:18
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-07 16:53:17
+ * @Last Modified time: 2018-03-14 10:34:54
  */
 'use strict';
 
@@ -64,7 +64,7 @@ module.exports = app => {
     }
     /**
      * 根据access_token删除token
-     * @param {access_token} [access_token] - access_token
+     * @param {String} [access_token] - access_token
      * @return {Integer} 1或0
      */
     destroy(access_token) {

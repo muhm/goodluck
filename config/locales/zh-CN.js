@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-13 16:39:30
+ * @Last Modified time: 2018-03-14 10:54:33
  */
 'use strict';
 
@@ -29,8 +29,11 @@ module.exports = {
   // CURD
   Create: '新增',
   'Create success': '新增成功',
+  'Create fail': '新增失败',
   'Update success': '修改成功',
+  'Update fail': '修改失败',
   'Destroy success': '删除成功',
+  'Destroy fail': '删除失败',
   // role
   'Role Management': '角色管理',
   'Role not found': '角色不存在',

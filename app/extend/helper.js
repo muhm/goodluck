@@ -2,12 +2,28 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:36:45
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 16:54:53
+ * @Last Modified time: 2018-03-14 09:55:09
  */
 'use strict';
 const downsize = require('downsize');
+const unidecode = require('unidecode');
 
 module.exports = {
+  safeUrl(str) {
+    if (str === null) {
+      str = '';
+    }
+    str = str.replace(/£/g, '-');
+    str = unidecode(str);
+    str = str.replace(/(\s|\.|@|:|\/|\?|#|\[|\]|!|\$|&|\(|\)|\*|\+|,|;|=|\\|%|<|>|\||\^|~|"|\{|\}|`|–|—)/g, '-')
+      .replace(/'/g, '')
+      .toLowerCase();
+    str = str.trim();
+    str = str.replace(/-+/g, '-')
+      .replace(/-$/, '')
+      .replace(/^-/, '');
+    return str;
+  },
   isUserName(str) {
     return /^[a-zA-Z][a-zA-Z0-9_]{2,15}$/.test(str);
   },

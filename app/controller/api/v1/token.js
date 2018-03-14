@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-12 13:24:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2017-10-24 10:54:18
+ * @Last Modified time: 2018-03-14 10:36:39
  */
 'use strict';
 
@@ -25,7 +25,7 @@ module.exports = app => {
     async destroy() {
       const { ctx } = this;
       const result = await ctx.service.token.destroy(ctx.params.access_token);
-      ctx.body = { code: result ? 200 : 400 };
+      ctx.body = { code: result === 1 ? 200 : 400 };
     }
   }
   return TokenController;
