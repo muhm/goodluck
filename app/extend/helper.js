@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:36:45
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 09:55:09
+ * @Last Modified time: 2018-03-14 15:19:08
  */
 'use strict';
 const downsize = require('downsize');
@@ -79,7 +79,8 @@ module.exports = {
     excerpt = excerpt.replace(/(\r\n|\n|\r)+/gm, ' ');
 
     if (!truncateOptions.words && !truncateOptions.characters) {
-      truncateOptions.words = 50;
+      truncateOptions.characters = 100;
+      truncateOptions.append = '...'
     }
     return downsize(excerpt, truncateOptions);
   },

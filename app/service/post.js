@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 11:21:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 11:18:45
+ * @Last Modified time: 2018-03-14 15:18:23
  */
 'use strict';
 
@@ -46,7 +46,7 @@ module.exports = app => {
         offset,
       });
       for (const i in result.rows) {
-        result.rows[i].plaintext = ctx.helper.getExcerpt(result.rows[i].plaintext || '', { words: 30 });
+        result.rows[i].plaintext = ctx.helper.getExcerpt(result.rows[i].plaintext || '');
       }
       return result;
     }
