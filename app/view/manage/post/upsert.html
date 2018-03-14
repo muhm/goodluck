@@ -367,7 +367,7 @@
               toastr.success(data.msg);
               $("#form-tag-create").find(":input").not(":button,:submit,:reset,:checkbox").val("");
               $("#modal-tag-create").modal("hide");
-              var tags = postModel.tags();
+              var tags = postModel.tags() || new Array;
               tags.push(data.data.id);
               tag_load(tags);
             } else {
