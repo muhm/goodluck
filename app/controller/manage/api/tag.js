@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-27 16:57:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-06 10:25:36
+ * @Last Modified time: 2018-03-14 14:17:04
  */
 'use strict';
 
@@ -26,19 +26,47 @@ module.exports = app => {
     }
     async show() {
       const { ctx } = this;
-      ctx.body = ctx.locals.moment();
+      const tag = await ctx.service.tag.findById(ctx.params.id);
+      if (!role) {
+        throw new Error(ctx.__('404 Not found'));
+      }
+      ctx.body = {
+        code: 200,
+        data: tag,
+      };
     }
     async create() {
       const { ctx } = this;
-      ctx.body = ctx.locals.moment();
+      const item = {
+        name: ctx.request.body.name,
+        description: ctx.request.body.description,
+        created_by: ctx.locals.user.id,
+      };
+      const tag = await ctx.service.tag.create(item);
+      ctx.body = {
+        code: 200,
+        data: tag,
+        msg: ctx.__('Create success'),
+      };
     }
     async update() {
-      const { ctx } = this;
-      ctx.body = ctx.locals.moment();
+      // const { ctx } = this;
+      // const item = {
+      //   id: ctx.request.body.id,
+      //   name: ctx.request.body.name,
+      //   description: ctx.request.body.description,
+      //   updated_by: ctx.locals.user.id,
+      // };
+      // await ctx.service.role.update(item);
+      ctx.body = {
+        code: 200,
+        msg: ctx.__('Update success'),
+      };
     }
     async destroy() {
       const { ctx } = this;
-      ctx.body = ctx.locals.moment();
+      const result = await ctx.service.tag.destroy(ctx.params.id);
+      ctx.body = result === 1 ? { code: 200, msg: ctx.__('Destroy success') } : { code: 400, msg: ctx.__('Destroy fail') };
     }
   }
   return TagController;

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-13 16:02:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-28 16:05:47
+ * @Last Modified time: 2018-03-14 13:36:16
  */
 'use strict';
 
@@ -20,7 +20,6 @@ module.exports = app => {
       type: STRING(150),
     },
     name: {
-      unique: true,
       type: STRING(150),
     },
     description: STRING(200),

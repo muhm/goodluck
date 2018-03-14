@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-20 15:15:44
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 10:43:34
+ * @Last Modified time: 2018-03-14 13:30:57
  */
 /// <reference path="./moment.min.js" />
 
@@ -363,10 +363,133 @@ if (document.getElementById("postList")) {
   var posts = new dataPage();
   posts.init("postList", "/manage/api/post");
 }
-
+// tag_back
 if (document.getElementById("tagList")) {
   var tags = new dataPage();
   tags.init("tagList", "/manage/api/tag");
+}
+if (document.getElementById("content-tag")) {
+  // var TagUpdateModel = ko.observableArray(null);
+  url = "/manage/api/tag";
+  oTable = $("#table-tag").DataTable({
+    ordering: false,
+    bAutoWidth: false,
+    pageLength: 10,
+    responsive: true,
+    bStateSave: true,
+    bServerSide: true,
+    searching: false,
+    ajax: url,
+    dom: '<"html5buttons"B>lTgitp',
+    aoColumns: [{
+      mDataProp: "name"
+    }, {
+      mDataProp: "description"
+    }, {
+      mDataProp: "created_at",
+      mRender: function (data, type, full) {
+        if (data) {
+          data = dateTimeFormat(data);
+        }
+        return data;
+      }
+    }, {
+      mDataProp: "updated_at",
+      mRender: function (data, type, full) {
+        if (data) {
+          data = dateTimeFormat(data);
+        }
+        return data;
+      }
+    }, {
+      mDataProp: "id",
+      mRender: function (data, type, full) {
+        // return '<a href="javascript:update(\'' + data + '\')" ><i class="fa fa-pencil" title="修改"></i></a>';
+        return '<a href="javascript:destroy(\'' + data + '\')" ><i class="fa fa-trash-o text-danger" title="删除"></i></a>'
+      }
+    },],
+    buttons: [
+    ]
+  });
+  destroy = function (id) {
+    $.ajax({
+      url: url + "/" + id,
+      method: "delete",
+      dataType: "json",
+      success: function (res) {
+        if (res.code == 200) {
+          toastr.success(res.msg);
+          search();
+        } else {
+          toastr.error(res.msg);
+        }
+      },
+    });
+  }
+  jQuery(function ($) {
+    $("#form-tag-create").validate({
+      rules: {
+        name: {
+          required: true,
+          // remote: "/api/account/name",
+        },
+      },
+      submitHandler: function (form) {
+        $.ajax({
+          url: $(form)[0].action,
+          method: $(form)[0].method,
+          dataType: "json",
+          data: $(form).serialize(),
+          success: function (data) {
+            if (data.code == 200) {
+              swal({
+                title: "success",
+                text: data.msg,
+                type: "success"
+              },
+                function (isConfirm) {
+                  $("#form-tag-create").find(":input").not(":button,:submit,:reset,:checkbox").val("");
+                  $("#modal-tag-create").modal("hide");
+                  search();
+                });
+            } else {
+              toastr.error(data.msg);
+            }
+          }
+        })
+      }
+    });
+    // $("#form-tag-update").validate({
+    //   rules: {
+    //     name: {
+    //       required: true,
+    //     },
+    //   },
+    //   submitHandler: function (form) {
+    //     $.ajax({
+    //       url: $(form)[0].action,
+    //       method: "put",
+    //       dataType: "json",
+    //       data: $(form).serialize(),
+    //       success: function (data) {
+    //         if (data.code == 200) {
+    //           swal({
+    //             title: "success",
+    //             text: data.msg,
+    //             type: "success"
+    //           },
+    //             function (isConfirm) {
+    //               $("#modal-tag-update").modal("hide");
+    //               search();
+    //             });
+    //         } else {
+    //           toastr.error(data.msg);
+    //         }
+    //       }
+    //     })
+    //   }
+    // });
+  });
 }
 // site 
 if (document.getElementById("content-site")) {

@@ -64,7 +64,7 @@
             </div>
             <div class="col-md-6">
               <div class="small text-right">
-                <h5>Stats:</h5>
+                <h5 data-bind="text:status==1?'{{__('Published')}}':status==0?'{{__('Draft')}}':'{{__('Review')}}'"></h5>
                 <div>
                   <i class="fa fa-comments-o"> </i>
                   <span data-bind="text:post_statistic?post_statistic.comment:'0'"></span> comments </div>

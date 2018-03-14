@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 10:54:33
+ * @Last Modified time: 2018-03-14 13:59:56
  */
 'use strict';
 
@@ -43,9 +43,13 @@ module.exports = {
   // post
   'Post Management': '文章管理',
   'Post not found': '文章不存在',
+  Draft: '草稿',
+  Published: '发布',
+  Review: '复查',
   // tag
   'Tag Management': '标签管理',
   'Tag not found': '标签不存在',
+  'Tag is exist': '标签已存在',
   // site
   'Site Management': '网站管理',
 };

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:34:36
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 10:53:20
+ * @Last Modified time: 2018-03-14 13:23:47
  */
 'use strict';
 
@@ -54,7 +54,7 @@ module.exports = app => {
         id: ctx.request.body.id,
         name: ctx.request.body.name,
         description: ctx.request.body.description,
-        created_by: ctx.locals.user.id,
+        updated_by: ctx.locals.user.id,
       };
       await ctx.service.role.update(item, ctx.request.body.permissions);
       ctx.body = {
