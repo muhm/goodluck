@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-06 10:11:08
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 14:00:03
+ * @Last Modified time: 2018-03-15 09:21:10
  */
 'use strict';
 
@@ -62,7 +62,7 @@ module.exports = app => {
         if (!isExist) {
           break;
         }
-        m.slug += `/${uuid.v1()}`;
+        m.slug += uuid.v1();
       }
       return await TagModel.create(m);
     }
