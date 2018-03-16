@@ -35,7 +35,11 @@
 		"stop": "egg-scripts stop",
 		"dev": "egg-bin dev",
 		"debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
 		"lint": "eslint .",
+    "autod": "autod",
 		"gl": "./node_modules/.bin/uglifyjs app/public/manage/js/gl-admin.js > app/public/manage/js/gl-admin.min.js",
 		"cdn": "./cos_sync_tools_v5/start_cos_sync.sh"
 	},

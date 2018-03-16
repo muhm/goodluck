@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:36:45
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 15:19:08
+ * @Last Modified time: 2018-03-16 13:40:49
  */
 'use strict';
 const downsize = require('downsize');
@@ -37,7 +37,6 @@ module.exports = {
     return /^[\u4E00-\u9FA5]+$/.test(str);
   },
   isCardId(str) {
-    // const city = [null, null, null, null, null, null, null, null, null, null, null, '北京', '天津', '河北', '山西', '内蒙古', null, null, null, null, null, '辽宁', '吉林', '黑龙江', null, null, null, null, null, null, null, '上海', '江苏', '浙江', '安微', '福建', '江西', '山东', null, null, null, '河南', '湖北', '湖南', '广东', '广西', '海南', null, null, null, '重庆', '四川', '贵州', '云南', '西藏', null, null, null, null, null, null, '陕西', '甘肃', '青海', '宁夏', '新疆', null, null, null, null, null, '台湾', null, null, null, null, null, null, null, null, null, '香港', '澳门', null, null, null, null, null, null, null, null, '国外'];
     if (!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(str)) {
       return false;
     }
@@ -80,7 +79,7 @@ module.exports = {
 
     if (!truncateOptions.words && !truncateOptions.characters) {
       truncateOptions.characters = 100;
-      truncateOptions.append = '...'
+      truncateOptions.append = '...';
     }
     return downsize(excerpt, truncateOptions);
   },

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-13 17:09:33
+ * @Last Modified time: 2018-03-16 10:57:05
  */
 'use strict';
 
@@ -20,10 +20,19 @@ module.exports = app => {
     * @param {Object} [m] - 用户信息(用户信息中的password请勿加密)
     * @return {Promise} 用户
     */
-    create(m) {
-      const { UserModel, crypto, password_secret } = this;
+    async create(m) {
+      const { UserModel, crypto, password_secret, ctx } = this;
       m.password = crypto.createHash('md5').update(m.password + password_secret).digest('hex');
-      return UserModel.create(m);
+      if (m.email) {
+        if (!ctx.isEmail(m.email)) {
+          throw new Error(ctx.__('Email validate error'));
+        }
+        const isExist = UserModel.findOne({ where: { email: m.email } });
+        if (isExist) {
+          throw new Error(ctx.__('Email validate error'));
+        }
+      }
+      return await UserModel.create(m);
     }
     /**
     * 修改用户及角色

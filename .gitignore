@@ -5,8 +5,9 @@ run/
 .DS_Store
 *.swp
 .vscode/
-test/
+coverage/
 config/config.local.js
+config/config.unittest.js
 cos_sync_tools_v5/
 app/public/files/
 .travis.yml

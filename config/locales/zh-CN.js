@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 13:59:56
+ * @Last Modified time: 2018-03-16 10:57:34
  */
 'use strict';
 
@@ -23,6 +23,7 @@ module.exports = {
   'Reset password': '重置密码',
   'Login success': '登录成功',
   'Register success': '注册成功',
+  'Email validate error': '邮箱验证不通过',
   // token
   '"access_token"与"refresh_token"不符': '"access_token"与"refresh_token"不符',
   '"refresh_token"过期，请重新获取"access_token"': '"refresh_token"过期，请重新获取"access_token"',

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-12 17:03:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-23 14:47:56
+ * @Last Modified time: 2018-03-16 13:38:12
  */
 'use strict';
 
@@ -17,7 +17,6 @@ module.exports = () => {
         ctx.locals.client = client;
         await next();
       } else {
-        ctx.status = 401;
         ctx.body = { code: 401, msg: ctx.__('401 Unauthorized') };
       }
     } catch (e) {

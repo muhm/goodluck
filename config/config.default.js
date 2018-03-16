@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-13 09:52:05
+ * @Last Modified time: 2018-03-16 11:49:11
  */
 'use strict';
 
@@ -56,7 +56,10 @@ module.exports = appInfo => {
   };
   config.onerror = {
     json(err, ctx) {
-      ctx.body = { code: ctx.status, msg: err.message };
+      ctx.body = {
+        code: ctx.status,
+        msg: err.message,
+      };
     },
   };
   config.cos = {

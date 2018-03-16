@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-27 16:57:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 14:17:04
+ * @Last Modified time: 2018-03-16 11:22:17
  */
 'use strict';
 
@@ -27,7 +27,7 @@ module.exports = app => {
     async show() {
       const { ctx } = this;
       const tag = await ctx.service.tag.findById(ctx.params.id);
-      if (!role) {
+      if (!tag) {
         throw new Error(ctx.__('404 Not found'));
       }
       ctx.body = {
@@ -50,7 +50,7 @@ module.exports = app => {
       };
     }
     async update() {
-      // const { ctx } = this;
+      const { ctx } = this;
       // const item = {
       //   id: ctx.request.body.id,
       //   name: ctx.request.body.name,
