@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-16 11:13:42
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-16 13:53:20
+ * @Last Modified time: 2018-03-19 09:28:34
  */
 'use strict';
 
@@ -35,7 +35,7 @@ describe('test/app/controller/api/v1/token.test.js', () => {
     token = result.body.data.token;
   });
   it('put token与refresh_token不正确', async () => {
-    const result = await app.httpRequest().put(`/api/v1/token/1111/${token.refresh_token}`).send({
+    const result = await app.httpRequest().put(`/api/v1/token/${token.access_token}error/${token.refresh_token}`).send({
       uuid,
       secret,
     });

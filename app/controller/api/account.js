@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-07 15:54:36
+ * @Last Modified time: 2018-03-19 09:27:13
  */
 'use strict';
 
@@ -126,15 +126,17 @@ module.exports = app => {
           throw new Error('非法手机号');
         }
         const user = await ctx.service.user.findByAccount(mobile);
-        ctx.body = user ? {
-          code: 400,
-          msg: '已存在',
-        } : true;
+        // ctx.body = user ? {
+        //   code: 400,
+        //   msg: '已存在',
+        // } : true;
+        ctx.body = user ? false : true;
       } catch (e) {
-        ctx.body = {
-          code: 400,
-          msg: e.message,
-        };
+        ctx.body = false;
+        // ctx.body = {
+        //   code: 400,
+        //   msg: e.message,
+        // };
       }
     }
   }

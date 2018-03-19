@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-16 10:57:05
+ * @Last Modified time: 2018-03-19 10:19:11
  */
 'use strict';
 
@@ -23,11 +23,14 @@ module.exports = app => {
     async create(m) {
       const { UserModel, crypto, password_secret, ctx } = this;
       m.password = crypto.createHash('md5').update(m.password + password_secret).digest('hex');
+      if (!ctx.helper.isUserName(m.name)) {
+        throw new Error(ctx.__('Incorrect username'));
+      }
       if (m.email) {
-        if (!ctx.isEmail(m.email)) {
+        if (!ctx.helper.isEmail(m.email)) {
           throw new Error(ctx.__('Email validate error'));
         }
-        const isExist = UserModel.findOne({ where: { email: m.email } });
+        const isExist = await UserModel.findOne({ where: { email: m.email } });
         if (isExist) {
           throw new Error(ctx.__('Email validate error'));
         }
