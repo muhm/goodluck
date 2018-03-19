@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-19 09:27:13
+ * @Last Modified time: 2018-03-19 16:48:01
  */
 'use strict';
 
@@ -16,7 +16,8 @@ module.exports = app => {
         const password = ctx.request.body.password;
         const user = await ctx.service.user.login(name, password);
         const roles = await user.getRoles();
-        const data = { url: url !== '/' ? url : roles.length > 0 ? '/manage/home' : '/' };
+        // const data = { url: url !== '/' ? url : roles.length > 0 ? '/manage/home' : '/' };
+        const data = { url: url || '/' };
         // todo
         ctx.session.userId = user.id;
         ctx.session.name = user.name;
@@ -56,7 +57,7 @@ module.exports = app => {
     async password() {
       const { ctx } = this;
       try {
-        if (ctx.session.userId) {
+        if (!ctx.session.userId) {
           ctx.status = 401;
           ctx.body = { code: 401, msg: ctx.__('401 Unauthorized') };
           return;

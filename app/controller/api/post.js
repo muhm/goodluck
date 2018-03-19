@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 11:19:02
+ * @Last Modified time: 2018-03-19 16:15:36
  */
 'use strict';
 
@@ -21,10 +21,11 @@ module.exports = app => {
           ctx.body = true;
         }
       } catch (e) {
-        ctx.body = {
-          code: 400,
-          msg: e.message,
-        };
+        ctx.body = false;
+        // ctx.body = {
+        //   code: 400,
+        //   msg: e.message,
+        // };
       }
     }
   }

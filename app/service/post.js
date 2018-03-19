@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 11:21:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 15:18:23
+ * @Last Modified time: 2018-03-19 14:55:22
  */
 'use strict';
 
@@ -32,6 +32,9 @@ module.exports = app => {
         include: [{
           attributes: ['name', 'slug'],
           model: TagModel,
+          through:{
+            attributes:[],
+          }
         }, {
           attributes: ['name', 'truename'],
           as: 'author',
