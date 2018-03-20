@@ -25,7 +25,7 @@ describe('test/app/controller/manage/api/menu.test.js', () => {
     app.mockCsrf();
     const result = await app.httpRequest().get('/manage/api/menu');
     assert(result.body.code === 401);
-  });  
+  });
   it('403', async () => {
     const ctx = app.mockContext();
     app.mockCsrf();

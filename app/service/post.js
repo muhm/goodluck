@@ -32,9 +32,9 @@ module.exports = app => {
         include: [{
           attributes: ['name', 'slug'],
           model: TagModel,
-          through:{
-            attributes:[],
-          }
+          through: {
+            attributes: [],
+          },
         }, {
           attributes: ['name', 'truename'],
           as: 'author',

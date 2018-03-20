@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-18 14:41:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 10:10:40
+ * @Last Modified time: 2018-03-20 11:37:14
  */
 'use strict';
 
@@ -30,9 +30,9 @@ module.exports = app => {
     ctx.locals.username = user.truename ? user.truename : user.name;
     ctx.locals.user = user;
     // https://github.com/eggjs/egg-mock/pull/68
-    // if (app.config.env !== 'unittest') {
-    ctx.session.save();
-    // }
+    if (app.config.env !== 'unittest') {
+      ctx.session.save();
+    }
     const flag = await ctx.service.permission.checkRole(ctx._matchedRoute, ctx.method, user.id);
     if (!flag) {
       ctx.status = 403;

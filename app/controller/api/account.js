@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-19 16:48:01
+ * @Last Modified time: 2018-03-20 11:46:07
  */
 'use strict';
 
@@ -15,7 +15,7 @@ module.exports = app => {
         const name = ctx.request.body.name;
         const password = ctx.request.body.password;
         const user = await ctx.service.user.login(name, password);
-        const roles = await user.getRoles();
+        // const roles = await user.getRoles();
         // const data = { url: url !== '/' ? url : roles.length > 0 ? '/manage/home' : '/' };
         const data = { url: url || '/' };
         // todo

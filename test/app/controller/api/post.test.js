@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-19 14:08:08
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-19 16:23:27
+ * @Last Modified time: 2018-03-20 11:46:54
  */
 'use strict';
 
@@ -18,7 +18,6 @@ describe('test/app/controller/api/post.test.js', () => {
     assert.deepEqual(result_1.body, true);
   });
   it('slug false', async () => {
-    const ctx = app.mockContext();
     const result = await app.httpRequest().get('/api/post/slug?slug=slug');
     assert.deepEqual(result.body, false);
     const result_1 = await app.httpRequest().get('/api/post/slug');
