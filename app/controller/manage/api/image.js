@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-08-11 10:14:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 10:16:22
+ * @Last Modified time: 2018-03-20 11:32:33
  */
 'use strict';
 
@@ -64,6 +64,8 @@ module.exports = app => {
       const name = `${uuid.v1()}.${fileFormat[fileFormat.length - 1]}`;
       const filepath = path.join(userFile, name);
       try {
+        await mkdirFile(`${app.config.baseDir}/app/public/files`);
+        await mkdirFile(`${app.config.baseDir}/app/public/files/images`);
         await mkdirFile(file);
         await mkdirFile(userFile);
         await saveStream(stream, filepath);

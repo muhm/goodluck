@@ -9,7 +9,7 @@
 因为react angular vue写不顺手，写不来；html、css更是菜的不行；所以前端部分都是东抄一点西窃一点：
 
  - manage:
-    - 用了基于bootstrap的[INSPINIA - Responsive Admin Theme][inspinia]
+    - 用了基于bootstrap的[INSPINIA - Responsive Admin Theme][inspinia];
     - 然后自己瞎写了些[knockout.js][knockout];
     - markdown编辑器用了[editor.md][editor.md];
 
@@ -69,7 +69,7 @@ $ EGG_SERVER_ENV=prod npm start
 代码中使用了腾讯的cos,不使用cdn的话不会有影响；开启cdn但是不使用腾讯cos的话请修改[app/controller/manage/api/image.js][image.js]；
 
  ### 最后
- # 干死黄旭东！孙一峰永远是我大哥
+ - # 干死黄旭东！孙一峰永远是我大哥
 
 
 [egg]: https://eggjs.org
