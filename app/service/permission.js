@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 13:01:13
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-07 16:54:46
+ * @Last Modified time: 2018-03-20 09:35:32
  */
 'use strict';
 
@@ -22,9 +22,9 @@ module.exports = app => {
     * @param {Array} [order] - order 默认[['created_at', 'DESC']]
     * @return {Promise} 权限列表
     */
-    findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
+    async findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
       const { PermissionModel } = this;
-      return PermissionModel.findAndCountAll({
+      return await PermissionModel.findAndCountAll({
         where,
         order,
         limit,

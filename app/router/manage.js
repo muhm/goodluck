@@ -2,12 +2,12 @@
  * @Author: MUHM
  * @Date: 2017-10-12 13:19:33
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-01-23 11:48:39
+ * @Last Modified time: 2018-03-20 09:23:56
  */
 'use strict';
 
 module.exports = async app => {
-  const authorize = app.middlewares.authorize();
+  const authorize = app.middlewares.authorize(app);
   const { router, controller, model } = app;
   const permission = await model.Permission.findAll({ area: 'manage' });
   permission.forEach(element => {
