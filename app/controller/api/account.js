@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 11:46:07
+ * @Last Modified time: 2018-03-20 15:26:11
  */
 'use strict';
 
@@ -20,8 +20,8 @@ module.exports = app => {
         const data = { url: url || '/' };
         // todo
         ctx.session.userId = user.id;
-        ctx.session.name = user.name;
-        ctx.session.token = user.session_token;
+        // ctx.session.name = user.name;
+        // ctx.session.token = user.session_token;
         ctx.rotateCsrfSecret();
 
         ctx.body = {

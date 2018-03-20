@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:34:36
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 13:23:47
+ * @Last Modified time: 2018-03-20 17:05:55
  */
 'use strict';
 
@@ -13,7 +13,6 @@ module.exports = app => {
       const limit = ctx.helper.getLimit();
       const offset = ctx.helper.getOffset();
       const roles = await ctx.service.role.findAllByPage(null, limit, offset);
-
       ctx.body = {
         code: 200,
         data: roles.rows,

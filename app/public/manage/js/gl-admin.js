@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-20 15:15:44
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 17:29:11
+ * @Last Modified time: 2018-03-20 14:15:54
  */
 /// <reference path="./moment.min.js" />
 
@@ -347,7 +347,7 @@ $(window).bind("resize", function () {
 //初始化左侧菜单
 (function () {
   var locationUrl = location.pathname;
-  var menuUrl = '/manage/api/menu';
+  var menuUrl = '/api/permission/menu';
   var menuModel = {
     menus: ko.observableArray(null),
   };
@@ -420,7 +420,7 @@ $.ajaxSetup({
 var oTable, url, update, destroy;
 if (document.getElementById("postList")) {
   var posts = new dataPage();
-  posts.init("postList", "/manage/api/post");
+  posts.init("postList", "/api/post");
 }
 if (document.getElementById("form-post-upsert")) {
 
@@ -436,7 +436,7 @@ if (document.getElementById("form-post-upsert")) {
     destroy: function () {
       var post_id = this.id();
       $.ajax({
-        url: "/manage/api/post/" + post_id,
+        url: "/api/post/" + post_id,
         method: "delete",
         dataType: "json",
         success: function (res) {
@@ -510,7 +510,7 @@ if (document.getElementById("form-post-upsert")) {
     $(".chosen-select").chosen({ width: "100%" });
     var tag_load = function (tags) {
       $.ajax({
-        url: "/manage/api/tag",
+        url: "/api/tag",
         method: "get",
         dataType: "json",
         success: function (res) {
@@ -528,7 +528,7 @@ if (document.getElementById("form-post-upsert")) {
     Dropzone.options.dropzoneForm = {
       paramName: "image",
       maxFilesize: 3,
-      url: "/manage/api/image?_csrf=" + csrftoken,
+      url: "/api/image?_csrf=" + csrftoken,
       acceptedFiles: "image/*",
       dictDefaultMessage: "<div class='row'><img class='img-preview' src='" + manage_assets + "/images/img_404.png'/><div>",
       complete: function (file) {
@@ -545,7 +545,7 @@ if (document.getElementById("form-post-upsert")) {
       }
     };
     $.ajax({
-      url: "/manage/api/post/" + locationArray[locationArray.length - 1],
+      url: "/api/post/" + locationArray[locationArray.length - 1],
       method: "get",
       dataType: "json",
       success: function (res) {
@@ -566,7 +566,7 @@ if (document.getElementById("form-post-upsert")) {
           path: manage_assets + '/markdown/lib/',
           imageUpload: true,
           imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-          imageUploadURL: "/manage/api/image?_csrf=" + csrftoken,
+          imageUploadURL: "/api/image?_csrf=" + csrftoken,
           onfullscreen: function () {
             if (!$("body").hasClass("mini-navbar")) {
               $("body").toggleClass("mini-navbar");
@@ -648,11 +648,11 @@ if (document.getElementById("form-post-upsert")) {
 // tag_back
 if (document.getElementById("tagList")) {
   var tags = new dataPage();
-  tags.init("tagList", "/manage/api/tag");
+  tags.init("tagList", "/api/tag");
 }
 if (document.getElementById("content-tag")) {
   // var TagUpdateModel = ko.observableArray(null);
-  url = "/manage/api/tag";
+  url = "/api/tag";
   oTable = $("#table-tag").DataTable({
     ordering: false,
     bAutoWidth: false,
@@ -778,7 +778,7 @@ if (document.getElementById("content-site")) {
   var SiteUpdateModel = ko.observableArray(null);
   SiteUpdateModel({ id: "", key: "", value: "", type: "" });
   ko.applyBindings(SiteUpdateModel, document.getElementById("form-site-update"));
-  url = "/manage/api/site";
+  url = "/api/site";
   oTable = $("#table-site").DataTable({
     ordering: false,
     bAutoWidth: false,
@@ -863,7 +863,7 @@ if (document.getElementById("content-role")) {
   var RoleUpdateModel = ko.observableArray(null);
   RoleUpdateModel({ id: "", name: "", description: "" });
   ko.applyBindings(RoleUpdateModel, document.getElementById("form-role-update"));
-  url = "/manage/api/role";
+  url = "/api/role";
   oTable = $("#table-role").DataTable({
     ordering: false,
     bAutoWidth: false,
@@ -947,7 +947,7 @@ if (document.getElementById("content-role")) {
         $.ajax({
           type: "get",
           contentType: "application/json",
-          url: "/manage/api/permission",
+          url: "/api/permission",
           dataType: "json",
           async: true,
           success: function (data) {
@@ -1043,7 +1043,7 @@ if (document.getElementById("content-user")) {
     user_role: ko.observableArray(null)
   };
   ko.applyBindings(UserUpdateModel, document.getElementById("form-user-update"));
-  url = "/manage/api/user";
+  url = "/api/user";
   oTable = $("#table-user").DataTable({
     ordering: false,
     bAutoWidth: false,
@@ -1115,7 +1115,7 @@ if (document.getElementById("content-user")) {
   jQuery(function ($) {
     // 加载系统角色
     $.ajax({
-      url: "/manage/api/role",
+      url: "/api/role",
       method: "get",
       dataType: "json",
       success: function (res) {

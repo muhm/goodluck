@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-16 11:49:11
+ * @Last Modified time: 2018-03-20 16:07:34
  */
 'use strict';
 
@@ -47,12 +47,12 @@ module.exports = appInfo => {
   };
   config.security = {
     csrf: {
-      ignore: /^\/api\/v1\/.*$/,
+      ignore: /^\/api\/open\/.*$/,
     },
   };
   config.middleware = ['authClient'];
   config.authClient = {
-    match: /^\/api\/v1\/.*$/,
+    match: /^\/api\/open\/.*$/,
   };
   config.onerror = {
     json(err, ctx) {

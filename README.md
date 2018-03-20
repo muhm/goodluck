@@ -15,8 +15,6 @@
 
  - web:基本没写;
 
- - api:[goodluck api 文档][goodluck_api];
-
 ### DEMO
 
 https://ie.gl
@@ -66,7 +64,7 @@ $ EGG_SERVER_ENV=prod npm start
 
 其实呢，本来只是想写个后台权限管理的demo的，所以就带了这么一块权限管理系统，但是目前也还没打算改成带多人博客的管理系统，因为只能一点一点来；
 
-代码中使用了腾讯的cos,不使用cdn的话不会有影响；开启cdn但是不使用腾讯cos的话请修改[app/controller/manage/api/image.js][image.js]；
+代码中使用了腾讯的cos,不使用cdn的话不会有影响；开启cdn但是不使用腾讯cos的话请修改[app/controller/api/image.js][image.js]；
 
  ### 最后
  - # 干死黄旭东！孙一峰永远是我大哥
@@ -78,5 +76,5 @@ $ EGG_SERVER_ENV=prod npm start
 [knockout]:http://knockoutjs.com/documentation/introduction.html
 [inspinia]:https://wrapbootstrap.com/theme/inspinia-responsive-admin-theme-WB0R5L90S
 [goodluck_api]: /api.md
-[image.js]:/app/controller/manage/api/image.js
+[image.js]:/app/controller/api/image.js
 [editor.md]:https://github.com/pandao/editor.md

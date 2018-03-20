@@ -2,12 +2,13 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:18:39
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-14 10:01:16
+ * @Last Modified time: 2018-03-20 16:08:50
  */
 'use strict';
 
-module.exports = app => {
-  const { router, controller } = app;
+module.exports = async app => {
+  const authorize = app.middlewares.authorize(app);
+  const { router, controller, model } = app;
   /*
   * web相关
   * */
@@ -25,7 +26,32 @@ module.exports = app => {
   router.get('/api/account/mobile', controller.api.account.mobile);
   // 检查slug
   router.get('/api/post/slug', controller.api.post.slug);
-  require('./router/api_v1')(app);
-  require('./router/manage')(app);
-  require('./router/web')(app);
+
+  /* account
+   * 账号相关
+   * */
+  router.get('/', controller.web.home.index);
+  router.get('/account/login', controller.web.account.login);
+  router.get('/account/register', controller.web.account.register);
+  router.get('/account/logout', controller.web.account.logout);
+  router.get('/account/password', controller.web.account.password);
+
+  const permission = await model.Permission.findAll();
+  permission.forEach(element => {
+    if (element.method) {
+      let controllerAction = controller;
+      if (element.area) {
+        const areas = element.area.split('.');
+        areas.forEach(area => {
+          controllerAction = controllerAction[area];
+        });
+      }
+      controllerAction = controllerAction[element.controller][element.action];
+      router[element.method](element.url, authorize, controllerAction);
+    }
+  });
+  // 开放api
+  router.post('/api/open/token', controller.api.token.create);
+  router.put('/api/open/token/:access_token/:refresh_token', controller.api.token.update);
+  router.del('/api/open/token/:access_token', controller.api.token.destroy);
 };
