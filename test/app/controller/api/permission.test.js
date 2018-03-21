@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-16 17:11:00
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 17:00:19
+ * @Last Modified time: 2018-03-21 15:56:34
  */
 'use strict';
 
@@ -20,11 +20,13 @@ describe('test/app/controller/api/permission.test.js', () => {
       name: user.name,
       token: user.session_token,
     });
-    const result = await app.httpRequest().get('/api/permission/menu');
+    const result = await app.httpRequest()
+      .get('/api/permission/menu');
     assert(result.body.code === 200);
   });
   it('menu 401', async () => {
-    const result = await app.httpRequest().get('/api/permission/menu');
+    const result = await app.httpRequest()
+      .get('/api/permission/menu');
     assert(result.body.code === 401);
   });
   it('menu 403', async () => {
@@ -35,7 +37,8 @@ describe('test/app/controller/api/permission.test.js', () => {
       name: user.name,
       token: user.session_token,
     });
-    const result = await app.httpRequest().get('/api/permission/menu');
+    const result = await app.httpRequest()
+      .get('/api/permission/menu');
     assert(result.body.code === 403);
   });
   it('permission 200', async () => {
@@ -46,7 +49,8 @@ describe('test/app/controller/api/permission.test.js', () => {
       name: user.name,
       token: user.session_token,
     });
-    const result = await app.httpRequest().get('/api/permission');
+    const result = await app.httpRequest()
+      .get('/api/permission');
     assert(result.body.code === 200);
   });
 });

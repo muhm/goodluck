@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 16:07:34
+ * @Last Modified time: 2018-03-21 16:00:57
  */
 'use strict';
 
@@ -39,8 +39,8 @@ module.exports = appInfo => {
     password: '***',
     database: '***',
     host: '***',
-    port: 3306, // 1433
-    dialect: 'mysql', // mssql
+    port: 8888, // 3306/1433
+    dialect: 'mysql/mssql',
     force: false,
     timezone: '+08:00',
     // logging: false,

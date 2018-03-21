@@ -2,11 +2,11 @@
  * @Author: MUHM
  * @Date: 2018-01-18 14:41:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 16:09:41
+ * @Last Modified time: 2018-03-21 15:08:13
  */
 'use strict';
 
-module.exports = app => {
+module.exports = () => {
   return async (ctx, next) => {
     const api = /^\/api.*$/.test(ctx._matchedRoute);
     if (!ctx.session.userId) {
@@ -29,10 +29,7 @@ module.exports = app => {
     // }
     ctx.locals.username = user.truename ? user.truename : user.name;
     ctx.locals.user = user;
-    // https://github.com/eggjs/egg-mock/pull/68
-    if (app.config.env !== 'unittest') {
-      ctx.session.save();
-    }
+    ctx.session.save();
     const flag = await ctx.service.permission.checkRole(ctx._matchedRoute, ctx.method, user.id);
     if (!flag) {
       ctx.status = 403;

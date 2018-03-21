@@ -2,12 +2,13 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:18:39
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 16:08:50
+ * @Last Modified time: 2018-03-21 15:08:23
  */
 'use strict';
 
 module.exports = async app => {
-  const authorize = app.middlewares.authorize(app);
+  // const authorize = app.middlewares.authorize(app);
+  const authorize = app.middlewares.authorize();
   const { router, controller, model } = app;
   /*
   * web相关

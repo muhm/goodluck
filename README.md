@@ -15,6 +15,8 @@
 
  - web:基本没写;
 
+ package.json已包含mssql及mysql所需要的库,有强迫证的请自行修改，开发时连的mysql,执行单元测试时用的mssql,所以无论选择mysql或者mssql出现的问题应该不会很大
+
 ### DEMO
 
 https://ie.gl
@@ -30,7 +32,7 @@ https://ie.gl
 ```
 // config.default.js
 config.setup = true; // 请在写入数据库后修改为false
-config.sequelize = {}; // 请根据实际使用的数据库进行配置，package.json已包含mssql及mysql所需要的库
+config.sequelize = {}; // 请根据实际使用的数据库进行配置
 ```
 
 ```bash
@@ -51,7 +53,7 @@ $ EGG_SERVER_ENV=prod npm start
 
 ### 单元测试
 
-看心情在写，目前覆盖率50%
+看心情在写，目前覆盖率70%
 
 ### 内置指令
 
