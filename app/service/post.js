@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 11:21:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-19 14:55:22
+ * @Last Modified time: 2018-03-21 16:48:32
  */
 'use strict';
 
@@ -148,6 +148,14 @@ module.exports = app => {
           id,
         },
       });
+    }
+    async publish(id) {
+      const { PostModel, ctx } = this;
+      return await PostModel.update({ status: 1, published_by: ctx.locals.user.id, published_at: ctx.locals.moment() }, { where: { id } });
+    }
+    async retract(id) {
+      const { PostModel } = this;
+      return await PostModel.update({ status: 0 }, { where: { id } });
     }
   };
 };

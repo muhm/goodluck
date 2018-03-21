@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-27 16:57:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 13:57:36
+ * @Last Modified time: 2018-03-21 16:49:48
  */
 'use strict';
 
@@ -76,6 +76,16 @@ module.exports = app => {
       } catch (e) {
         ctx.body = false;
       }
+    }
+    async publish() {
+      const { ctx } = this;
+      const result = await ctx.service.post.publish(ctx.request.body.id);
+      ctx.body = result[0] === 1 ? { code: 200, msg: ctx.__('Publish success') } : { code: 400, msg: ctx.__('Publish fail') };
+    }
+    async retract() {
+      const { ctx } = this;
+      const result = await ctx.service.post.retract(ctx.request.body.id);
+      ctx.body = result[0] === 1 ? { code: 200, msg: ctx.__('Retract success') } : { code: 400, msg: ctx.__('Retract fail') };
     }
   }
   return PostController;

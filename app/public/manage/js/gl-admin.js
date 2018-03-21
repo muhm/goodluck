@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-20 15:15:44
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 14:15:54
+ * @Last Modified time: 2018-03-21 16:52:03
  */
 /// <reference path="./moment.min.js" />
 
@@ -426,12 +426,42 @@ if (document.getElementById("form-post-upsert")) {
 
   var postModel = {
     publish: function () {
-      var post_id = this.id();
-      alert(post_id)
+      var self = this;
+      $.ajax({
+        url: "/api/post/publish",
+        data: {
+          id: self.id(),
+        },
+        method: "post",
+        dataType: "json",
+        success: function (res) {
+          if (res.code == 200) {
+            self.status(1);
+            toastr.success(res.msg);
+          } else {
+            toastr.error(res.msg);
+          }
+        },
+      });
     },
-    unpublish: function () {
-      var post_id = this.id();
-      alert(post_id)
+    retract: function () {
+      var self = this;
+      $.ajax({
+        url: "/api/post/retract",
+        data: {
+          id: self.id(),
+        },
+        method: "post",
+        dataType: "json",
+        success: function (res) {
+          if (res.code == 200) {
+            self.status(0);
+            toastr.success(res.msg);
+          } else {
+            toastr.error(res.msg);
+          }
+        },
+      });
     },
     destroy: function () {
       var post_id = this.id();
@@ -506,24 +536,24 @@ if (document.getElementById("form-post-upsert")) {
   };
   ko.applyBindings(postModel, document.getElementById("form-post-upsert"));
   var locationArray = location.pathname.split('/');
+  var tag_load = function (tags) {
+    $.ajax({
+      url: "/api/tag",
+      method: "get",
+      dataType: "json",
+      success: function (res) {
+        if (res.code == 200) {
+          postModel.tagList(res.data);
+          postModel.tags(tags);
+          $(".chosen-select").trigger("chosen:updated");
+        } else {
+          toastr.error(res.msg);
+        }
+      },
+    });
+  }
   function init(manage_assets) {
     $(".chosen-select").chosen({ width: "100%" });
-    var tag_load = function (tags) {
-      $.ajax({
-        url: "/api/tag",
-        method: "get",
-        dataType: "json",
-        success: function (res) {
-          if (res.code == 200) {
-            postModel.tagList(res.data);
-            postModel.tags(tags);
-            $(".chosen-select").trigger("chosen:updated");
-          } else {
-            toastr.error(res.msg);
-          }
-        },
-      });
-    }
     tag_load();
     Dropzone.options.dropzoneForm = {
       paramName: "image",

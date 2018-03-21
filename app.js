@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 14:28:24
+ * @Last Modified time: 2018-03-21 16:45:30
  */
 'use strict';
 
@@ -202,6 +202,34 @@ module.exports = app => {
             controller: 'post',
             action: 'destroy',
             sort: 7015,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '文章发布',
+            description: '文章发布',
+            url: '/api/post/publish',
+            method: 'post',
+            area: 'api',
+            controller: 'post',
+            action: 'publish',
+            sort: 7016,
+            is_menu: 0,
+            created_by: admin.id,
+            updated_by: admin.id,
+          });
+          await role.createPermission({
+            parent_id: result.id,
+            name: '文章撤回',
+            description: '文章撤回',
+            url: '/api/post/retract',
+            method: 'post',
+            area: 'api',
+            controller: 'post',
+            action: 'retract',
+            sort: 7017,
             is_menu: 0,
             created_by: admin.id,
             updated_by: admin.id,
