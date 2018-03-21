@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-20 15:15:44
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-21 16:52:03
+ * @Last Modified time: 2018-03-21 19:56:02
  */
 /// <reference path="./moment.min.js" />
 
@@ -544,7 +544,9 @@ if (document.getElementById("form-post-upsert")) {
       success: function (res) {
         if (res.code == 200) {
           postModel.tagList(res.data);
-          postModel.tags(tags);
+          if (tags) {
+            postModel.tags(tags);
+          }
           $(".chosen-select").trigger("chosen:updated");
         } else {
           toastr.error(res.msg);
@@ -554,7 +556,6 @@ if (document.getElementById("form-post-upsert")) {
   }
   function init(manage_assets) {
     $(".chosen-select").chosen({ width: "100%" });
-    tag_load();
     Dropzone.options.dropzoneForm = {
       paramName: "image",
       maxFilesize: 3,
@@ -581,7 +582,7 @@ if (document.getElementById("form-post-upsert")) {
       success: function (res) {
         if (res.code == 200) {
           postModel.init(res.data);
-          $(".chosen-select").trigger("chosen:updated");
+          tag_load(postModel.tags());
         } else {
           if (res.code = 404) {
             $(".chosen-select").trigger("chosen:updated");
