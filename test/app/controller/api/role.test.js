@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-20 16:16:15
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-21 15:56:47
+ * @Last Modified time: 2018-03-22 10:07:06
  */
 'use strict';
 
@@ -31,9 +31,8 @@ describe('test/app/controller/api/role.test.js', () => {
   });
   it('get show 404', async () => {
     const result = await app.httpRequest()
-      .get('/api/role/2')
-      .set('Accept', 'application/json');
-    assert.deepEqual(result.body.code, 500);
+      .get('/api/role/2');
+    assert.deepEqual(result.body.code, 404);
   });
   it('create 200', async () => {
     const result = await app.httpRequest()

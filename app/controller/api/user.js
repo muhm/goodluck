@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 13:37:22
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-02-01 16:45:25
+ * @Last Modified time: 2018-03-22 10:04:42
  */
 'use strict';
 
@@ -27,7 +27,11 @@ module.exports = app => {
       const { ctx } = this;
       const user = await ctx.service.user.findById(ctx.params.id);
       if (!user) {
-        throw new Error('用户不存在');
+        ctx.body = {
+          code: 404,
+          msg: ctx.__('404 Not found'),
+        };
+        return;
       }
       const roles = await user.getRoles();
       ctx.body = {
@@ -64,13 +68,6 @@ module.exports = app => {
       ctx.body = {
         code: 200,
         msg: ctx.__('Update success'),
-      };
-    }
-    async destroy() {
-      const { ctx } = this;
-      ctx.body = {
-        code: 200,
-        msg: ctx.__('Destroy success'),
       };
     }
   }

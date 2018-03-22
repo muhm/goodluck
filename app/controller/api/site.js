@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 13:37:22
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-21 15:06:50
+ * @Last Modified time: 2018-03-22 10:04:15
  */
 'use strict';
 
@@ -27,7 +27,11 @@ module.exports = app => {
       const { ctx } = this;
       const setting = await ctx.service.setting.findById(ctx.params.id);
       if (!setting) {
-        throw new Error(ctx.__('404 Not found'));
+        ctx.body = {
+          code: 404,
+          msg: ctx.__('404 Not found'),
+        };
+        return;
       }
       ctx.body = {
         code: 200,

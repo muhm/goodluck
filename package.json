@@ -41,7 +41,7 @@
 		"lint": "eslint .",
 		"autod": "autod",
 		"gl": "./node_modules/.bin/uglifyjs app/public/manage/js/gl-admin.js > app/public/manage/js/gl-admin.min.js",
-		"cdn": "npm run gl && ./cos_sync_tools_v5/start_cos_sync.sh"
+		"cdn": "npm run gl && cos_sync_tools_v5/start_cos_sync.sh"
 	},
 	"repository": {
 		"type": "git",

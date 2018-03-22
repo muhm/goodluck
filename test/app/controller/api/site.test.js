@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-21 15:05:51
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-21 15:57:03
+ * @Last Modified time: 2018-03-22 10:07:01
  */
 'use strict';
 
@@ -31,8 +31,8 @@ describe('test/app/controller/api/site.test.js', () => {
   });
   it('get show 404', async () => {
     const result = await app.httpRequest()
-      .get('/api/site/20').set('Accept', 'application/json');
-    assert.deepEqual(result.body.code, 500);
+      .get('/api/site/20');
+    assert.deepEqual(result.body.code, 404);
   });
   it('update 200', async () => {
     const result = await app.httpRequest()

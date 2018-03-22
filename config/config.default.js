@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-21 16:00:57
+ * @Last Modified time: 2018-03-22 09:54:51
  */
 'use strict';
 
@@ -40,7 +40,7 @@ module.exports = appInfo => {
     database: '***',
     host: '***',
     port: 8888, // 3306/1433
-    dialect: 'mysql/mssql',
+    dialect: '****', // mysql/mssql
     force: false,
     timezone: '+08:00',
     // logging: false,
@@ -63,7 +63,7 @@ module.exports = appInfo => {
     },
   };
   config.cos = {
-    AppId: '1250000000',
+    AppId: 'xxxxxxx',
     SecretId: 'AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
     SecretKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
   };

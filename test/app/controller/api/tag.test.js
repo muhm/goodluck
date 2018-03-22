@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-21 15:12:38
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-21 15:57:38
+ * @Last Modified time: 2018-03-22 10:06:45
  */
 'use strict';
 
@@ -46,16 +46,14 @@ describe('test/app/controller/api/tag.test.js', () => {
   it('get show success', async () => {
     const ctx = app.mockContext();
     const tag = await ctx.model.Tag.findOne({ where: { name: 'name' } });
-
     const result = await app.httpRequest()
       .get('/api/tag/' + tag.id);
     assert.deepEqual(result.body.code, 200);
   });
   it('get show 404', async () => {
     const result = await app.httpRequest()
-      .get('/api/tag/2')
-      .set('Accept', 'application/json');
-    assert.deepEqual(result.body.code, 500);
+      .get('/api/tag/2');
+    assert.deepEqual(result.body.code, 404);
   });
   it('update 200', async () => {
     const result = await app.httpRequest()

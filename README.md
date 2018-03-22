@@ -1,5 +1,7 @@
 # Good Luck
 
+这其实不是一个blog系统。
+
 采用egg.js作为程序主框架，参见 [egg 文档][egg]。  
 
 使用sequelizejs作为orm框架，参见[sequelize 文档][sequelize]。  
@@ -10,7 +12,7 @@
 
  - manage:
     - 用了基于bootstrap的[INSPINIA - Responsive Admin Theme][inspinia];
-    - 然后自己瞎写了些[knockout.js][knockout];
+    - 然后自己写了些抠脚的[knockout.js][knockout];
     - markdown编辑器用了[editor.md][editor.md];
 
  - web:基本没写;
