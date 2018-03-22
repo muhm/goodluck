@@ -1,6 +1,6 @@
 # Good Luck
 
-- 这其实不是一个blog系统。
+这其实不是一个blog系统。
 - 采用egg.js作为程序主框架，参见 [egg 文档][egg]。  
 - 使用sequelizejs作为orm框架，参见[sequelize 文档][sequelize]。  
 - 页面渲染采用nunjucks，参见[nunjucks][nunjucks]。 
