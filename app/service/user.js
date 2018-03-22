@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-19 10:19:11
+ * @Last Modified time: 2018-03-22 14:02:56
  */
 'use strict';
 
@@ -49,7 +49,7 @@ module.exports = app => {
       try {
         const user = await ctx.service.user.findById(m.id);
         if (!user) {
-          throw new Error(ctx.__(500001));
+          throw new Error(ctx.__('User not found'));
         }
         await user.update(m, { transaction: t });
         const roles = await user.getRoles();

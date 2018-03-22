@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-27 16:57:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-21 16:49:48
+ * @Last Modified time: 2018-03-22 16:06:16
  */
 'use strict';
 
@@ -39,14 +39,14 @@ module.exports = app => {
         data: post,
       };
     }
-    async create() {
-      const { ctx } = this;
-      ctx.body = ctx.locals.moment();
-    }
-    async update() {
-      const { ctx } = this;
-      ctx.body = ctx.locals.moment();
-    }
+    // async create() {
+    //   const { ctx } = this;
+    //   ctx.body = ctx.locals.moment();
+    // }
+    // async update() {
+    //   const { ctx } = this;
+    //   ctx.body = ctx.locals.moment();
+    // }
     async upsert() {
       const { ctx } = this;
       const id = await ctx.service.post.upsert(ctx.request.body);
@@ -63,18 +63,14 @@ module.exports = app => {
     }
     async slug() {
       const { ctx } = this;
-      try {
-        const id = ctx.query.id;
-        const slug = ctx.helper.safeUrl(ctx.query.slug);
-        // 因为slug有唯一约束，所以加上paranoid: false,查询的数据包含软删除数据
-        const post = await ctx.model.Post.findOne({ where: { slug }, paranoid: false });
-        if (post) {
-          ctx.body = post.id === id;
-        } else {
-          ctx.body = true;
-        }
-      } catch (e) {
-        ctx.body = false;
+      const id = ctx.query.id;
+      const slug = ctx.helper.safeUrl(ctx.query.slug);
+      // 因为slug有唯一约束，所以加上paranoid: false,查询的数据包含软删除数据
+      const post = await ctx.model.Post.findOne({ where: { slug }, paranoid: false });
+      if (post) {
+        ctx.body = post.id === id;
+      } else {
+        ctx.body = true;
       }
     }
     async publish() {

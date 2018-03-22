@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:36:45
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-16 13:40:49
+ * @Last Modified time: 2018-03-22 16:16:32
  */
 'use strict';
 const downsize = require('downsize');
@@ -10,8 +10,9 @@ const unidecode = require('unidecode');
 
 module.exports = {
   safeUrl(str) {
-    if (str === null) {
-      str = '';
+    const { isNull } = this;
+    if (isNull(str)) {
+      return  '';
     }
     str = str.replace(/£/g, '-');
     str = unidecode(str);
@@ -41,7 +42,7 @@ module.exports = {
       return false;
     }
     if (str.length === 15) {
-      return true;
+      return /^[1-9]\d{7}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}$/.test(str);
     }
     // 加权因子
     const arrExp = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];

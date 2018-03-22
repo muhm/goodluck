@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-21 15:05:51
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 10:08:31
+ * @Last Modified time: 2018-03-22 14:05:10
  */
 'use strict';
 
@@ -43,7 +43,7 @@ describe('test/app/controller/api/user.test.js', () => {
       });
     assert.deepEqual(result.body.code, 200);
   });
-  it('update 200', async () => {
+  it('update success', async () => {
     const ctx = app.mockContext();
     const user = await ctx.model.User.findOne({ where: { name: 'test001' } });
     const result = await app.httpRequest()
@@ -57,16 +57,17 @@ describe('test/app/controller/api/user.test.js', () => {
       });
     assert.deepEqual(result.body.code, 200);
   });
-  // it('delete 200', async () => {
-  //   const ctx = app.mockContext();
-  //   const user = await ctx.model.User.findOne({ where: { name: 'test001' } });
-  //   const result = await app.httpRequest()
-  //     .post('/api/user/' + user.id);
-  //   assert.deepEqual(result.body.code, 200);
-  // });
-  // it('delete 400', async () => {
-  //   const result = await app.httpRequest()
-  //     .delete('/api/user/20');
-  //   assert.deepEqual(result.body.code, 400);
-  // });
+  it('update error', async () => {
+    const result = await app.httpRequest()
+      .put('/api/user')
+      .send({
+        id: 111,
+        truename: '测试失败',
+        email: 'test001@test.com',
+        status: 0,
+        roles: [1],
+      })
+      .set('Accept', 'application/json');
+    assert.deepEqual(result.body.code, 500);
+  });
 });
