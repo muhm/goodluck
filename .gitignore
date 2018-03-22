@@ -13,3 +13,4 @@ app/public/files/
 .travis.yml
 appveyor.yml
 api.md
+package-lock.json
