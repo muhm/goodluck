@@ -2,13 +2,13 @@
  * @Author: MUHM
  * @Date: 2018-03-22 14:24:15
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 16:19:15
+ * @Last Modified time: 2018-03-22 16:26:26
  */
 'use strict';
 
 const { app, assert } = require('egg-mock/bootstrap');
 
-describe('get lru', () => {
+describe('test/app/extend/helper.test.js', () => {
   it('safeUrl', () => {
     const ctx = app.mockContext();
     assert.deepEqual(ctx.helper.safeUrl(), '');
