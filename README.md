@@ -1,33 +1,25 @@
 # Good Luck
 
-这其实不是一个blog系统。
-
-采用egg.js作为程序主框架，参见 [egg 文档][egg]。  
-
-使用sequelizejs作为orm框架，参见[sequelize 文档][sequelize]。  
-
-页面渲染采用nunjucks，参见[nunjucks][nunjucks]。 
-
-因为react angular vue写不顺手，写不来；html、css更是菜的不行；所以前端部分都是东抄一点西窃一点：
-
- - manage:
+- 这其实不是一个blog系统。
+- 采用egg.js作为程序主框架，参见 [egg 文档][egg]。  
+- 使用sequelizejs作为orm框架，参见[sequelize 文档][sequelize]。  
+- 页面渲染采用nunjucks，参见[nunjucks][nunjucks]。 
+- 因为react angular vue写不顺手，写不来；html、css更是菜的不行；所以前端部分都是东抄一点西窃一点：
+  - manage:
     - 用了基于bootstrap的[INSPINIA - Responsive Admin Theme][inspinia];
     - 然后自己写了些抠脚的[knockout.js][knockout];
     - markdown编辑器用了[editor.md][editor.md];
 
- - web:基本没写;
+  - web:基本没写;
 
- package.json已包含mssql及mysql所需要的库,有强迫证的请自行修改，开发时连的mysql,执行单元测试时用的mssql,所以无论选择mysql或者mssql出现的问题应该不会很大
+- package.json已包含mssql及mysql所需要的库,有强迫证的请自行修改，开发时连的mysql,执行单元测试时用的mssql,所以无论选择mysql或者mssql出现的问题应该不会很大
 
 ### DEMO
 
-https://ie.gl
-
-后台:https://ie.gl/manage/home
-
-账号:admin
-
-密码:123456
+- https://ie.gl
+- 后台:https://ie.gl/manage/home
+- 账号:admin
+- 密码:123456
 
 ### 本地开发
 
@@ -56,10 +48,10 @@ $ EGG_SERVER_ENV=prod npm start
 ### 单元测试
 
 看心情在写，目前进度
-Statements   : 92.32% ( 709/768 )
-Branches     : 80% ( 152/190 )
-Functions    : 90.74% ( 147/162 )
-Lines        : 92.32% ( 709/768 )
+- Statements   : 92.32% ( 709/768 )
+- Branches     : 80% ( 152/190 )
+- Functions    : 90.74% ( 147/162 )
+- Lines        : 92.32% ( 709/768 )
 
 ### 内置指令
 
