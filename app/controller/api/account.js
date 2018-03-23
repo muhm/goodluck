@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-23 13:26:54
+ * @Last Modified time: 2018-03-23 23:34:19
  */
 'use strict';
 
@@ -39,6 +39,9 @@ module.exports = app => {
     async register() {
       const { ctx } = this;
       try {
+        if (ctx.locals.allow_sign_up !== '1') {
+          throw new Error(ctx.__('Register not allow'));
+        }
         const user = ctx.request.body;
         user.status = 1;
         user.register_ip = ctx.ip;

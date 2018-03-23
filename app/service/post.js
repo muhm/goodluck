@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 11:21:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-23 17:31:20
+ * @Last Modified time: 2018-03-23 22:21:26
  */
 'use strict';
 
@@ -66,7 +66,7 @@ module.exports = app => {
       try {
         post.updated_by = ctx.locals.user.id;
         post.plaintext = post['editormd-post-markdown-doc'];
-        post.html = post['editormd-post--html-code'];
+        post.html = post['editormd-post-html-code'];
         post.slug = ctx.helper.safeUrl(post.slug || post.title);
         post.title = post.title.trim();
         if (post.id) {

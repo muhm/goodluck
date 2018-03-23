@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-19 14:08:08
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 16:07:47
+ * @Last Modified time: 2018-03-23 22:21:11
  */
 'use strict';
 
@@ -57,7 +57,7 @@ describe('test/app/controller/api/post.test.js', () => {
         id: post.id,
         title: 'title1',
         'editormd-post-markdown-doc': 'editormd-post-markdown-doc',
-        'editormd-post--html-code': 'editormd-post--html-code',
+        'editormd-post-html-code': 'editormd-post-html-code',
       });
     assert.deepEqual(result.body.code, 200);
   })

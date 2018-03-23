@@ -3,10 +3,10 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> {% block seo %}
   <title>{{title}}</title>
   <meta name="description" content="{{description}}" />
-  <meta name="keywords" content="{{keywords}}" />
+  <meta name="keywords" content="{{keywords}}" /> {% endblock %}
   <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="{{web_assets}}/images/favicon.ico">
@@ -40,15 +40,12 @@
           <a href="/manage/home">{{ __('Manage') }}</a>
         </div>
 
-        <div class="display madeinchina">
-          <h5 class="sidebar-title">{{ __('Made In China') }}</h5>
-          {{ icp|safe }} {{ police|safe }}
+        <div class="display">
+          <img src="{{logo}}" alt="{{logo}}" />
         </div>
-
       </div>
     </header>
-
-    {% block body %}{% endblock %} {% include "web/partials/footer.html" %}
+    {% block body %} {% endblock %} {% include "web/partials/footer.html" %}
   </div>
 
   <script type="text/javascript" src="{{web_assets}}/js/scale.fix.js"></script>

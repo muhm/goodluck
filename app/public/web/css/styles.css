@@ -1221,3 +1221,8 @@ ul.glpage li a.active {
 }
 
 ul.glpage li a:hover:not(.active) {background-color: #ddd;}
+
+.tag-name h1{
+	color:#6491b2;
+	margin:0;
+}

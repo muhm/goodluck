@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-23 14:17:10
+ * @Last Modified time: 2018-03-23 23:52:21
  */
 'use strict';
 
@@ -70,6 +70,14 @@ module.exports = app => {
       }, {
         key: 'police',
         value: '<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=xxxxxx">x公网安备 xxxxxxxxxxx号</a>',
+        type: 'web',
+      }, {
+        key: 'allow_sign_up',
+        value: '0',
+        type: 'web',
+      }, {
+        key: 'logo',
+        value: '//www.baidu.com/img/bd_logo1.png',
         type: 'web',
       }]);
       // 设置测试client

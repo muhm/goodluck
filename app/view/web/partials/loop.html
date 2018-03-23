@@ -10,7 +10,11 @@
       <i class="fa fa-user" data-bind="text:author?author.name:''"></i>
       <i class="fa fa-clock-o"></i>
       <time class="post-date" data-bind="attr:{time:published_at},text:published_at"></time>
-      <i class="fa fa-tags"></i>
+      <i class="fa fa-eye"></i>
+      <span data-bind="text:post_statistic.view"></span>
+      <i class="fa fa-comments-o"> </i>
+      <span data-bind="text:post_statistic.comment"></span>
+      <i class="fa fa-tags"></i>      
       <!-- ko foreach: tags -->
       <a data-bind="attr:{href:'/tag/'+id},text:name"></a>
       <!-- /ko -->

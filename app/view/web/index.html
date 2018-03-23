@@ -1,4 +1,6 @@
-{% extends "web/layout.html" %} {% block body %}
+{% extends "web/layout.html" %}
+{% block seo %} {{ super() }}{% endblock %} 
+{% block body %}
 <section id="posts_section">
         {% include "web/partials/loop.html" %}
 </section>

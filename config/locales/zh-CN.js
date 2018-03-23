@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-23 13:36:03
+ * @Last Modified time: 2018-03-23 23:35:10
  */
 'use strict';
 
@@ -15,6 +15,7 @@ module.exports = {
   '403 Forbidden': '403 被禁止',
   '404 Not found': '404 未找到',
   // account
+  'Register not allow':'暂停注册',
   'Incorrect username': '账号有误',
   'Incorrect password': '账号有误',
   'The two passwords differ': '两次输入的密码不一致',

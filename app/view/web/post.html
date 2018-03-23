@@ -1,51 +1,58 @@
-{% extends "web/layout.html" %} {% block body %}
+{% extends "web/layout.html" %} 
+{% block seo %}
+<title>{{post.meta_title or title}}</title>
+<meta name="description" content="{{post.meta_description or description}}" />
+<meta name="keywords" content="{{keywords}}" /> 
+{% endblock %} 
+{% block body %}
 <section>
   <div class="post">
 
     <h1 class="post-title">
-      <a>{{post.title}}</a>
+      <a href="/{{post.slug}}">{{post.title}}</a>
     </h1>
 
-    <span class="post-date">
+    <span class="post-statistics">
       <i class="fa fa-user"></i>
       {% if post.author %} {{post.author.name}} {% endif %}
       <i class="fa fa-clock-o"></i>
       <time class="post-date" datetime="{{post.published_at}}">{{post.published_at}}</time>
-      <i class="fa fa-tags"></i>
-      {% for item in post.tags %}
+      <i class="fa fa-eye"> </i>{{post.post_statistic.view}}
+      <i class="fa fa-comments-o"> </i>{{post.post_statistic.comment}}
+      <!-- {% for item in post.tags %}
       <a href="/tag/{{item.id}}">{{item.name}}</a>
-      {% endfor %}
+      {% endfor %} -->
     </span>
     <br>
-    <br> {{ html|safe }}
+    <span class="post-tag">
+        <i class="fa fa-tags"></i>
+        {% for item in post.tags %}
+        <a href="/tag/{{item.id}}">{{item.name}}</a>
+        {% endfor %}
+      </span>
+    <br>
+    <img src="{{post.image}}" alt="{{post.image}}" />
+    <br> {{ post.html|safe }}
   </div>
   <hr>
-
   <!-- <div class="related">
-    <h4>Related Posts</h4>
-    <ul class="related-posts">
-
-      <li>
-        <h5>
-          <a href="{{url}}">{{title}} &middot; </a>
-        </h5>
-      </li>
-
-    </ul>
-  </div>
-  <hr>
-
-  <div class="fb-like" data-href="#" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-  <div class="fb-comments" data-href="#" data-colorscheme="light"></div>
-
-  <div class="post-pagination">
-    <div class="pagination">
-      <a class="pagination-item newer" href="{{url}}"> Next Article >></a>
-      <a class="pagination-item older" href="{{url}}">
-        << Prev Article</a>
-
-    </div>
-  </div> -->
-
+        <h4>{{ __('Related Posts') }}</h4>
+        <ul class="related-posts">
+          <li>
+            <h5>
+              <a href="{{url}}">{{title}} &middot; </a>
+            </h5>
+          </li>
+        </ul>
+      </div> 
+      <hr> -->
+  <!-- <div class="fb-like" data-href="#" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+      <div class="fb-comments" data-href="#" data-colorscheme="light"></div> -->
+  <!-- <div class="post-pagination">
+        <div class="pagination">
+          <a class="pagination-item newer" href="{{url}}"> Next Article >></a>
+          <a class="pagination-item older" href="{{url}}"> << Prev Article</a>
+        </div>
+      </div> -->
 </section>
 {% endblock %}
