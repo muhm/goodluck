@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 11:21:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 13:54:25
+ * @Last Modified time: 2018-03-23 17:31:20
  */
 'use strict';
 
@@ -24,13 +24,14 @@ module.exports = app => {
     * @param {Array} [order] - order 默认[['created_at', 'DESC']]
     * @return {Promise} 文章列表
     */
-    async findAllByPage(where, limit, offset, order = [['created_at', 'DESC']]) {
+    async findAllByPage(where, tagWhere, limit, offset, order = [['created_at', 'DESC']]) {
       const { ctx, PostModel, TagModel, UserModel, PostStatisticsModel } = this;
       const result = await PostModel.findAndCountAll({
-        attributes: ['id', 'slug', 'title', 'status', 'plaintext', 'author_id', 'created_at'],
+        attributes: ['id', 'slug', 'title', 'status', 'plaintext', 'author_id', 'created_at', 'published_at'],
         where,
         include: [{
-          attributes: ['name', 'slug'],
+          where: tagWhere,
+          attributes: ['id', 'name', 'slug'],
           model: TagModel,
           through: {
             attributes: [],
@@ -89,7 +90,8 @@ module.exports = app => {
           id = oldPost.id;
         } else {
           post.id = uuid.v1();
-          post.author = ctx.locals.user.id;
+          // todo 作者暂时等于创建者
+          post.author_id = ctx.locals.user.id;
           post.created_by = ctx.locals.user.id;
           post.status = 0;
           post.post_statistic = {};
@@ -132,6 +134,27 @@ module.exports = app => {
           model: UserModel,
         }, {
           attributes: ['comment', 'view', 'like', 'fuck'],
+          model: PostStatisticsModel,
+        }],
+      });
+    }
+    /**
+    * 根据slug查询文章
+    * @param {String} [slug] 文章
+    * @return {Promise} 文章
+    */
+    async findBySlug(slug) {
+      const { PostModel, TagModel, UserModel, PostStatisticsModel } = this;
+      return await PostModel.findOne({
+        where: {
+          slug,
+        },
+        include: [{
+          model: TagModel,
+        }, {
+          as: 'author',
+          model: UserModel,
+        }, {
           model: PostStatisticsModel,
         }],
       });

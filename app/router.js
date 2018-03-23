@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:18:39
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-21 15:08:23
+ * @Last Modified time: 2018-03-23 17:21:35
  */
 'use strict';
 
@@ -10,9 +10,18 @@ module.exports = async app => {
   // const authorize = app.middlewares.authorize(app);
   const authorize = app.middlewares.authorize();
   const { router, controller, model } = app;
-  /*
-  * web相关
-  * */
+
+  
+  router.get('/', controller.web.home.index);
+
+  // router.get('/tag', controller.web.home.index);
+  router.get('/api/tag/list', controller.api.tag.index);
+  router.get('/tag/:id', controller.web.home.tag);
+  router.get('/api/tag/show/:id', controller.api.tag.show);
+  
+  // router.get('/post', controller.web.post.index);
+  router.get('/api/post/list', controller.api.post.list);
+
   // 登录
   router.post('/api/account/login', controller.api.account.login);
   // 注册
@@ -28,14 +37,10 @@ module.exports = async app => {
   // 检查slug
   router.get('/api/post/slug', controller.api.post.slug);
 
-  /* account
-   * 账号相关
-   * */
-  router.get('/', controller.web.home.index);
-  router.get('/account/login', controller.web.account.login);
-  router.get('/account/register', controller.web.account.register);
-  router.get('/account/logout', controller.web.account.logout);
-  router.get('/account/password', controller.web.account.password);
+  router.get('/manage/login', controller.manage.account.login);
+  router.get('/manage/register', controller.manage.account.register);
+  router.get('/manage/logout', controller.manage.account.logout);
+  router.get('/manage/password', controller.manage.account.password);
 
   const permission = await model.Permission.findAll();
   permission.forEach(element => {
@@ -51,8 +56,13 @@ module.exports = async app => {
       router[element.method](element.url, authorize, controllerAction);
     }
   });
+  
+  router.get('/:slug', controller.web.home.post);
+  router.get('/api/post/slug/:slug', controller.web.home.index);
+
   // 开放api
   router.post('/api/open/token', controller.api.token.create);
   router.put('/api/open/token/:access_token/:refresh_token', controller.api.token.update);
   router.del('/api/open/token/:access_token', controller.api.token.destroy);
+
 };

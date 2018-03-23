@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-21 16:45:30
+ * @Last Modified time: 2018-03-23 14:17:10
  */
 'use strict';
 
@@ -58,6 +58,18 @@ module.exports = app => {
       }, {
         key: 'keywords',
         value: 'glhf,gl,hf,goodluck,muhm,ghostnova,ghost,nova',
+        type: 'web',
+      }, {
+        key: 'site',
+        value: 'http://127.0.0.1',
+        type: 'web',
+      }, {
+        key: 'icp',
+        value: '<a target="_blank" href="http://www.miitbeian.gov.cn/" rel="nofollow">xICP备xxxxxxxx号</a>',
+        type: 'web',
+      }, {
+        key: 'police',
+        value: '<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=xxxxxx">x公网安备 xxxxxxxxxxx号</a>',
         type: 'web',
       }]);
       // 设置测试client

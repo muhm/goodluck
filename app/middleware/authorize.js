@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-18 14:41:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-21 15:08:13
+ * @Last Modified time: 2018-03-23 13:24:06
  */
 'use strict';
 
@@ -14,7 +14,7 @@ module.exports = () => {
       api ? ctx.body = {
         code: ctx.status,
         msg: ctx.__('401 Unauthorized'),
-      } : ctx.redirect(`/account/login?redirectURL=${ctx.originalUrl}`);
+      } : ctx.redirect(`/manage/login?redirectURL=${ctx.originalUrl}`);
       return;
     }
     const user = await ctx.service.user.findById(ctx.session.userId);
@@ -24,7 +24,7 @@ module.exports = () => {
     //   api ? ctx.body = {
     //     code: ctx.status,
     //     msg: ctx.__('401 Unauthorized'),
-    //   } : ctx.redirect(`/account/login?redirectURL=${ctx.originalUrl}`);
+    //   } : ctx.redirect(`/manage/login?redirectURL=${ctx.originalUrl}`);
     //   return;
     // }
     ctx.locals.username = user.truename ? user.truename : user.name;

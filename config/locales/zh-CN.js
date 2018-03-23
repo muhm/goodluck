@@ -2,13 +2,14 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:28
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 09:58:09
+ * @Last Modified time: 2018-03-23 13:36:03
  */
 'use strict';
 
 module.exports = {
   Home: '首页',
   Login: '登录',
+  Register: '注册',
   Logout: '注销',
   '401 Unauthorized': '401 未授权',
   '403 Forbidden': '403 被禁止',

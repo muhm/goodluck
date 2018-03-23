@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-27 16:57:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 16:06:16
+ * @Last Modified time: 2018-03-23 16:25:10
  */
 'use strict';
 
@@ -12,7 +12,7 @@ module.exports = app => {
       const { ctx } = this;
       const limit = ctx.helper.getLimit();
       const offset = ctx.helper.getOffset();
-      const posts = await ctx.service.post.findAllByPage(null, limit, offset);
+      const posts = await ctx.service.post.findAllByPage(null, null, limit, offset);
       ctx.body = {
         code: 200,
         data: posts.rows,
@@ -82,6 +82,22 @@ module.exports = app => {
       const { ctx } = this;
       const result = await ctx.service.post.retract(ctx.request.body.id);
       ctx.body = result[0] === 1 ? { code: 200, msg: ctx.__('Retract success') } : { code: 400, msg: ctx.__('Retract fail') };
+    }
+    async list() {
+      const { ctx } = this;
+      const limit = ctx.helper.getLimit();
+      const offset = ctx.helper.getOffset();
+      const tagWhere = ctx.helper.isNull(ctx.query.tag_id) ? null : { id: ctx.query.tag_id };
+      const posts = await ctx.service.post.findAllByPage({ status: 1 }, tagWhere, limit, offset);
+      ctx.body = {
+        code: 200,
+        data: posts.rows,
+        recordsTotal: posts.count,
+        recordsFiltered: posts.count,
+        draw: ctx.query.draw,
+        totalPage: parseInt((posts.count + limit - 1) / limit),
+        pageIndex: parseInt(offset / limit) + 1 > 0 ? parseInt(offset / limit) + 1 : 1,
+      };
     }
   }
   return PostController;

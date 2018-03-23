@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}" />
+  <meta name="keywords" content="{{keywords}}" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="{{web_assets}}/images/favicon.ico">
+  <link rel="stylesheet" href="{{web_assets}}/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{web_assets}}/css/styles.css">
+  <link rel="stylesheet" href="{{web_assets}}/css/input-style.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <h1 class="blog-logo">
+        <a href="{{ site }}">{{ title }}</a>
+      </h1>
+
+      <p class="blog-desc">{{ description }}</p>
+
+      <div class="sidebar">
+        <div class="display"></div>
+
+        <div class="display tags">
+          <h5 class="sidebar-title">{{ __('Tags Category') }}</h5>
+          <a href="/">{{ __('All') }}</a>
+          <!-- ko foreach: data -->
+          <a data-bind="attr:{href:'/tag/'+id},text:name"></a>
+          <!-- /ko -->
+        </div>
+
+        <div class="display manage">
+          <h5 class="sidebar-title">{{ __('Manage') }}</h5>
+          <a href="/manage/home">{{ __('Manage') }}</a>
+        </div>
+
+        <div class="display madeinchina">
+          <h5 class="sidebar-title">{{ __('Made In China') }}</h5>
+          {{ icp|safe }} {{ police|safe }}
+        </div>
+
+      </div>
+    </header>
+
+    {% block body %}{% endblock %} {% include "web/partials/footer.html" %}
+  </div>
+
+  <script type="text/javascript" src="{{web_assets}}/js/scale.fix.js"></script>
+  <script type="text/javascript" src="{{web_assets}}/js/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="{{web_assets}}/js/jquery.fitvids.js "></script>
+  <script type="text/javascript" src="{{web_assets}}/js/knockout-3.4.2.js "></script>
+  <script type="text/javascript" src="{{web_assets}}/js/main.js"></script>
+</body>
+
+</html>

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-11 11:10:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-07 15:55:01
+ * @Last Modified time: 2018-03-23 13:27:01
  */
 'use strict';
 
@@ -13,13 +13,13 @@ module.exports = app => {
       if (ctx.session.userId) {
         return ctx.redirect('/');
       }
-      await ctx.render('web/account/login', {
+      await ctx.render('manage/account/login', {
         redirectURL: ctx.query.redirectURL ? ctx.query.redirectURL : '/',
       });
     }
     async register() {
       const { ctx } = this;
-      await ctx.render('web/account/register');
+      await ctx.render('manage/account/register');
     }
     async logout() {
       const { ctx } = this;
@@ -31,7 +31,7 @@ module.exports = app => {
       if (!ctx.session.userId) {
         return ctx.redirect('/');
       }
-      await ctx.render('web/account/password');
+      await ctx.render('manage/account/password');
     }
   }
   return AccountController;

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 09:27:38
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-13 16:38:39
+ * @Last Modified time: 2018-03-23 10:39:20
  */
 'use strict';
 
@@ -24,17 +24,17 @@ module.exports = app => {
         offset,
       });
     }
-    // find all
-    findAll() {
-      return this.ctx.model.Role.findAll();
-    }
-    // find user's all role
-    findAllToUser() {
-      return this.ctx.model.Role.findAll({
-        raw: true,
-        attributes: ['id', 'name'],
-      });
-    }
+    // // find all
+    // findAll() {
+    //   return this.ctx.model.Role.findAll();
+    // }
+    // // find user's all role
+    // findAllToUser() {
+    //   return this.ctx.model.Role.findAll({
+    //     raw: true,
+    //     attributes: ['id', 'name'],
+    //   });
+    // }
     /**
     * 根据id查询角色
     * @param {Integer} [id] - 角色id
@@ -76,8 +76,13 @@ module.exports = app => {
         throw new Error(e.message);
       }
     }
-    destroy(id) {
-      return this.ctx.model.Role.destroy({
+    /**
+    * 根据id删除角色
+    * @param {Integer} [id] - id
+    * @return {Integer} 1或0
+    */
+    async destroy(id) {
+      return await this.ctx.model.Role.destroy({
         where: {
           id,
         },

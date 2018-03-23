@@ -1,0 +1,53 @@
+<!-- ko foreach:data -->
+<div class="posts">
+  <div class="post">
+
+    <h1 class="post-title">
+      <a data-bind="attr:{href:'/'+slug},text:title"></a>
+    </h1>
+
+    <span class="post-date">
+      <i class="fa fa-user" data-bind="text:author?author.name:''"></i>
+      <i class="fa fa-clock-o"></i>
+      <time class="post-date" data-bind="attr:{time:published_at},text:published_at"></time>
+      <i class="fa fa-tags"></i>
+      <!-- ko foreach: tags -->
+      <a data-bind="attr:{href:'/tag/'+id},text:name"></a>
+      <!-- /ko -->
+    </span>
+
+    <p></p>
+    <p class="post-excerpt" data-bind="text:plaintext"> </p>
+    <p>
+      <a class="read-more" data-bind="attr:{href:'/'+slug}">Continue reading ...</a>
+    </p>
+
+  </div>
+  <hr>
+</div>
+<!-- /ko -->
+
+<ul class="glpage">
+  <!-- ko if: prev-->
+  <li>
+    <a data-bind="click:goPrev">«</a>
+  </li>
+  <!-- /ko -->
+  <!-- ko foreach: pagination -->
+  <!-- ko if: check-->
+  <li>
+    <a class="active" data-bind="text:text">2</a>
+  </li>
+  <!-- /ko -->
+  <!-- ko ifnot: check -->
+  <li>
+    <a data-bind="text:text,click:function(){postModel.click(index)}">1</a>
+  </li>
+  <!-- /ko -->
+  <!-- /ko -->
+  <!-- ko if: next-->
+  <li>
+    <a data-bind="click:goNext">»</a>
+  </li>
+  <!-- /ko -->
+</ul>
