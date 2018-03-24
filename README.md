@@ -48,10 +48,10 @@ $ EGG_SERVER_ENV=prod npm start
 ### 单元测试
 
 看心情在写，目前进度
-- Statements   : 92.32% ( 709/768 )
-- Branches     : 80% ( 152/190 )
-- Functions    : 90.74% ( 147/162 )
-- Lines        : 92.32% ( 709/768 )
+- Statements   : 90.4% ( 716/792 )
+- Branches     : 78.87% ( 153/194 )
+- Functions    : 89.63% ( 147/164 )
+- Lines        : 90.4% ( 716/792 )
 
 ### 内置指令
 
