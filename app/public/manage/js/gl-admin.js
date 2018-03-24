@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-20 15:15:44
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-23 15:55:57
+ * @Last Modified time: 2018-03-24 19:40:01
  */
 /// <reference path="./moment.min.js" />
 
@@ -585,6 +585,7 @@ if (document.getElementById("form-post-upsert")) {
           tag_load(postModel.tags());
         } else {
           if (res.code = 404) {
+            tag_load();
             $(".chosen-select").trigger("chosen:updated");
           } else {
             toastr.error(res.msg);
