@@ -10,7 +10,7 @@
     - 然后自己写了些抠脚的[knockout.js][knockout];
     - markdown编辑器用了[editor.md][editor.md];
 
-  - web:基本没写;
+  - web:Ghost Theme by M [Yusza Mahardika][Yusza Mahardika],一套Ghost博客的主题，不过链接好像已经失效;
 
 - package.json已包含mssql及mysql所需要的库,有强迫证的请自行修改，开发时连的mysql,执行单元测试时用的mssql,所以无论选择mysql或者mssql出现的问题应该不会很大
 
@@ -78,3 +78,4 @@ $ EGG_SERVER_ENV=prod npm start
 [goodluck_api]: /api.md
 [image.js]:/app/controller/api/image.js
 [editor.md]:https://github.com/pandao/editor.md
+[Yusza Mahardika]:https://github.com/yusza
