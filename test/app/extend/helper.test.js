@@ -37,11 +37,11 @@ describe('test/app/extend/helper.test.js', () => {
     assert.deepEqual(ctx.helper.isCardId('411101199202077500'), false);
     assert.deepEqual(ctx.helper.isCardId('41110119920207750'), false);
   });
-  it('getLimit null',()=>{
+  it('getLimit null', () => {
     const ctx = app.mockContext();
     assert.deepEqual(ctx.helper.getLimit(), null);
   });
-  it('getOffset null',()=>{
+  it('getOffset null', () => {
     const ctx = app.mockContext();
     assert.deepEqual(ctx.helper.getOffset(), null);
   });

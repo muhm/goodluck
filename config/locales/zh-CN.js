@@ -15,7 +15,7 @@ module.exports = {
   '403 Forbidden': '403 被禁止',
   '404 Not found': '404 未找到',
   // account
-  'Register not allow':'暂停注册',
+  'Register not allow': '暂停注册',
   'Incorrect username': '账号有误',
   'Incorrect password': '账号有误',
   'The two passwords differ': '两次输入的密码不一致',

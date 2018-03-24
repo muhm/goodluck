@@ -60,7 +60,7 @@ describe('test/app/controller/api/post.test.js', () => {
         'editormd-post-html-code': 'editormd-post-html-code',
       });
     assert.deepEqual(result.body.code, 200);
-  })
+  });
   it('get show success', async () => {
     const ctx = app.mockContext();
     const post = await ctx.model.Post.findOne({ where: { slug: 'title1' } });
@@ -97,16 +97,16 @@ describe('test/app/controller/api/post.test.js', () => {
       .post('/api/post/retract');
     assert.deepEqual(result_1.body.code, 400);
   });
-  it('delete success',async()=>{
+  it('delete success', async () => {
     const ctx = app.mockContext();
     const post = await ctx.model.Post.findOne({ where: { slug: 'title1' } });
     const result = await app.httpRequest()
       .delete(`/api/post/${post.id}`);
     assert.deepEqual(result.body.code, 200);
   });
-  it('delete error',async()=>{
+  it('delete error', async () => {
     const result = await app.httpRequest()
-      .delete(`/api/post/12`);
+      .delete('/api/post/12');
     assert.deepEqual(result.body.code, 400);
   });
 });

@@ -11,14 +11,14 @@ module.exports = async app => {
   const authorize = app.middlewares.authorize();
   const { router, controller, model } = app;
 
-  
+
   router.get('/', controller.web.home.index);
 
   // router.get('/tag', controller.web.home.index);
   router.get('/api/tag/list', controller.api.tag.index);
   router.get('/tag/:id', controller.web.home.tag);
   router.get('/api/tag/show/:id', controller.api.tag.show);
-  
+
   // router.get('/post', controller.web.post.index);
   router.get('/api/post/list', controller.api.post.list);
 
@@ -56,7 +56,7 @@ module.exports = async app => {
       router[element.method](element.url, authorize, controllerAction);
     }
   });
-  
+
   router.get('/:slug', controller.web.home.post);
   router.get('/api/post/slug/:slug', controller.web.home.index);
 

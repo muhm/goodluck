@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:12:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-23 23:52:21
+ * @Last Modified time: 2018-03-24 18:58:50
  */
 'use strict';
 
@@ -73,7 +73,7 @@ module.exports = app => {
         type: 'web',
       }, {
         key: 'allow_sign_up',
-        value: '0',
+        value: '1',
         type: 'web',
       }, {
         key: 'logo',

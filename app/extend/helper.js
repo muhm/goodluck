@@ -12,7 +12,7 @@ module.exports = {
   safeUrl(str) {
     const { isNull } = this;
     if (isNull(str)) {
-      return  '';
+      return '';
     }
     str = str.replace(/£/g, '-');
     str = unidecode(str);

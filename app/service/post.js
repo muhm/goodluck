@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 11:21:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-23 22:21:26
+ * @Last Modified time: 2018-03-24 18:58:03
  */
 'use strict';
 
@@ -19,6 +19,7 @@ module.exports = app => {
     /**
     * 查询文章列表
     * @param {Object} [where] - 查询条件
+    * @param {Object} [tagWhere] - 查询条件
     * @param {Integer} [limit] - limit
     * @param {Integer} [offset] - offset
     * @param {Array} [order] - order 默认[['created_at', 'DESC']]
