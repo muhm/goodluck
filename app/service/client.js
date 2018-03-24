@@ -2,13 +2,16 @@
  * @Author: MUHM
  * @Date: 2017-10-12 16:23:18
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 16:06:11
+ * @Last Modified time: 2018-03-24 19:09:56
  */
 'use strict';
 
 module.exports = app => {
   return class Client extends app.Service {
-    // find by uuid and secret
+    /**
+     * @param  {String} uuid
+     * @param  {String} secret
+     */
     async findByUuidAndSecret(uuid, secret) {
       return await this.ctx.model.Client.findOne({
         where: {
