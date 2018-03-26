@@ -1,10 +1,7 @@
-{% extends "web/layout.html" %} 
-{% block seo %}
+{% extends "web/layout.html" %} {% block seo %}
 <title>{{post.meta_title or title}}</title>
 <meta name="description" content="{{post.meta_description or description}}" />
-<meta name="keywords" content="{{keywords}}" /> 
-{% endblock %} 
-{% block body %}
+<meta name="keywords" content="{{keywords}}" /> {% endblock %} {% block body %}
 <section>
   <div class="post">
 
@@ -16,7 +13,7 @@
       <i class="fa fa-user"></i>
       {% if post.author %} {{post.author.name}} {% endif %}
       <i class="fa fa-clock-o"></i>
-      <time class="post-date" datetime="{{post.published_at}}">{{post.published_at}}</time>
+      <time class="post-date" datetime="{{post.published_at}}">{{ moment(post.published_at).format('YYYY-MM-DD HH:mm:ss')}}</time>
       <i class="fa fa-eye"> </i>{{post.post_statistic.view}}
       <i class="fa fa-comments-o"> </i>{{post.post_statistic.comment}}
       <!-- {% for item in post.tags %}
@@ -25,11 +22,11 @@
     </span>
     <br>
     <span class="post-tag">
-        <i class="fa fa-tags"></i>
-        {% for item in post.tags %}
-        <a href="/tag/{{item.id}}">{{item.name}}</a>
-        {% endfor %}
-      </span>
+      <i class="fa fa-tags"></i>
+      {% for item in post.tags %}
+      <a href="/tag/{{item.id}}">{{item.name}}</a>
+      {% endfor %}
+    </span>
     <br>
     <img src="{{post.image}}" alt="{{post.image}}" />
     <br> {{ post.html|safe }}

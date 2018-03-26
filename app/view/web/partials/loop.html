@@ -5,11 +5,11 @@
     <h1 class="post-title">
       <a data-bind="attr:{href:'/'+slug},text:title"></a>
     </h1>
-
+    
     <span class="post-date">
       <i class="fa fa-user" data-bind="text:author?author.name:''"></i>
       <i class="fa fa-clock-o"></i>
-      <time class="post-date" data-bind="attr:{time:published_at},text:published_at"></time>
+      <time class="post-date" data-bind="attr:{time:moment(published_at).format('YYYY-MM-DD HH:mm:ss')},text:moment(published_at).format('YYYY-MM-DD HH:mm:ss')"></time>
       <i class="fa fa-eye"></i>
       <span data-bind="text:post_statistic.view"></span>
       <i class="fa fa-comments-o"> </i>
