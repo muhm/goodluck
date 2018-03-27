@@ -7,6 +7,7 @@
 		"cos-nodejs-sdk-v5": "^2.3.0",
 		"downsize": "0.0.8",
 		"egg": "^2.0.0",
+		"egg-alinode": "^2.0.1",
 		"egg-scripts": "^1.2.0",
 		"egg-sequelize": "^3.1.0",
 		"egg-view-nunjucks": "^2.1.4",

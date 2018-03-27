@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:41
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 09:52:45
+ * @Last Modified time: 2018-03-27 10:49:49
  */
 'use strict';
 
@@ -17,4 +17,9 @@ exports.nunjucks = {
 exports.sequelize = {
   enable: true,
   package: 'egg-sequelize',
+};
+
+exports.alinode = {
+  enable: true,
+  package: 'egg-alinode'
 };

@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 09:54:51
+ * @Last Modified time: 2018-03-27 10:52:49
  */
 'use strict';
 
@@ -53,6 +53,11 @@ module.exports = appInfo => {
   config.middleware = ['authClient'];
   config.authClient = {
     match: /^\/api\/open\/.*$/,
+  };
+  config.alinode = {
+    enable: false,
+    appid: 'xxxx',
+    secret: 'xxxxx',
   };
   config.onerror = {
     json(err, ctx) {
