@@ -39,6 +39,8 @@ $ open http://127.0.0.1:7001/
 
 线上正式环境用 `EGG_SERVER_ENV=prod` 来启动。
 
+可选加 `ENABLE_NODE_LOG=YES` egg-alinode。
+
 可以在config文件夹下新增config.prod.js来覆盖config.default.js中的数据库、加密等配置
 
 ```bash
@@ -48,10 +50,10 @@ $ EGG_SERVER_ENV=prod npm start
 ### 单元测试
 
 看心情在写，目前进度
-- Statements   : 90.4% ( 716/792 )
-- Branches     : 78.87% ( 153/194 )
-- Functions    : 89.63% ( 147/164 )
-- Lines        : 90.4% ( 716/792 )
+- Statements   : 90.18% ( 716/794 )
+- Branches     : 78.65% ( 151/192 )
+- Functions    : 89.57% ( 146/163 )
+- Lines        : 90.18% ( 716/794 )
 
 ### 内置指令
 

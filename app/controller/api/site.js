@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-01-12 13:37:22
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 10:04:15
+ * @Last Modified time: 2018-03-27 16:17:56
  */
 'use strict';
 
@@ -41,6 +41,8 @@ module.exports = app => {
     async update() {
       const { ctx } = this;
       await ctx.service.setting.update(ctx.request.body.id, ctx.request.body.value);
+      // 修改后执行任务
+      await app.runSchedule('app_locals');
       ctx.body = {
         code: 200,
         msg: ctx.__('Update success'),

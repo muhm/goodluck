@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 14:02:56
+ * @Last Modified time: 2018-03-27 17:05:58
  */
 'use strict';
 
@@ -44,12 +44,18 @@ module.exports = app => {
     * @return {Promise} 用户
     */
     async updateUserAndRole(m, r) {
-      const { ctx } = this;
+      const { ctx, UserModel } = this;
       const t = await app.model.transaction();
       try {
         const user = await ctx.service.user.findById(m.id);
         if (!user) {
           throw new Error(ctx.__('User not found'));
+        }
+        if (m.email && user.email !== m.email) {
+          const isExist = await UserModel.findOne({ where: { email: m.email } });
+          if (isExist) {
+            throw new Error(ctx.__('Email validate error'));
+          }
         }
         await user.update(m, { transaction: t });
         const roles = await user.getRoles();

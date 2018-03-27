@@ -21,5 +21,5 @@ exports.sequelize = {
 
 exports.alinode = {
   enable: true,
-  package: 'egg-alinode'
+  package: 'egg-alinode',
 };

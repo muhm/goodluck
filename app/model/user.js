@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-06 13:48:11
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-16 14:45:47
+ * @Last Modified time: 2018-03-27 17:03:21
  */
 'use strict';
 
@@ -30,7 +30,6 @@ module.exports = app => {
       comment: '密码',
     },
     email: {
-      // unique: true,
       type: STRING(200),
       validate: {
         isEmail: true,
@@ -43,7 +42,6 @@ module.exports = app => {
       comment: '电子邮箱是否认证：1-认证',
     },
     mobile: {
-      // unique: true,
       type: STRING(20),
       comment: '手机号码',
     },
