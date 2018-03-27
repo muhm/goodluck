@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-23 14:44:42
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-23 17:32:09
+ * @Last Modified time: 2018-03-27 11:32:10
  */
 
 // 获取cookie
@@ -80,7 +80,7 @@ function PostModel() {
     $.ajax({
       type: self.type,
       contentType: "application/json",
-      url,
+      url: url,
       dataType: "json",
       success: function (data) {
         if (data.code = 200) {
