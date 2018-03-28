@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:18:39
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-23 22:50:27
+ * @Last Modified time: 2018-03-28 21:54:57
  */
 'use strict';
 
@@ -10,7 +10,6 @@ module.exports = async app => {
   // const authorize = app.middlewares.authorize(app);
   const authorize = app.middlewares.authorize();
   const { router, controller, model } = app;
-
 
   router.get('/', controller.web.home.index);
 
