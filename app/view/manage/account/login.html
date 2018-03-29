@@ -3,86 +3,100 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{title}}</title>
-    <meta name="description" content="{{description}}" />
-    <meta name="keywords" content="{{keywords}}" />
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}" />
+  <meta name="keywords" content="{{keywords}}" />
 
-    <link href="{{manage_assets}}/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{manage_assets}}/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{manage_assets}}/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{manage_assets}}/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="{{manage_assets}}/css/animate.css" rel="stylesheet">
-    <link href="{{manage_assets}}/css/style.css" rel="stylesheet">
-    <link href="{{manage_assets}}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+  <link href="{{manage_assets}}/css/animate.css" rel="stylesheet">
+  <link href="{{manage_assets}}/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+  <link href="{{manage_assets}}/css/login.css" rel="stylesheet">
 
 </head>
 
-<body class="gray-bg">
+<body class="login-bg">
 
-    <div class="middle-box text-center loginscreen animated fadeInDown">
-        <div>
-            <div>
-                <h1 class="logo-name">GL</h1>
-            </div>
-            <h3></h3>
-            <p>
-            </p>
-            <form id="form-login" class="m-t" role="form" action="/api/account/login?redirectURL={{redirectURL}}" method="POST">
-                <div class="form-group">
-                    <input name="name" type="text" class="form-control" placeholder="Username" required="">
-                </div>
-                <div class="form-group">
-                    <input name="password" type="password" class="form-control" placeholder="Password" required="">
-                </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">{{ __('Login') }}</button>
-
-                <a href="/"><small>Forgot password?</small></a>
-                <p class="text-muted text-center"><small>Do not have an account?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="/manage/register">{{ __('Register') }}</a>
-            </form>
-            <p class="m-t"> <small>{{copyright | safe}}</small> </p>
+  <div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+      <img alt="image" class="img-responsive center-block logo" src="{{manage_assets}}/images/logo.png">
+      <form id="form-login" class="m-t" role="form" action="/api/account/login?redirectURL={{redirectURL}}" method="POST">
+        <div class="form-group">
+          <input name="name" type="text" class="form-control" placeholder="Username" required="">
         </div>
-    </div>
+        <div class="form-group">
+          <input name="password" type="password" class="form-control" placeholder="Password" required="">
+        </div>
+        <button type="submit" class="btn btn-primary btn-login">{{ __('Login') }}</button>
 
-    <!-- Mainly scripts -->
-    <script src="{{manage_assets}}/js/jquery-2.1.1.js"></script>
-    <script src="{{manage_assets}}/js/bootstrap.min.js"></script>
-    <script src="{{manage_assets}}/js/plugins/sweetalert/sweetalert.min.js"></script>
-    <script src="{{manage_assets}}/js/plugins/validate/jquery.validate.min.js"></script>
-    <script src="{{manage_assets}}/js/plugins/validate/messages_zh.min.js"></script>
-    <script src="{{manage_assets}}/js/plugins/validate/additional-methods.js"></script>
-    <script>
-      localStorage.clear();
-      $('#form-login').validate({
-        rules: {
-          name: {
-            isUserName: true,
-          },
-          password: {
-            required: true,
-            minlength: 6,
-            maxlength: 32,
-          }
+        <a href="/">
+          <small>Forgot password?</small>
+        </a>
+        <p class="text-muted text-center">
+          <small>Do not have an account?</small>
+        </p>
+        <a class="btn btn-sm btn-register" href="/manage/register">{{ __('Register') }}</a>
+      </form>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="terminal">
+      {{copyright | safe}}
+    </div>
+    <div class="credit">Made in CHINa ://{{icp|safe}}{{police|safe}}</div>
+    <span class="clear">
+      <!-- -->
+    </span>
+  </div>
+  <!-- Mainly scripts -->
+  <script src="{{manage_assets}}/js/jquery-2.1.1.js"></script>
+  <script src="{{manage_assets}}/js/bootstrap.min.js"></script>
+  <script src="{{manage_assets}}/js/plugins/toastr/toastr.min.js"></script>
+  <script src="{{manage_assets}}/js/plugins/validate/jquery.validate.min.js"></script>
+  <script src="{{manage_assets}}/js/plugins/validate/messages_zh.min.js"></script>
+  <script src="{{manage_assets}}/js/plugins/validate/additional-methods.js"></script>
+  <script>
+    localStorage.clear();
+    $('#form-login').validate({
+      rules: {
+        name: {
+          isUserName: true,
         },
-        submitHandler: function (form) {
-          $.ajax({
-            url: $(form)[0].action,
-            method: $(form)[0].method,
-            dataType: "json",
-            data: $(form).serialize(),
-            success: function (data) {
-              if (data.code == 200) {
-                window.location.href = window.location.origin + data.data.url;
-              } else {
-                swal("error", data.msg, "error");
-              }
-            }
-          })
+        password: {
+          required: true,
+          minlength: 6,
+          maxlength: 32,
         }
-      });
-    </script>
+      },
+      submitHandler: function (form) {
+        $.ajax({
+          url: $(form)[0].action,
+          method: $(form)[0].method,
+          dataType: "json",
+          data: $(form).serialize(),
+          success: function (data) {
+            if (data.code == 200) {
+              window.location.href = window.location.origin + data.data.url;
+            } else {
+              toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                showMethod: 'slideDown',
+                positionClass: "toast-top-center",
+                timeOut: 4000
+              };
+              toastr.error(data.msg);
+            }
+          }
+        })
+      }
+    });
+  </script>
 </body>
 
 </html>

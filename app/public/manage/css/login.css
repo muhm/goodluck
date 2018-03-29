@@ -1,0 +1,94 @@
+.login-bg {
+  background-image: url('../images/login.png');
+  background-size:cover;
+}
+.middle-box {
+  max-width: 400px;
+  z-index: 100;
+  margin: 0 auto;
+  padding-top: 150px;
+}
+.loginscreen.middle-box {
+  width: 300px;
+}
+.loginscreen .logo{
+  display: block;
+  width: 67px;
+  height: 67px;
+  margin-bottom: 10px;
+}
+
+.loginscreen .form-control{
+	background: transparent;
+	border: 1px solid rgba(49,244,244, 0.6);
+}
+
+.loginscreen .form-control::-moz-placeholder {
+  color: rgba(49,244,244, 0.6);
+  opacity: 1;
+}
+.loginscreen .form-control:-ms-input-placeholder {
+  color:rgba(49,244,244, 0.6);
+}
+.loginscreen .form-control::-webkit-input-placeholder {
+  color: rgba(49,244,244, 0.6);
+}
+
+.btn-login{
+  display: block !important;
+  color: rgba(49,244,244);
+  width: 100% !important;
+  margin-bottom: 15px;
+	background: transparent;
+	border: 1px solid rgba(49,244,244,0.1);
+}
+.btn-login:hover,
+.btn-login:focus,
+.btn-login:active,
+.btn-login.active,
+.btn-login:active:focus,
+.btn-login:active:hover,
+.btn-login.active:hover,
+.btn-login.active:focus {
+  color: rgba(49,244,244);
+  background: rgba(49,244,244,0.1);
+	border: 1px solid rgba(49,244,244,0.1);
+}
+
+.btn-register{
+  display: block !important;
+  color: rgba(49,244,244);
+  width: 100% !important;
+  margin-bottom: 15px;
+	background: transparent;
+	border: 1px solid rgba(49,244,244,0.1);
+}
+.btn-register:hover{
+  color: rgba(49,244,244);
+  background: rgba(49,244,244,0.1);
+}
+.loginscreen a{
+  color: rgba(49,244,244);
+}
+
+label.error {
+  color: rgba(49,244,244);
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.form-control.error {
+  border: 1px dotted rgba(49,244,244);
+}
+
+/*bottom area*/
+.bottom { width:98%; position:fixed; bottom:0; color:#318988; padding:10px 20px; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; max-width: 1920px; min-width: 360px; }
+.bottom .terminal { float:left; }
+.bottom .terminal em { color:#31F4F4; font:bold 9px }
+.bottom .credit { float:right; margin-right:10px }
+.bottom .credit a { color:#31F4F4; font-style:normal;margin-left: 10px; }
+.bottom .credit span { display:inline-block; padding:0 10px }
+
+.toast-error {
+  background-color: rgba(49,244,244, 0.6);
+}
