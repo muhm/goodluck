@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-19 09:24:09
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-05-16 15:51:06
+ * @Last Modified time: 2018-05-16 16:03:12
  */
 'use strict';
 
@@ -47,7 +47,7 @@ describe('test/app/controller/manage/home.test.js', () => {
   });
   it('login view 200', async () => {
     await app.mockSession({
-      userId:null
+      userId: null,
     });
     const result = await app.httpRequest()
       .get('/manage/login');
@@ -55,7 +55,7 @@ describe('test/app/controller/manage/home.test.js', () => {
   });
   it('login view 200', async () => {
     await app.mockSession({
-      userId:null
+      userId: null,
     });
     const result = await app.httpRequest()
       .get('/manage/login?redirectURL=/test');
@@ -74,7 +74,7 @@ describe('test/app/controller/manage/home.test.js', () => {
   });
   it('password view 302', async () => {
     await app.mockSession({
-      userId:null
+      userId: null,
     });
     const result = await app.httpRequest()
       .get('/manage/password');

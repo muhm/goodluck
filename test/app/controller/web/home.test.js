@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-19 09:24:09
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-05-16 15:43:11
+ * @Last Modified time: 2018-05-16 16:02:42
  */
 'use strict';
 
@@ -29,7 +29,7 @@ describe('test/app/controller/web/home.test.js', () => {
   });
   it('post success', async () => {
     const ctx = app.mockContext();
-    const post = await ctx.model.Post.restore();
+    await ctx.model.Post.restore();
     const result = await app.httpRequest()
       .get('/title1');
     assert.deepEqual(result.status, 200);
