@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-02-28 11:21:53
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-24 18:58:03
+ * @Last Modified time: 2018-05-16 15:59:27
  */
 'use strict';
 
@@ -58,7 +58,7 @@ module.exports = app => {
     /**
     * 编辑文章
     * @param {Object} [post] 文章
-    * @return {Promise} 文章
+    * @return {String} 文章Id
     */
     async upsert(post) {
       const { ctx, PostModel, PostStatisticsModel, uuid } = this;
