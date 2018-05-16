@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-21 15:05:51
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 14:05:10
+ * @Last Modified time: 2018-05-16 14:35:04
  */
 'use strict';
 
@@ -52,6 +52,19 @@ describe('test/app/controller/api/user.test.js', () => {
         id: user.id,
         truename: '测试成功',
         email: 'test001@test.com',
+        status: 0,
+        roles: [1],
+      });
+    assert.deepEqual(result.body.code, 200);
+  });
+  it('update without email success ', async () => {
+    const ctx = app.mockContext();
+    const user = await ctx.model.User.findOne({ where: { name: 'test001' } });
+    const result = await app.httpRequest()
+      .put('/api/user')
+      .send({
+        id: user.id,
+        truename: '测试成功',
         status: 0,
         roles: [1],
       });

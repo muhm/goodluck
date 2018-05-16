@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-22 14:24:15
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 16:26:26
+ * @Last Modified time: 2018-05-16 14:48:44
  */
 'use strict';
 
@@ -44,5 +44,10 @@ describe('test/app/extend/helper.test.js', () => {
   it('getOffset null', () => {
     const ctx = app.mockContext();
     assert.deepEqual(ctx.helper.getOffset(), null);
+  });
+  it('getOffset null', () => {
+    const ctx = app.mockContext();
+    assert.deepEqual(ctx.helper.mkdirFile(`${app.config.baseDir}/app/public/files/test`), null);
+    assert.deepEqual(ctx.helper.rmdirFile(`${app.config.baseDir}/app/public/files/test`), null);
   });
 });

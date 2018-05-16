@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-21 15:12:38
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 10:06:45
+ * @Last Modified time: 2018-05-16 14:33:24
  */
 'use strict';
 
@@ -22,6 +22,11 @@ describe('test/app/controller/api/tag.test.js', () => {
   it('get index success', async () => {
     const result = await app.httpRequest()
       .get('/api/tag?start=0&length=10');
+    assert.deepEqual(result.body.code, 200);
+  });
+  it('get index success', async () => {
+    const result = await app.httpRequest()
+      .get('/api/tag');
     assert.deepEqual(result.body.code, 200);
   });
   it('create success', async () => {

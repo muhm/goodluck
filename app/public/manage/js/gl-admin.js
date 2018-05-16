@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-07-20 15:15:44
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-24 19:40:01
+ * @Last Modified time: 2018-04-16 11:00:17
  */
 /// <reference path="./moment.min.js" />
 
@@ -355,7 +355,6 @@ $(window).bind("resize", function () {
   if (localStorageSupport()) {
     if (localStorage.menu) {
       menuModel.menus(fn_menujson(JSON.parse(localStorage.menu), 0, locationUrl));
-      // fn_menu(JSON.parse(localStorage.menu), locationUrl);
       $("#side-menu").metisMenu();
     } else {
       $.ajax({
@@ -368,7 +367,6 @@ $(window).bind("resize", function () {
           localStorage.menu = JSON.stringify(data.data);
           var menu = fn_menujson(data.data, 0, locationUrl);
           menuModel.menus(menu);
-          // fn_menu(menu, locationUrl);
           $("#side-menu").metisMenu();
         }
       })
@@ -383,7 +381,6 @@ $(window).bind("resize", function () {
       success: function (data) {
         var menu = fn_menujson(data.data, 0, locationUrl);
         menuModel.menus(menu);
-        // fn_menu(menu, locationUrl);
         $("#side-menu").metisMenu();
       }
     })

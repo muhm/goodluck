@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-19 14:08:08
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-23 22:21:11
+ * @Last Modified time: 2018-05-16 15:20:09
  */
 'use strict';
 
@@ -37,6 +37,21 @@ describe('test/app/controller/api/post.test.js', () => {
   it('get index success', async () => {
     const result = await app.httpRequest()
       .get('/api/post?start=0&length=10');
+    assert.deepEqual(result.body.code, 200);
+  });
+  it('get index success', async () => {
+    const result = await app.httpRequest()
+      .get('/api/post');
+    assert.deepEqual(result.body.code, 200);
+  });
+  it('get list success', async () => {
+    const result = await app.httpRequest()
+      .get('/api/post/list?start=0&length=10');
+    assert.deepEqual(result.body.code, 200);
+  });
+  it('get list by tag_id success', async () => {
+    const result = await app.httpRequest()
+      .get('/api/post/list?tag_id=1111');
     assert.deepEqual(result.body.code, 200);
   });
   it('create success', async () => {

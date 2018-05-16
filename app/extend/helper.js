@@ -2,11 +2,12 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:36:45
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-22 16:16:32
+ * @Last Modified time: 2018-05-16 14:49:00
  */
 'use strict';
 const downsize = require('downsize');
 const unidecode = require('unidecode');
+const fs = require('fs');
 
 module.exports = {
   safeUrl(str) {
@@ -83,5 +84,15 @@ module.exports = {
       truncateOptions.append = '...';
     }
     return downsize(excerpt, truncateOptions);
+  },
+  mkdirFile(path) {
+    if (!fs.existsSync(path)) {
+      fs.mkdirSync(path);
+    }
+  },
+  rmdirFile(path) {
+    if (fs.existsSync(path)) {
+      fs.rmdirSync(path);
+    }
   },
 };

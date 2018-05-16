@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-08-11 10:14:06
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-20 14:04:47
+ * @Last Modified time: 2018-05-16 14:06:23
  */
 'use strict';
 
@@ -18,22 +18,6 @@ module.exports = app => {
       stream.pipe(ws);
       ws.on('error', reject);
       ws.on('finish', resolve);
-    });
-  };
-  const mkdirFile = path => {
-    return new Promise((resolve, reject) => {
-      fs.exists(path, exists => {
-        if (exists) {
-          resolve(true);
-        } else {
-          fs.mkdir(path, err => {
-            if (err) {
-              reject(err);
-            }
-            resolve(true);
-          });
-        }
-      });
     });
   };
   const sliceUploadFile = (key, filepath, config) => {
@@ -64,10 +48,10 @@ module.exports = app => {
       const name = `${uuid.v1()}.${fileFormat[fileFormat.length - 1]}`;
       const filepath = path.join(userFile, name);
       try {
-        await mkdirFile(`${app.config.baseDir}/app/public/files`);
-        await mkdirFile(`${app.config.baseDir}/app/public/files/images`);
-        await mkdirFile(file);
-        await mkdirFile(userFile);
+        ctx.helper.mkdirFile(`${app.config.baseDir}/app/public/files`);
+        ctx.helper.mkdirFile(`${app.config.baseDir}/app/public/files/images`);
+        ctx.helper.mkdirFile(file);
+        ctx.helper.mkdirFile(userFile);
         await saveStream(stream, filepath);
       } catch (e) {
         // 必须将上传的文件流消费掉，要不然浏览器响应会卡死
