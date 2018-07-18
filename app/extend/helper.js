@@ -2,11 +2,12 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:36:45
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-05-16 14:49:00
+ * @Last Modified time: 2018-07-18 15:19:13
  */
 'use strict';
 const downsize = require('downsize');
 const unidecode = require('unidecode');
+const crypto = require('crypto');
 const fs = require('fs');
 
 module.exports = {
@@ -94,5 +95,15 @@ module.exports = {
     if (fs.existsSync(path)) {
       fs.rmdirSync(path);
     }
+  },
+  qqaiSign(data, appkey) {
+    const sortKey = Object.keys(data).sort();
+    let str = '';
+    sortKey.forEach(element => {
+      str += `${element}=${encodeURIComponent(data[element])}&`;
+    });
+    const sign = crypto.createHash('md5').update(`${str}app_key=${appkey}`).digest('hex')
+      .toUpperCase();
+    return sign;
   },
 };
