@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-27 16:31:07
  * @Last Modified by: MUHM
- * @Last Modified time: 2019-03-15 16:43:10
+ * @Last Modified time: 2019-03-16 14:17:14
  */
 'use strict';
 
@@ -14,7 +14,7 @@ module.exports = {
       // 设置初始参数
       await app.model.Setting.bulkCreate([{
         key: 'version',
-        value: '1.0.0',
+        value: '1.1.9',
         type: 'core',
       }, {
         key: 'copyright',
