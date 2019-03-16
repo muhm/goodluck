@@ -1,9 +1,9 @@
 {% extends "manage/layout.html" %}
 <!-- css -->
 {% block css %}
-<link rel="stylesheet" href="{{manage_assets}}/markdown/css/editormd.min.css" />
-<link href="{{manage_assets}}/css/plugins/dropzone/basic.css" rel="stylesheet">
-<link href="{{manage_assets}}/css/plugins/dropzone/dropzone.css" rel="stylesheet"> {% endblock %}
+<link rel="stylesheet" href="{{site.manage_assets}}/markdown/css/editormd.min.css" />
+<link href="{{site.manage_assets}}/css/plugins/dropzone/basic.css" rel="stylesheet">
+<link href="{{site.manage_assets}}/css/plugins/dropzone/dropzone.css" rel="stylesheet"> {% endblock %}
 <!-- css end-->
 <!-- body-->
 {% block body %}
@@ -63,7 +63,7 @@
         <div class="form-group ">
           <label>图片:</label>
           <a data-toggle="modal" data-target="#model-image-upload">
-            <img class="form-control img-preview img-preview-post" data-bind="attr:{src:image()?image:'{{manage_assets}}/images/img_404.png'}"
+            <img class="form-control img-preview img-preview-post" data-bind="attr:{src:image()?image:'{{site.manage_assets}}/images/img_404.png'}"
             />
           </a>
           <input name="image" type="text" class="hidden" data-bind="value: image">
@@ -170,11 +170,11 @@
 <!-- body end-->
 <!-- js -->
 {% block script %}
-<script type="text/javascript" src="{{manage_assets}}/markdown/editormd.min.js"></script>
-<script src="{{manage_assets}}/js/plugins/dropzone/dropzone.js"></script>
+<script type="text/javascript" src="{{site.manage_assets}}/markdown/editormd.min.js"></script>
+<script src="{{site.manage_assets}}/js/plugins/dropzone/dropzone.js"></script>
 <script>
   jQuery(function ($) {
-    init('{{ manage_assets }}');
+    init('{{ site.manage_assets }}');
   });
 </script> {% endblock %}
 <!-- js end-->

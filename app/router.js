@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-09-22 17:18:39
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-05-16 15:49:57
+ * @Last Modified time: 2019-03-15 18:06:50
  */
 'use strict';
 
@@ -12,14 +12,12 @@ module.exports = async app => {
   const { router, controller, model } = app;
 
   router.get('/', controller.web.home.index);
-
-  // router.get('/tag', controller.web.home.index);
-  router.get('/api/tag/list', controller.api.tag.index);
   router.get('/tag/:id', controller.web.home.tag);
-  router.get('/api/tag/show/:id', controller.api.tag.show);
 
-  // router.get('/post', controller.web.post.index);
-  router.get('/api/post/list', controller.api.post.list);
+  router.get('/api/web/tag', controller.api.web.tag.index);
+  router.get('/api/web/tag/:id', controller.api.web.tag.show);
+  router.get('/api/web/post', controller.api.web.post.index);
+  router.get('/api/web/site', controller.api.web.site.index);
 
   // 登录
   router.post('/api/account/login', controller.api.account.login);
@@ -57,7 +55,6 @@ module.exports = async app => {
   });
 
   router.get('/:slug', controller.web.home.post);
-  router.get('/api/post/slug/:slug', controller.web.home.index);
 
   // 开放api
   router.post('/api/open/token', controller.api.token.create);

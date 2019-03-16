@@ -65,16 +65,15 @@ module.exports = app => {
         return;
       }
       try {
-        if (app.locals.cdn) {
+        if (app.locals.site.cdn) {
           await sliceUploadFile(`/${ownFile}/${time}/${name}`, filepath, app.config.cos);
         }
         ctx.body = {
           code: 200,
-          // data: `${app.locals.cdn ? app.locals.cdn : ''}/${ownFile}/${time}/${name}`,
           msg: ctx.__('Success'),
           success: 1, // 0 表示上传失败，1 表示上传成功
           message: ctx.__('Success'),
-          url: `${app.locals.cdn ? app.locals.cdn : ''}/${ownFile}/${time}/${name}`,
+          url: `${app.locals.site.cdn ? app.locals.site.cdn : ''}/${ownFile}/${time}/${name}`,
         };
       } catch (e) {
         ctx.body = {

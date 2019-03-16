@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2018-03-23 14:44:42
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-27 11:32:10
+ * @Last Modified time: 2019-03-15 18:02:16
  */
 
 // 获取cookie
@@ -31,7 +31,7 @@ if (document.getElementsByClassName('tags')) {
     data: ko.observableArray(null),
   };
   $.ajax({
-    url: "/api/tag/list",
+    url: "/api/web/tag",
     method: "get",
     dataType: "json",
     success: function (res) {
@@ -46,7 +46,7 @@ function PostModel() {
   var self = this;
   self.searchTag = ko.observable(null);
   self.searchAuthor = ko.observable(null);
-  self.url = '/api/post/list';
+  self.url = '/api/web/post';
   self.type = 'get';
   self.data = ko.observableArray(null);
   self.empty = { "data": [] };
@@ -173,7 +173,7 @@ if (document.getElementById('tag_section')) {
   postModel.searchTag(locationArray[locationArray.length - 1]);
   postModel.init('post_list');
   $.ajax({
-    url: "/api/tag/show/" + locationArray[locationArray.length - 1],
+    url: "/api/web/tag/" + locationArray[locationArray.length - 1],
     method: "get",
     dataType: "json",
     success: function (res) {

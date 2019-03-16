@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-20 09:51:35
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-27 10:52:49
+ * @Last Modified time: 2019-03-15 16:42:09
  */
 'use strict';
 
@@ -73,6 +73,7 @@ module.exports = appInfo => {
     SecretKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
   };
   config.setup = true; // 请在写入数据库后修改为false
-
+  config.password_secret = 'goodluck';
+  config.password_default = 'zaqzxc';
   return config;
 };

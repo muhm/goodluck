@@ -9,20 +9,20 @@
   <meta name="keywords" content="{{keywords}}" /> {% endblock %}
   <meta name="HandheldFriendly" content="True" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="{{web_assets}}/images/favicon.ico">
-  <link rel="stylesheet" href="{{web_assets}}/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{{web_assets}}/css/styles.css">
-  <link rel="stylesheet" href="{{web_assets}}/css/input-style.css">
+  <link rel="shortcut icon" href="{{site.web_assets}}/images/favicon.ico">
+  <link rel="stylesheet" href="{{site.web_assets}}/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{site.web_assets}}/css/styles.css">
+  <link rel="stylesheet" href="{{site.web_assets}}/css/input-style.css">
 </head>
 
 <body>
   <div class="wrapper">
     <header>
       <h1 class="blog-logo">
-        <a href="{{ site }}">{{ title }}</a>
+        <a href="{{ site.site }}">{{ site.title }}</a>
       </h1>
 
-      <p class="blog-desc">{{ description }}</p>
+      <p class="blog-desc">{{ site.description }}</p>
 
       <div class="sidebar">
         <div class="display"></div>
@@ -41,19 +41,19 @@
         </div>
 
         <div class="display">
-          <img src="{{logo}}" alt="{{logo}}" />
+          <img src="{{site.logo}}" alt="{{logo}}" />
         </div>
       </div>
     </header>
     {% block body %} {% endblock %} {% include "web/partials/footer.html" %}
   </div>
 
-  <script type="text/javascript" src="{{web_assets}}/js/scale.fix.js"></script>
-  <script type="text/javascript" src="{{web_assets}}/js/jquery-2.1.4.min.js"></script>
-  <script type="text/javascript" src="{{web_assets}}/js/jquery.fitvids.js "></script>
-  <script type="text/javascript" src="{{web_assets}}/js/knockout-3.4.2.js "></script>
-  <script type="text/javascript" src="{{web_assets}}/js/moment.min.js"></script>
-  <script type="text/javascript" src="{{web_assets}}/js/main.js"></script>
+  <script type="text/javascript" src="{{site.web_assets}}/js/scale.fix.js"></script>
+  <script type="text/javascript" src="{{site.web_assets}}/js/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="{{site.web_assets}}/js/jquery.fitvids.js "></script>
+  <script type="text/javascript" src="{{site.web_assets}}/js/knockout-3.4.2.js "></script>
+  <script type="text/javascript" src="{{site.web_assets}}/js/moment.min.js"></script>
+  <script type="text/javascript" src="{{site.web_assets}}/js/main.js"></script>
 </body>
 
 </html>

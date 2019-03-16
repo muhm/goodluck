@@ -5,23 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{title}}</title>
+    <title>{{site.title}}</title>
     <meta name="description" content="{{description}}" />
     <meta name="keywords" content="{{keywords}}" />
-    <link rel="shortcut icon" type="text/css" href="{{manage_assets}}/images/favicon.ico" />
+    <link rel="shortcut icon" type="text/css" href="{{site.manage_assets}}/images/favicon.ico" />
 
-    <link href="{{manage_assets}}/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{manage_assets}}/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{site.manage_assets}}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{site.manage_assets}}/css/font-awesome.min.css" rel="stylesheet">
     <!-- Toastr -->
-    <link href="{{manage_assets}}/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="{{site.manage_assets}}/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <!-- Sweet Alert -->
-    <link href="{{manage_assets}}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="{{site.manage_assets}}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
     <!-- DataTables style -->
-    <link href="{{manage_assets}}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <link href="{{site.manage_assets}}/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     <!-- Chosen style -->
-    <link href="{{manage_assets}}/css/plugins/chosen//bootstrap-chosen.css" rel="stylesheet">{% block css %} {% endblock %}
-    <link href="{{manage_assets}}/css/animate.css" rel="stylesheet">
-    <link href="{{manage_assets}}/css/style.css" rel="stylesheet">
+    <link href="{{site.manage_assets}}/css/plugins/chosen//bootstrap-chosen.css" rel="stylesheet">{% block css %} {% endblock %}
+    <link href="{{site.manage_assets}}/css/animate.css" rel="stylesheet">
+    <link href="{{site.manage_assets}}/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -33,28 +33,28 @@
         </div>
     </div>
     <!-- Mainly scripts -->
-    <script type="text/javascript" src="{{manage_assets}}/js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/jquery-2.1.1.js"></script>
     <!-- <script>if (typeof module === 'object') {window.jQuery = window.$ = module.exports;};</script> -->
-    <script type="text/javascript" src="{{manage_assets}}/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{manage_assets}}/js/moment.min.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/moment.min.js"></script>
     <!-- Toastr -->
-    <script type="text/javascript" src="{{manage_assets}}/js/plugins/toastr/toastr.min.js"></script>
-    <script type="text/javascript" src="{{manage_assets}}/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script type="text/javascript" src="{{manage_assets}}/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="{{manage_assets}}/js/plugins/pace/pace.min.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/plugins/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/plugins/pace/pace.min.js"></script>
     <!-- Sweet alert -->
-    <script type="text/javascript" src="{{manage_assets}}/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/plugins/sweetalert/sweetalert.min.js"></script>
     <!-- DataTables-->
-    <script type="text/javascript" src="{{manage_assets}}/js/plugins/dataTables/datatables.min.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/plugins/dataTables/datatables.min.js"></script>
     <!-- Chosen -->
-    <script type="text/javascript" src="{{manage_assets}}/js/plugins/chosen/chosen.jquery.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/plugins/chosen/chosen.jquery.js"></script>
     <!-- Validate-->
-    <script type="text/javascript" src="{{manage_assets}}/js/plugins/validate/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="{{manage_assets}}/js/plugins/validate/messages_zh.min.js"></script>
-    <script type="text/javascript" src="{{manage_assets}}/js/plugins/validate/additional-methods.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/plugins/validate/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/plugins/validate/messages_zh.min.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/plugins/validate/additional-methods.js"></script>
     <!-- Custom and plugin javascript -->
-    <script type="text/javascript" src="{{manage_assets}}/js/knockout-3.4.2.js"></script>
-    <script type="text/javascript" src="{{manage_assets}}/js/gl-admin.min.js"></script> {% block script %} {% endblock %}
+    <script type="text/javascript" src="{{site.manage_assets}}/js/knockout-3.4.2.js"></script>
+    <script type="text/javascript" src="{{site.manage_assets}}/js/gl-admin.min.js"></script> {% block script %} {% endblock %}
 </body>
 
 </html>

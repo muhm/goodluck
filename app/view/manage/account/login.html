@@ -10,12 +10,12 @@
   <meta name="description" content="{{description}}" />
   <meta name="keywords" content="{{keywords}}" />
 
-  <link href="{{manage_assets}}/css/bootstrap.min.css" rel="stylesheet">
-  <link href="{{manage_assets}}/css/font-awesome.min.css" rel="stylesheet">
+  <link href="{{site.manage_assets}}/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{site.manage_assets}}/css/font-awesome.min.css" rel="stylesheet">
 
-  <link href="{{manage_assets}}/css/animate.css" rel="stylesheet">
-  <link href="{{manage_assets}}/css/plugins/toastr/toastr.min.css" rel="stylesheet">
-  <link href="{{manage_assets}}/css/login.css" rel="stylesheet">
+  <link href="{{site.manage_assets}}/css/animate.css" rel="stylesheet">
+  <link href="{{site.manage_assets}}/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+  <link href="{{site.manage_assets}}/css/login.css" rel="stylesheet">
 
 </head>
 
@@ -23,7 +23,7 @@
 
   <div class="middle-box text-center loginscreen animated fadeInDown">
     <div>
-      <img alt="image" class="img-responsive center-block logo" src="{{manage_assets}}/images/logo.png">
+      <img alt="image" class="img-responsive center-block logo" src="{{site.manage_assets}}/images/logo.png">
       <form id="form-login" class="m-t" role="form" action="/api/account/login?redirectURL={{redirectURL}}" method="POST">
         <div class="form-group">
           <input name="name" type="text" class="form-control" placeholder="Username" required="">
@@ -46,20 +46,20 @@
 
   <div class="bottom">
     <div class="terminal">
-      {{copyright | safe}}
+      {{site.copyright | safe}}
     </div>
-    <div class="credit">Made in CHINa ://{{icp|safe}}{{police|safe}}</div>
+    <div class="credit">Made in CHINa ://{{site.icp|safe}}{{site.police|safe}}</div>
     <span class="clear">
       <!-- -->
     </span>
   </div>
   <!-- Mainly scripts -->
-  <script src="{{manage_assets}}/js/jquery-2.1.1.js"></script>
-  <script src="{{manage_assets}}/js/bootstrap.min.js"></script>
-  <script src="{{manage_assets}}/js/plugins/toastr/toastr.min.js"></script>
-  <script src="{{manage_assets}}/js/plugins/validate/jquery.validate.min.js"></script>
-  <script src="{{manage_assets}}/js/plugins/validate/messages_zh.min.js"></script>
-  <script src="{{manage_assets}}/js/plugins/validate/additional-methods.js"></script>
+  <script src="{{site.manage_assets}}/js/jquery-2.1.1.js"></script>
+  <script src="{{site.manage_assets}}/js/bootstrap.min.js"></script>
+  <script src="{{site.manage_assets}}/js/plugins/toastr/toastr.min.js"></script>
+  <script src="{{site.manage_assets}}/js/plugins/validate/jquery.validate.min.js"></script>
+  <script src="{{site.manage_assets}}/js/plugins/validate/messages_zh.min.js"></script>
+  <script src="{{site.manage_assets}}/js/plugins/validate/additional-methods.js"></script>
   <script>
     localStorage.clear();
     $('#form-login').validate({

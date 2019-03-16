@@ -1,7 +1,7 @@
 {% extends "web/layout.html" %} {% block seo %}
 <title>{{post.meta_title or title}}</title>
-<meta name="description" content="{{post.meta_description or description}}" />
-<meta name="keywords" content="{{keywords}}" /> {% endblock %} {% block body %}
+<meta name="description" content="{{post.meta_description or site.description}}" />
+<meta name="keywords" content="{{site.keywords}}" /> {% endblock %} {% block body %}
 <section>
   <div class="post">
 

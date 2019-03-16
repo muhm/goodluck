@@ -2,7 +2,7 @@
  * @Author: MUHM
  * @Date: 2017-10-19 16:25:50
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-27 17:05:58
+ * @Last Modified time: 2019-03-15 21:39:16
  */
 'use strict';
 
@@ -10,7 +10,7 @@ module.exports = app => {
   return class User extends app.Service {
     constructor(ctx) {
       super(ctx);
-      this.password_secret = app.locals.password_secret;
+      this.password_secret = app.config.password_secret;
       this.crypto = require('crypto');
       this.uuid = require('node-uuid');
       this.UserModel = ctx.model.User;
@@ -75,7 +75,7 @@ module.exports = app => {
      * @return {Promise} 用户
      */
     async login(username, password) {
-      const { ctx, crypto, uuid } = this;
+      const { ctx, crypto, uuid, password_secret } = this;
       const where = ctx.helper.accountWhere(username);
       if (!where) {
         // 账号格式有误
@@ -92,11 +92,11 @@ module.exports = app => {
         throw new Error(ctx.__('Account is not available'));
       }
       // 检查登录错误次数
-      if (user.login_fail_count > parseInt(app.locals.login_fail_count)) {
+      if (user.login_fail_count > parseInt(app.locals.site.login_fail_count)) {
         throw new Error(ctx.__('Too many password errors logins to this has been disabled'));
       }
       // 检查用户密码
-      if (user.password !== crypto.createHash('md5').update(password + app.locals.password_secret).digest('hex')) {
+      if (user.password !== crypto.createHash('md5').update(password + password_secret).digest('hex')) {
         // 增加密码输入错误次数
         await user.update({
           login_fail_count: user.login_fail_count + 1,

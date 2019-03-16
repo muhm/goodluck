@@ -2,15 +2,13 @@
  * @Author: MUHM
  * @Date: 2018-03-27 16:31:07
  * @Last Modified by: MUHM
- * @Last Modified time: 2018-03-27 16:43:25
+ * @Last Modified time: 2019-03-15 16:43:10
  */
 'use strict';
 
 module.exports = {
   async setup() {
     const app = this;
-    const password_secret = 'goodluck';
-    const password_default = 'zaqzxc';
     await app.model.sync({ force: app.config.setup });
     if (app.config.setup) {
       // 设置初始参数
@@ -33,14 +31,6 @@ module.exports = {
       }, {
         key: 'manage_assets',
         value: '/public/manage',
-        type: 'core',
-      }, {
-        key: 'password_secret',
-        value: password_secret,
-        type: 'core',
-      }, {
-        key: 'password_default',
-        value: password_default,
         type: 'core',
       }, {
         key: 'login_fail_max',
@@ -92,7 +82,7 @@ module.exports = {
       const admin = await app.model.User.create({
         name: 'admin',
         truename: '管理员',
-        password: crypto.createHash('md5').update(`123456${password_secret}`).digest('hex'),
+        password: crypto.createHash('md5').update(`123456${app.config.password_secret}`).digest('hex'),
         status: 1,
       });
       // 设置初始权限
