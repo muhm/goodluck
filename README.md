@@ -16,8 +16,8 @@
 
 ### DEMO
 
-- https://ie.gl
-- 后台:https://ie.gl/manage/home
+- https://demo.ghostnova.com
+- 后台:https://demo.ghostnova.com/manage/home
 - 账号:admin
 - 密码:123456
 
